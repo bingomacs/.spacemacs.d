@@ -92,7 +92,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(spaceline)
+   dotspacemacs-excluded-packages '()
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -467,29 +467,18 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (with-eval-after-load 'org
-    (setq org-agenda-inhibit-startup t)
-    (setq org-agenda-use-tag-inheritance nil)
-    (setq org-agenda-window-setup 'current-window)
-    (setq org-agenda-files (list "~/.org/private.org"
-                                 "~/.org/work.org"
-                                 "~/.org/notes.org"))
-    (setq org-todo-keywords '((sequence "TODO(!)" "DOING(!)" "|" "DONE(!)" "ABORT(@/!)")))
-    (setq org-plantuml-jar-path
-          (expand-file-name "~/.emacs.d/private/binsheng/plantuml.jar"))
-    )
-  (spacemacs/toggle-transparency)
+  ;; (spacemacs/toggle-transparency)
   (setq magit-repository-directories '("~/git/"))
   (global-company-mode t)
   (setq powerline-default-separator 'arrow)
   (setq neo-theme 'icons)
-  (setq neo-window-width 25)
+  (setq neo-window-width 20)
   (global-hungry-delete-mode t)
   (add-hook 'company-mode-hook
             (lambda()
               (global-set-key (kbd "s-/") 'company-complete)))
 
-  (binsheng-mode-line)
+  ;; (binsheng-mode-line)
   )
 
 (defun binsheng-mode-line ()
