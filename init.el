@@ -40,43 +40,34 @@ This function should only modify configuration layer settings."
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      ivy
-     (auto-completion :variables auto-completion-enable-help-tooltip t
-                      auto-completion-complete-with-key-sequence-delay 0.1
-                      auto-completion-idle-delay 0.1
-                      auto-completion-enable-snippets-in-popup t
-                      auto-completion-enable-sort-by-usage t
+     (auto-completion :variables auto-completion-enable-sort-by-usage t
                       auto-completion-enable-snippets-in-popup t)
      better-defaults
-     graphviz
-     (spacemacs-layouts :variables layouts-enable-autosave nil
-                        layouts-autosave-delay 300)
      emacs-lisp
-     git
-     gtags
+     (git :variables git-magit-status-fullscreen t
+          magit-save-repository-buffers 'dontask
+          magit-revert-buffers 'slient
+          magit-refs-show-commit-count 'all
+          magit-revision-show-gravatars nil)
      markdown
      neotree
-     (org :variables org-want-todo-bindings t
-          org-enable-org-journal-support t
-          org-journal-dir "~/.org/journal/"
-          org-journal-file-format "%Y-%m-%d"
-          org-journal-date-prefix "#+TITLE："
-          org-journal-date-format "%A,%B %d %Y"
-          org-journal-time-prefix "* "
-          org-journal-time-format "")
+     (org :variables org-want-todo-bindings t)
+     ranger
+     colors
+     html
+     javascript
+     python
      (go :variables gofmt-command "goimports"
          go-use-gometalinter t
          go-tab-width 4)
-     (python :variables python-enable-yapf-format-on-save t)
-     html
-     javascript
-     (ranger :variables ranger-show-preview t)
+     osx
      (shell :variables shell-default-shell 'multi-term
              shell-default-height 60
-             shell-enable-smart-eshell t)
+            shell-default-position 'bottom)
      ;; spell-checking
      syntax-checking
-     version-control
      binsheng
+     ;; version-control
      )
 
    ;; List of additional packages that will be installed without being
@@ -123,9 +114,15 @@ It should only modify the values of Spacemacs settings."
    ;; (default 5)
    dotspacemacs-elpa-timeout 5
 
+   ;; Set `gc-cons-threshold' and `gc-cons-percentage' when startup finishes.
+   ;; This is an advanced option and should not be changed unless you suspect
+   ;; performance issues due to garbage collection operations.
+   ;; (default '(100000000 0.1))
+   dotspacemacs-gc-cons '(100000000 0.1)
+
    ;; If non-nil then Spacelpa repository is the primary source to install
-   ;; a locked version of packages. If nil then Spacemacs will install the lastest
-   ;; version of packages from MELPA. (default nil)
+   ;; a locked version of packages. If nil then Spacemacs will install the
+   ;; latest version of packages from MELPA. (default nil)
    dotspacemacs-use-spacelpa nil
 
    ;; If non-nil then verify the signature for downloaded Spacelpa archives.
@@ -177,6 +174,10 @@ It should only modify the values of Spacemacs settings."
    ;; Default major mode of the scratch buffer (default `text-mode')
    dotspacemacs-scratch-mode 'text-mode
 
+   ;; Initial message in the scratch buffer, such as "Welcome to Spacemacs!"
+   ;; (default nil)
+   dotspacemacs-initial-scratch-message nil
+
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
@@ -189,7 +190,7 @@ It should only modify the values of Spacemacs settings."
    ;; to create your own spaceline theme. Value can be a symbol or list with\
    ;; additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(vim-powerline)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -197,8 +198,8 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro for Powerline"
-                               :size 20
+   dotspacemacs-default-font '("Source Code Pro"
+                               :size 18
                                :weight normal
                                :width normal)
 
@@ -230,10 +231,10 @@ It should only modify the values of Spacemacs settings."
    ;; and TAB or `C-m' and `RET'.
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
-   dotspacemacs-distinguish-gui-tab 'TAB
+   dotspacemacs-distinguish-gui-tab nil
 
    ;; If non-nil `Y' is remapped to `y$' in Evil states. (default nil)
-   dotspacemacs-remap-Y-to-y$ nil
+   dotspacemacs-remap-Y-to-y$ t
 
    ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
    ;; there. (default t)
@@ -241,7 +242,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil, `J' and `K' move lines up and down when in visual mode.
    ;; (default nil)
-   dotspacemacs-visual-line-move-text nil
+   dotspacemacs-visual-line-move-text t
 
    ;; If non-nil, inverse the meaning of `g' in `:substitute' Evil ex-command.
    ;; (default nil)
@@ -265,7 +266,7 @@ It should only modify the values of Spacemacs settings."
    ;; Size (in MB) above which spacemacs will prompt to open the large file
    ;; literally to avoid performance issues. Opening a file literally means that
    ;; no major mode or minor modes are active. (default is 1)
-   dotspacemacs-large-file-size 1
+   dotspacemacs-large-file-size 10
 
    ;; Location where to auto-save files. Possible values are `original' to
    ;; auto-save the file in-place, `cache' to auto-save the file to another
@@ -390,6 +391,9 @@ It should only modify the values of Spacemacs settings."
    ;; emphasis the current one). (default 'all)
    dotspacemacs-highlight-delimiters 'all
 
+   ;; If non-nil, start an Emacs server if one is not already running.
+   dotspacemacs-enable-server t
+
    ;; If non-nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
    dotspacemacs-persistent-server nil
@@ -398,11 +402,6 @@ It should only modify the values of Spacemacs settings."
    ;; tool of the list. Supported tools are `rg', `ag', `pt', `ack' and `grep'.
    ;; (default '("rg" "ag" "pt" "ack" "grep"))
    dotspacemacs-search-tools '("rg" "ag" "pt" "ack" "grep")
-
-   ;; The default package repository used if no explicit repository has been
-   ;; specified with an installed package.
-   ;; Not used for now. (default nil)
-   dotspacemacs-default-package-repository nil
 
    ;; Format specification for setting the frame title.
    ;; %a - the `abbreviated-file-name', or `buffer-name'
@@ -421,7 +420,7 @@ It should only modify the values of Spacemacs settings."
    ;; %z - mnemonics of buffer, terminal, and keyboard coding systems
    ;; %Z - like %z, but including the end-of-line format
    ;; (default "%I@%S")
-   dotspacemacs-frame-title-format "%I@%S"
+   dotspacemacs-frame-title-format "%a@%t"
 
    ;; Format specification for setting the icon title format
    ;; (default nil - same as frame-title-format)
@@ -453,12 +452,9 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
         '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
           ("org-cn"   . "http://elpa.emacs-china.org/org/")
           ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
-  (setq exec-path-from-shell-check-startup-files nil)
   (setq tramp-ssh-controlmaster-options
         "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
-  (setq gc-cons-threshold (* 128 1024 1024))
-  (setq-default git-magit-status-fullscreen t)
-  (setq-default git-enable-magit-svn-plugin t)
+  (setq exec-path-from-shell-check-startup-files nil)
   )
 
 (defun dotspacemacs/user-config ()
@@ -467,105 +463,11 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  ;; (spacemacs/toggle-transparency)
-  (setq magit-repository-directories '("~/git/"))
-  (global-company-mode t)
-  (setq powerline-default-separator 'arrow)
+  (setq split-width-threshold 120)
   (setq neo-theme 'icons)
-  (setq neo-window-width 20)
-  (global-hungry-delete-mode t)
-  (add-hook 'company-mode-hook
-            (lambda()
-              (global-set-key (kbd "s-/") 'company-complete)))
+  (setq neo-window-width 25)
+  (spacemacs/toggle-transparency)
   )
-
-(defun binsheng-mode-line ()
-  (setq-default mode-line-format
-                (list
-                 " %1"
-                 '(:eval (propertize
-                          (window-number-mode-line)
-                          'face
-                          'font-lock-type-face))
-                 " "
-                 '(:eval (binsheng/update-persp-name))
-
-                 "%1 "
-                 ;; the buffer name; the file name as a tool tip
-                 '(:eval (propertize "%b " 'face 'font-lock-keyword-face
-                                     'help-echo (buffer-file-name)))
-
-
-                 " [" ;; insert vs overwrite mode, input-method in a tooltip
-                 '(:eval (propertize (if overwrite-mode "Ovr" "Ins")
-                                     'face 'font-lock-preprocessor-face
-                                     'help-echo (concat "Buffer is in "
-                                                        (if overwrite-mode
-                                                            "overwrite"
-                                                          "insert") " mode")))
-
-                 ;; was this buffer modified since the last save?
-                 '(:eval (when (buffer-modified-p)
-                           (concat ","  (propertize "Mod"
-                                                    'face 'font-lock-warning-face
-                                                    'help-echo "Buffer has been modified"))))
-
-                 ;; is this buffer read-only?
-                 '(:eval (when buffer-read-only
-                           (concat ","  (propertize "RO"
-                                                    'face 'font-lock-type-face
-                                                    'help-echo "Buffer is read-only"))))
-                 "] "
-
-                 ;; anzu
-                 anzu--mode-line-format
-
-                 ;; relative position, size of file
-                 "["
-                 (propertize "%p" 'face 'font-lock-constant-face) ;; % above top
-                 "/"
-                 (propertize "%I" 'face 'font-lock-constant-face) ;; size
-                 "] "
-
-                 ;; the current major mode for the buffer.
-                 '(:eval (propertize "%m" 'face 'font-lock-string-face
-                                     'help-echo buffer-file-coding-system))
-
-                 "%1 "
-                 my-flycheck-mode-line
-                 "%1 "
-                 ;; evil state
-                 '(:eval evil-mode-line-tag)
-
-                 ;; minor modes
-                 minor-mode-alist
-                 " "
-                 ;; git info
-                 `(vc-mode vc-mode)
-
-                 " "
-
-                 ;; global-mode-string goes in mode-line-misc-info
-                 mode-line-misc-info
-
-                 (mode-line-fill 'mode-line 20)
-
-                 ;; line and column
-                 "(" ;; '%02' to set to 2 chars at least; prevents flickering
-                 (propertize "%02l" 'face 'font-lock-type-face) ","
-                 (propertize "%02c" 'face 'font-lock-type-face)
-                 ") "
-
-                 '(:eval (buffer-encoding-abbrev))
-                 mode-line-end-spaces
-                 ;; add the time, with the date and the emacs uptime in the tooltip
-                 ;; '(:eval (propertize (format-time-string "%H:%M")
-                 ;;                     'help-echo
-                 ;;                     (concat (format-time-string "%c; ")
-                 ;;                             (emacs-uptime "Uptime:%hh"))))
-                 ))
-  )
-
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -581,7 +483,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (focus yasnippet-snippets yapfify xterm-color ws-butler writeroom-mode winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit symon string-inflection spaceline-all-the-icons smex smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs request ranger rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pippel pip-requirements persp-mode pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-journal org-download org-bullets org-brain open-junk-file neotree nameless mwim multi-term move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint json-mode js2-refactor js-doc ivy-purpose ivy-hydra indent-guide importmagic impatient-mode hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make graphviz-dot-mode gotham-theme google-translate golden-ratio godoctor go-tag go-rename go-guru go-eldoc gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md ggtags fuzzy font-lock+ flycheck-pos-tip flycheck-gometalinter flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dracula-theme doom-themes diminish diff-hl define-word cython-mode counsel-projectile counsel-gtags counsel-css company-web company-tern company-statistics company-quickhelp company-go company-anaconda column-enforce-mode coffee-mode clean-aindent-mode centered-cursor-mode browse-at-remote badwolf-theme auto-yasnippet auto-highlight-symbol auto-compile atom-one-dark-theme aggressive-indent adaptive-wrap ace-window ace-link ac-ispell))))
+    (origami yasnippet-snippets yapfify xterm-color ws-butler winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit symon string-inflection spaceline-all-the-icons smex smeargle slim-mode shell-pop scss-mode sass-mode reveal-in-osx-finder restart-emacs request ranger rainbow-mode rainbow-identifiers rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pippel pipenv pip-requirements persp-mode pcre2el pbcopy password-generator paradox overseer osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree nameless mwim multi-term move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint launchctl json-mode js2-refactor js-doc ivy-xref ivy-purpose ivy-hydra indent-guide importmagic impatient-mode hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make gotham-theme google-translate golden-ratio godoctor go-tag go-rename go-guru go-eldoc gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flycheck-pos-tip flycheck-gometalinter flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dracula-theme doom-themes diminish cython-mode counsel-projectile counsel-css company-web company-tern company-statistics company-go company-anaconda column-enforce-mode color-identifiers-mode coffee-mode clean-aindent-mode centered-cursor-mode badwolf-theme auto-yasnippet auto-highlight-symbol auto-compile atom-one-dark-theme aggressive-indent adaptive-wrap ace-window ace-link ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
