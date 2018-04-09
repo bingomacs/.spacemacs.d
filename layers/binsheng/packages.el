@@ -142,7 +142,8 @@ Each entry is either:
   (use-package easy-hugo
     :defer
     :init
-    (setq easy-hugo-basedir "~/sdb1/.org/hugo/daily")
+    (setq easy-hugo-basedir "~/sdb1/.org/hugo/daily/")
+    (setq easy-hugo-postdir "content/posts")
     (setq easy-hugo-root "/")))
 
 
