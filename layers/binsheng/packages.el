@@ -31,6 +31,7 @@
 
 (defconst binsheng-packages
   '(org
+    deft
     org-pomodoro
     easy-hugo)
   "The list of Lisp packages required by the binsheng layer.
@@ -143,5 +144,15 @@ Each entry is either:
     :init
     (setq easy-hugo-basedir "~/sdb1/.org/hugo/daily")
     (setq easy-hugo-root "/")))
+
+
+(defun binsheng/post-init-deft()
+  (use-package deft
+    :config (setq deft-directory "~/sdb1/.org/"
+                  deft-extensions '("md" "org" "txt")
+                  deft-recursive t
+                  deft-use-filename-as-title t)))
+
+
 
 ;;; packages.el ends here
