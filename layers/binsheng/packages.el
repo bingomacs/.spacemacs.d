@@ -31,7 +31,8 @@
 
 (defconst binsheng-packages
   '(org
-    org-pomodoro)
+    org-pomodoro
+    easy-hugo)
   "The list of Lisp packages required by the binsheng layer.
 
 Each entry is either:
@@ -58,6 +59,9 @@ Each entry is either:
 
       - A list beginning with the symbol `recipe' is a melpa
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
+
+
+
 
 
 (defun binsheng/post-init-org()
@@ -133,5 +137,11 @@ Each entry is either:
   ;; when editing js file, this feature is very useful
   ;; (setq-default header-line-format
                 ;; '((which-func-mode ("" which-func-format " "))))
+(defun binsheng/init-easy-hugo()
+  (use-package easy-hugo
+    :defer
+    :init
+    (setq easy-hugo-basedir "~/sdb1/.org/hugo/daily")
+    (setq easy-hugo-root "/")))
 
 ;;; packages.el ends here
