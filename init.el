@@ -473,11 +473,14 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (setq split-width-threshold 120)
+  (global-company-mode)
   (setq neo-theme 'icons)
   (setq neo-window-width 25)
   (spacemacs/toggle-transparency)
   (smartparens-global-mode)
   (setq magit-repository-directories '("~/work/"))
+  (add-hook 'company-mode-hook
+            (lambda () (interactive "") (global-set-key (kbd "s-/") 'company-complete)))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
