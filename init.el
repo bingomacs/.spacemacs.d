@@ -54,9 +54,8 @@ This function should only modify configuration layer settings."
           org-journal-dir "~/sdb1/.org/journal/"
           org-journal-file-format "%Y-%m-%d"
           org-journal-date-prefix "#+TITLE: "
-          org-journal-date-format "%A, %B %d %Y"
+          org-journal-date-format "%A, %Y %B %d"
           org-journal-time-prefix "* "
-          org-journal-time-format ""
           org-enable-hugo-support t)
      ranger
      colors
