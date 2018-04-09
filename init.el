@@ -58,6 +58,7 @@ This function should only modify configuration layer settings."
           org-journal-time-prefix "* "
           org-enable-hugo-support t)
      ranger
+     emoji
      deft
      colors
      html
