@@ -40,15 +40,35 @@ This function should only modify configuration layer settings."
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      ivy
-     (auto-completion :variables auto-completion-enable-sort-by-usage t
-                      auto-completion-enable-snippets-in-popup t)
+     markdown
+     neotree
      better-defaults
      emacs-lisp
+     ranger
+     emoji
+     deft
+     python
+     osx
+     rust
+     colors
+     html
+     syntax-checking
+     binsheng
+     (ibuffer :variables ibuffer-group-buffers-by 'modes)
+     (chinese :variables chinese-enable-youdao-dict t)
+     (go :variables gofmt-command "goimports"
+         go-tab-width 4)
+     (auto-completion :variables auto-completion-enable-sort-by-usage t
+                      auto-completion-enable-snippets-in-popup t)
      (git :variables git-magit-status-fullscreen t
           magit-refs-show-commit-count 'all
           magit-revision-show-gravatars nil)
-     markdown
-     neotree
+     (javascript :variables node-add-modules-path t
+                 js-indent-level 2 ;json indent
+                 js2-basic-offset 2);javascript indent
+     (shell :variables shell-default-shell 'multi-term
+            shell-default-height 60
+            shell-default-position 'bottom)
      (org :variables org-want-todo-bindings t
           org-enable-org-journal-support t
           org-journal-dir "~/.org/journal/"
@@ -57,25 +77,12 @@ This function should only modify configuration layer settings."
           org-journal-date-format "%A, %Y %B %d"
           org-journal-time-prefix "* "
           org-enable-hugo-support t)
-     ranger
-     emoji
-     deft
-     colors
-     html
-     (javascript :variables node-add-modules-path t
-                 js-indent-level 2 ;json indent
-                 js2-basic-offset 2);javascript indent
-     python
-     (go :variables gofmt-command "goimports"
-         go-tab-width 4)
-     osx
-     rust
-     (shell :variables shell-default-shell 'multi-term
-             shell-default-height 60
-            shell-default-position 'bottom)
+     (c-c++ :variables c-c++-default-mode-for-headers 'c++-mode
+            c-c++-enable-clang-support t
+            c-c++-enable-clang-format-on-save t
+            c-c++-enable-google-style t
+            c-c++-enable-google-newline t)
      ;; spell-checking
-     syntax-checking
-     binsheng
      ;; version-control
      )
 
@@ -473,6 +480,9 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  (when (configuration-layer/layer-usedp 'chinese)
+    (when (and (spacemacs/system-is-mac) window-system)
+      (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
   (setq split-width-threshold 120)
   (global-company-mode)
   (setq neo-theme 'icons)
@@ -491,4 +501,18 @@ before packages are loaded."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (youdao-dictionary names chinese-word-at-point yasnippet-snippets yapfify xterm-color ws-butler writeroom-mode winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toml-mode toc-org tagedit symon string-inflection spaceline-all-the-icons smex smeargle slim-mode shell-pop scss-mode sass-mode reveal-in-osx-finder restart-emacs request realgud ranger rainbow-mode rainbow-identifiers rainbow-delimiters racer pyvenv pytest pyim pyenv-mode py-isort pug-mode popwin pippel pipenv pip-requirements persp-mode pcre2el pbcopy password-generator paradox pangu-spacing ox-hugo overseer osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-mime org-journal org-download org-bullets org-brain open-junk-file neotree nameless mwim multi-term move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode launchctl json-mode js2-refactor js-doc ivy-xref ivy-rtags ivy-purpose ivy-hydra indent-guide importmagic impatient-mode ibuffer-projectile hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make gotham-theme google-translate google-c-style golden-ratio godoctor go-tag go-rename go-guru go-eldoc gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ focus flycheck-rust flycheck-rtags flycheck-pos-tip flx-ido find-by-pinyin-dired fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emojify emoji-cheat-sheet-plus emmet-mode elisp-slime-nav editorconfig easy-hugo dumb-jump dracula-theme doom-themes disaster diminish deft cython-mode counsel-projectile counsel-css company-web company-tern company-statistics company-rtags company-go company-emoji company-c-headers company-anaconda column-enforce-mode color-identifiers-mode coffee-mode clean-aindent-mode clang-format centered-cursor-mode cargo badwolf-theme auto-yasnippet auto-highlight-symbol auto-compile atom-one-dark-theme aggressive-indent add-node-modules-path adaptive-wrap ace-window ace-pinyin ace-link ac-ispell))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 )
