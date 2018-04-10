@@ -71,14 +71,16 @@ Each entry is either:
     (setq org-agenda-inhibit-startup t)
     (setq org-agenda-use-tag-inheritance nil)
     (setq org-agenda-window-setup 'current-window)
-    (setq org-agenda-files (list "~/.org/private.org"
-                                 "~/.org/work.org"
-                                 "~/.org/notes.org"))
+    (setq org-agenda-files (list "~/sdb1/.org/agenda.org"))
     (setq org-todo-keywords '((sequence "TODO(!)" "DOING(!)" "|" "DONE(!)" "ABORT(@/!)")))
     (setq org-todo-keyword-faces '(("TODO" . "red")
                                    ("DOING" . "yellow")
                                    ("DONE" . "green")
                                    ("ABORT" . "gray")))
+    ;; Change task state to DOING when clock in
+    (setq org-clock-in-switch-to-state "DOING")
+    ;; Save clock data and notes in the LOGBOOK drawer
+    (setq org-clock-into-drawer t)
     (setq org-plantuml-jar-path
           (expand-file-name "~/.spacemacs.d/layers/binsheng/plantuml.jar")))
 
@@ -142,14 +144,14 @@ Each entry is either:
   (use-package easy-hugo
     :defer
     :init
-    (setq easy-hugo-basedir "~/")
+    (setq easy-hugo-basedir "~/sdb1/.org/hugo/daily/")
     (setq easy-hugo-postdir "content/posts")
     (setq easy-hugo-root "/")))
 
 
 (defun binsheng/post-init-deft()
   (use-package deft
-    :config (setq deft-directory "~/.org/"
+    :config (setq deft-directory "~/sdb1/.org/"
                   deft-extensions '("md" "org" "txt")
                   deft-recursive t
                   deft-use-filename-as-title t)))
