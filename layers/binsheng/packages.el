@@ -83,8 +83,17 @@ Each entry is either:
     (setq org-clock-into-drawer t)
     (setq org-plantuml-jar-path
           (expand-file-name "~/.spacemacs.d/layers/binsheng/plantuml.jar")))
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+      '((js . t)
+        (latex .t)
+        (python . t)
+        (emacs-lisp . t)
+        (plantuml . t)
+        (C . t)
+        (ditaa . t)))
 
-  (setq org-capture-templates
+    (setq org-capture-templates
             '(("t" "Todo" entry (file+headline org-agenda-file-gtd "Workspace")
                "* TODO [#B] %?\n  %i\n"
                :empty-lines 1)
