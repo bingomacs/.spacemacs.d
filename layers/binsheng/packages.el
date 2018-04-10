@@ -32,6 +32,7 @@
 (defconst binsheng-packages
   '(org
     deft
+    leanote
     org-pomodoro
     easy-hugo)
   "The list of Lisp packages required by the binsheng layer.
@@ -165,6 +166,14 @@ Each entry is either:
                   deft-recursive t
                   deft-use-filename-as-title t)))
 
+(defun binsheng/init-leanote()
+  (use-package leanote
+    :config
+    (progn
+      (add-hook 'markdown-mode-hook
+                (lambda ()
+                  (leanote)
+                  (leanote-spaceline-status))))))
 
 
 ;;; packages.el ends here
