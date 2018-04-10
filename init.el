@@ -51,7 +51,7 @@ This function should only modify configuration layer settings."
      neotree
      (org :variables org-want-todo-bindings t
           org-enable-org-journal-support t
-          org-journal-dir "~/sdb1/.org/journal/"
+          org-journal-dir "~/.org/journal/"
           org-journal-file-format "%Y-%m-%d"
           org-journal-date-prefix "#+TITLE: "
           org-journal-date-format "%A, %Y %B %d"
@@ -479,7 +479,7 @@ before packages are loaded."
   (setq neo-window-width 25)
   (spacemacs/toggle-transparency)
   (smartparens-global-mode)
-  (setq magit-repository-directories '("~/work/"))
+  (setq magit-repository-directories '("~/git/"))
   (add-hook 'company-mode-hook
             (lambda () (interactive "") (global-set-key (kbd "s-/") 'company-complete)))
   )
