@@ -144,14 +144,14 @@ Each entry is either:
   (use-package easy-hugo
     :defer
     :init
-    (setq easy-hugo-basedir "~/sdb1/.org/hugo/daily/")
+    (setq easy-hugo-basedir "~/")
     (setq easy-hugo-postdir "content/posts")
     (setq easy-hugo-root "/")))
 
 
 (defun binsheng/post-init-deft()
   (use-package deft
-    :config (setq deft-directory "~/sdb1/.org/"
+    :config (setq deft-directory "~/.org/"
                   deft-extensions '("md" "org" "txt")
                   deft-recursive t
                   deft-use-filename-as-title t)))
