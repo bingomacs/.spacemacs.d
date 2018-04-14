@@ -126,6 +126,9 @@ Each entry is either:
    )
 
 
+
+;; brew install terminal-notifier
+;; brew linkapps
 (defun binsheng/notify-osx (title msg)
   (message title "call binsheng nofity")
   (call-process "terminal-notifier"
