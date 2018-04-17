@@ -90,7 +90,7 @@ Each entry is either:
       '((js . t)
         (latex .t)
         (python . t)
-        (sh . t)
+        (shell . t)
         (java . t)
         (js . t)
         (emacs-lisp . t)
