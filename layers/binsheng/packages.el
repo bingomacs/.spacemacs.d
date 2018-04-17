@@ -71,6 +71,7 @@ Each entry is either:
     (setq org-src-fontify-natively t)
     (setq org-agenda-inhibit-startup t)
     (setq org-agenda-use-tag-inheritance nil)
+    (setq org-agenda-span 'day)
     (setq org-agenda-window-setup 'current-window)
     (setq org-agenda-files (list "~/sdb1/.org/agenda.org"))
     (setq org-todo-keywords '((sequence "TODO(!)" "DOING(!)" "|" "DONE(!)" "ABORT(@/!)")))
@@ -96,6 +97,17 @@ Each entry is either:
         (plantuml . t)
         (C . t)
         (ditaa . t)))
+
+
+    (setq org-agenda-dir "~/.org/agenda/")
+
+    ;; define the refile targets
+    (setq org-agenda-file-note (expand-file-name "notes.org" org-agenda-dir))
+    (setq org-agenda-file-gtd (expand-file-name "gtd.org" org-agenda-dir))
+    (setq org-agenda-file-journal (expand-file-name "journal.org" org-agenda-dir))
+    (setq org-agenda-file-code-snippet (expand-file-name "snippet.org" org-agenda-dir))
+    (setq org-default-notes-file (expand-file-name "gtd.org" org-agenda-dir))
+    (setq org-agenda-files (list org-agenda-dir))
 
     (setq org-capture-templates
             '(("t" "Todo" entry (file+headline org-agenda-file-gtd "Workspace")
