@@ -122,9 +122,10 @@ Each entry is either:
               ("s" "Code Snippet" entry
                (file org-agenda-file-code-snippet)
                "* %?\t%^g\n#+BEGIN_SRC %^{language}\n\n#+END_SRC")
-              ("w" "work" entry (file+headline org-agenda-file-gtd "Cocos2D-X")
+              ("w" "work" entry (file+headline org-agenda-file-gtd "company")
                "* TODO [#A] %?\n  %i\n %U"
-               :empty-lines 1)
+               :empty-lines 1[[zsh:1: command not found: osascript]])
+              ;; org-mac-chrome-get-frontmost-url org-mac-chrome-insert-frontmost-url
               ("c" "Chrome" entry (file+headline org-agenda-file-note "Quick notes")
                "* TODO [#C] %?\n %(zilongshanren/retrieve-chrome-current-tab-url)\n %i\n %U"
                :empty-lines 1)
