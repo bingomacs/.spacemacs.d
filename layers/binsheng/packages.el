@@ -122,7 +122,7 @@ Each entry is either:
               ("s" "Code Snippet" entry
                (file org-agenda-file-code-snippet)
                "* %?\t%^g\n#+BEGIN_SRC %^{language}\n\n#+END_SRC")
-              ("w" "work" entry (file+headline org-agenda-file-gtd "company")
+              ("w" "work" entry (file+headline org-agenda-file-gtd "work")
                "* TODO [#A] %?\n  %i\n %U"
                :empty-lines 1[[zsh:1: command not found: osascript]])
               ;; org-mac-chrome-get-frontmost-url org-mac-chrome-insert-frontmost-url
@@ -173,14 +173,14 @@ Each entry is either:
   (use-package easy-hugo
     :defer
     :init
-    (setq easy-hugo-basedir "~/")
-    (setq easy-hugo-postdir "content/posts")
+    (setq easy-hugo-basedir "~/hugo/daily/")
+    (setq easy-hugo-postdir "content/post")
     (setq easy-hugo-root "/")))
 
-
+;; 用来快速浏览、过滤、编辑文本笔记
 (defun binsheng/post-init-deft()
   (use-package deft
-    :config (setq deft-directory "~/.org/"
+    :config (setq deft-directory "~/org/"
                   deft-extensions '("md" "org" "txt")
                   deft-recursive t
                   deft-use-filename-as-title t)))
