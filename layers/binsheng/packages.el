@@ -73,7 +73,7 @@ Each entry is either:
     (setq org-agenda-use-tag-inheritance nil)
     (setq org-agenda-span 'day)
     (setq org-agenda-window-setup 'current-window)
-    (setq org-agenda-files (list "~/org/agenda.org"))
+    (setq org-agenda-files (list "~/.org/private.org"))
     (setq org-todo-keywords '((sequence "TODO(!)" "DOING(!)" "|" "DONE(!)" "ABORT(@/!)")))
     (setq org-todo-keyword-faces '(("TODO" . "red")
                                    ("DOING" . "yellow")
@@ -90,7 +90,7 @@ Each entry is either:
       '((js . t)
         (latex .t)
         (python . t)
-        (sh . t)
+        (shell . t)
         (java . t)
         (js . t)
         (emacs-lisp . t)
@@ -127,7 +127,7 @@ Each entry is either:
                :empty-lines 1[[zsh:1: command not found: osascript]])
               ;; org-mac-chrome-get-frontmost-url org-mac-chrome-insert-frontmost-url
               ("c" "Chrome" entry (file+headline org-agenda-file-note "Quick notes")
-               "* TODO [#C] %?\n %(zilongshanren/retrieve-chrome-current-tab-url)\n %i\n %U"
+               "* TODO [#C] %?\n %(org-mac-chrome-get-frontmost-url)\n %i\n %U"
                :empty-lines 1)
               ("l" "links" entry (file+headline org-agenda-file-note "Quick notes")
                "* TODO [#C] %?\n  %i\n %a \n %U"
@@ -180,7 +180,7 @@ Each entry is either:
 ;; 用来快速浏览、过滤、编辑文本笔记
 (defun binsheng/post-init-deft()
   (use-package deft
-    :config (setq deft-directory "~/org/"
+    :config (setq deft-directory "~/.org/"
                   deft-extensions '("md" "org" "txt")
                   deft-recursive t
                   deft-use-filename-as-title t)))
