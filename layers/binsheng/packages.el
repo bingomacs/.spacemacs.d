@@ -73,7 +73,7 @@ Each entry is either:
     (setq org-agenda-use-tag-inheritance nil)
     (setq org-agenda-span 'day)
     (setq org-agenda-window-setup 'current-window)
-    (setq org-agenda-files (list "~/sdb1/.org/agenda.org"))
+    (setq org-agenda-files (list "~/org/agenda.org"))
     (setq org-todo-keywords '((sequence "TODO(!)" "DOING(!)" "|" "DONE(!)" "ABORT(@/!)")))
     (setq org-todo-keyword-faces '(("TODO" . "red")
                                    ("DOING" . "yellow")
@@ -99,7 +99,7 @@ Each entry is either:
         (ditaa . t)))
 
 
-    (setq org-agenda-dir "~/.org/agenda/")
+    (setq org-agenda-dir "~/org/agenda/")
 
     ;; define the refile targets
     (setq org-agenda-file-note (expand-file-name "notes.org" org-agenda-dir))
@@ -107,7 +107,7 @@ Each entry is either:
     (setq org-agenda-file-journal (expand-file-name "journal.org" org-agenda-dir))
     (setq org-agenda-file-code-snippet (expand-file-name "snippet.org" org-agenda-dir))
     (setq org-default-notes-file (expand-file-name "gtd.org" org-agenda-dir))
-    (setq org-agenda-files (list org-agenda-dir))
+    ;; (setq org-agenda-files (list org-agenda-dir))
 
     (setq org-capture-templates
             '(("t" "Todo" entry (file+headline org-agenda-file-gtd "Workspace")
