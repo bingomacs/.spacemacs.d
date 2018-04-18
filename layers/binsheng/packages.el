@@ -156,6 +156,7 @@ Each entry is either:
   (message title "call binsheng notify")
   (call-process "notify-send"
                 nil 0 nil
+                "-i" "face-monkey"
                 title
                 msg))
 
