@@ -73,7 +73,7 @@ Each entry is either:
     (setq org-agenda-use-tag-inheritance nil)
     (setq org-agenda-span 'day)
     (setq org-agenda-window-setup 'current-window)
-    (setq org-agenda-files (list "~/.org/private.org"))
+    (setq org-agenda-files (list "~/org/agenda.org"))
     (setq org-todo-keywords '((sequence "TODO(!)" "DOING(!)" "|" "DONE(!)" "ABORT(@/!)")))
     (setq org-todo-keyword-faces '(("TODO" . "red")
                                    ("DOING" . "yellow")
@@ -143,7 +143,7 @@ Each entry is either:
 ;; brew install terminal-notifier
 ;; brew linkapps
 (defun binsheng/notify-osx (title msg)
-  (message title "call binsheng nofity")
+  (message title "call binsheng notify")
   (call-process "terminal-notifier"
                 nil 0 nil
                 "-group" "Emacs"
@@ -152,15 +152,28 @@ Each entry is either:
                 "-message" msg
                 "-active" "org.gnu.Emacs"))
 
+(defun binsheng/notify-linux (title msg)
+  (message title "call binsheng notify")
+  (call-process "notify-send"
+                nil 0 nil
+                title
+                msg))
+
+
+(defun binsheng/notify (title msg)
+  (if (eq system-type 'darwin)
+      (binsheng/notify-osx title mgs)
+    (binsheng/notify-linux title msg)))
+
 (defun binsheng/post-init-org-pomodoro ()
   (add-hook 'org-pomodoro-finished-hook
-            (lambda () (binsheng/notify-osx "Pomodoro Completed!" "Time for a break.")))
+            (lambda () (binsheng/notify "Pomodoro Completed!" "Time for a break.")))
   (add-hook 'org-pomodoro-break-finished-hook
-            (lambda () (binsheng/notify-osx "Pomodoro Short Break Finished" "Ready for Another?")))
+            (lambda () (binsheng/notify "Pomodoro Short Break Finished" "Ready for Another?")))
   (add-hook 'org-pomodoro-long-break-finished-hook
-            (lambda () (binsheng/notify-osx "Pomodoro Long Break Finished" "Ready for Another?")))
+            (lambda () (binsheng/notify "Pomodoro Long Break Finished" "Ready for Another?")))
   (add-hook 'org-pomodoro-killed-hook
-            (lambda () (binsheng/notify-osx "Pomodoro Killed" "One does not simply kill a pomodoro!"))))
+            (lambda () (binsheng/notify "Pomodoro Killed" "One does not simply kill a pomodoro!"))))
 
   ;; (setq-default mode-line-misc-info
   ;;              (assq-delete-all 'which-function-mode mode-line-misc-info))
