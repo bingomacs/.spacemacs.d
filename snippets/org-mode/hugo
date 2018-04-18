@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: hugo
+# key: h
+# --
+#+HUGO_BASE_DIR: ../
+#+TITLE: $1
+#+DATE: `(format-time-string "%Y-%m-%d")`
+#+HUGO_TAGS: $2
+#+HUGO_CATEGORIES: $3
+
+$0
