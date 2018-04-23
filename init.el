@@ -58,6 +58,7 @@ This function should only modify configuration layer settings."
      (osx :variables osx-command-as 'super)
      (ibuffer :variables ibuffer-group-buffers-by 'modes)
      (chinese :variables chinese-enable-youdao-dict t)
+     (typescript :variables typescript-fmt-on-save t)
      (python :variables python-shell-completion-native nil
              python-test-runner 'pytest)
      (go :variables gofmt-command "goimports"
