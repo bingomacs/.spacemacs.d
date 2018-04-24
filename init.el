@@ -61,8 +61,10 @@ This function should only modify configuration layer settings."
      (typescript :variables typescript-fmt-on-save t
                  typescript-fmt-tool 'typescript-formatter)
      (python :variables python-shell-completion-native nil
+             python-enable-yapf-format-on-save t
              python-test-runner 'pytest)
      (go :variables gofmt-command "goimports"
+         go-use-gometalinter t
          go-tab-width 4)
      (auto-completion :variables auto-completion-enable-sort-by-usage t
                       auto-completion-enable-snippets-in-popup t)
