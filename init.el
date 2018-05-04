@@ -50,6 +50,7 @@ This function should only modify configuration layer settings."
      prodigy
      rust
      colors
+     restclient
      html
      imenu-list
      syntax-checking
