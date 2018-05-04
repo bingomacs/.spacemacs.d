@@ -47,6 +47,7 @@ This function should only modify configuration layer settings."
      ranger
      emoji
      deft
+     prodigy
      rust
      colors
      html
