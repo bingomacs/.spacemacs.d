@@ -73,7 +73,15 @@ Each entry is either:
     (setq org-agenda-use-tag-inheritance nil)
     (setq org-agenda-span 'day)
     (setq org-agenda-window-setup 'current-window)
-    (setq org-agenda-files (list "~/org/agenda.org"))
+    ;; agenda files for tag search
+    (setq org-agenda-dir "~/.org/")
+    (let ((notes-dir "~/.org"))
+      (if (file-exists-p notes-dir)
+          (progn
+            (load-library "find-lisp")
+            (setq org-agenda-files (find-lisp-find-files "~/.org" "\.org$"))
+            )))
+    ;; (setq org-agenda-files (list "~/.org/"))
     (setq org-todo-keywords '((sequence "TODO(!)" "DOING(!)" "|" "DONE(!)" "ABORT(@/!)")))
     (setq org-todo-keyword-faces '(("TODO" . "red")
                                    ("DOING" . "yellow")
@@ -99,7 +107,6 @@ Each entry is either:
         (ditaa . t)))
 
 
-    (setq org-agenda-dir "~/org/agenda/")
 
     ;; define the refile targets
     (setq org-agenda-file-note (expand-file-name "notes.org" org-agenda-dir))
@@ -187,7 +194,7 @@ Each entry is either:
   (use-package easy-hugo
     :defer
     :init
-    (setq easy-hugo-basedir "~/hugo/daily/")
+    (setq easy-hugo-basedir "~/git/blog/")
     (setq easy-hugo-postdir "content/post")
     (setq easy-hugo-root "/")))
 
