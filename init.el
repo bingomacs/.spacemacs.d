@@ -68,6 +68,8 @@ This function should only modify configuration layer settings."
      (go :variables gofmt-command "goimports"
          go-use-gometalinter t
          go-tab-width 4)
+     (spacemacs-layouts :variables layouts-autosave-delay 300
+                        layouts-enable-autosave nil)
      (auto-completion :variables auto-completion-enable-sort-by-usage t
                       auto-completion-enable-snippets-in-popup t)
      (git :variables git-magit-status-fullscreen t
@@ -496,7 +498,7 @@ before packages are loaded."
   (setq split-width-threshold 120)
   (global-company-mode)
   (setq neo-theme 'icons)
-  (setq neo-window-width 25)
+  (setq neo-window-width 20)
   (smartparens-global-mode)
   (global-hungry-delete-mode)
   (setq magit-repository-directories '("~/git/"))
