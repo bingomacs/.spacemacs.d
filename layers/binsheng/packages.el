@@ -100,13 +100,14 @@ Each entry is either:
         (python . t)
         (shell . t)
         (java . t)
-        (js . t)
         (emacs-lisp . t)
         (plantuml . t)
         (C . t)
         (ditaa . t)))
 
-
+    ;; 设置org-babel缩进
+    (setq org-edit-src-content-indentation 0)
+    (setq org-src-tab-acts-natively t)
 
     ;; define the refile targets
     (setq org-agenda-file-note (expand-file-name "notes.org" org-agenda-dir))
