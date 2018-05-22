@@ -49,7 +49,6 @@ This function should only modify configuration layer settings."
      deft
      prodigy
      rust
-     colors
      restclient
      html
      imenu-list
@@ -60,6 +59,8 @@ This function should only modify configuration layer settings."
      (osx :variables osx-command-as 'super)
      (ibuffer :variables ibuffer-group-buffers-by 'modes)
      (chinese :variables chinese-enable-youdao-dict t)
+     (colors :variables colors-colorize-identifiers 'all
+             colors-enable-nyan-cat-progress-bar t)
      (typescript :variables typescript-fmt-on-save t
                  typescript-fmt-tool 'typescript-formatter)
      (python :variables python-shell-completion-native nil
@@ -90,8 +91,6 @@ This function should only modify configuration layer settings."
           org-journal-time-prefix "* "
           org-enable-hugo-support t)
      (c-c++ :variables c-c++-default-mode-for-headers 'c++-mode
-            c-c++-enable-clang-support t
-            c-c++-enable-clang-format-on-save t
             c-c++-enable-google-style t
             c-c++-enable-google-newline t)
      ;; spell-checking
@@ -495,6 +494,7 @@ before packages are loaded."
   (when (configuration-layer/layer-usedp 'chinese)
     (when (and (spacemacs/system-is-mac) window-system)
       (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
+  (cnfonts-enable)
   (setq split-width-threshold 120)
   (global-company-mode)
   (setq neo-theme 'icons)
