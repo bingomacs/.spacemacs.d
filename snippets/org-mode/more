@@ -1,7 +1,7 @@
 # -*- mode: snippet -*-
 # name: more
-# key: m
+# key: more
 # --
-<!--more-->
+# more
 
 $0
