@@ -5,9 +5,11 @@
 #+HUGO_BASE_DIR: ../
 #+TITLE: $1
 #+DATE: `(format-time-string "%Y-%m-%d")`
+#+CATEGORY: BLOG
+#+HUGO_DRAFT: true
 #+HUGO_TAGS: $2
 #+HUGO_CATEGORIES: $3
-#+image: "$4"
+#+image: $4
 #+HUGO_SECTION: ./post
 
 
