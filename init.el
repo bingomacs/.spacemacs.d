@@ -246,7 +246,7 @@ It should only modify the values of Spacemacs settings."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+                               :size 15
                                :weight normal
                                :width normal)
 
@@ -519,8 +519,8 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (when (configuration-layer/layer-usedp 'chinese)
     (when (and (spacemacs/system-is-mac) window-system)
-      (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
-  (cnfonts-enable)
+      (spacemacs//set-monospaced-font "Source Code Pro" "STKaiti" 15 18)))
+  ;; (cnfonts-enable)
   (setq split-width-threshold 120)
   (global-company-mode)
   (setq neo-theme 'icons)
