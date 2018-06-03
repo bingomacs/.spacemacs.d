@@ -87,6 +87,7 @@ Each entry is either:
                                    ("DOING" . "yellow")
                                    ("DONE" . "green")
                                    ("ABORT" . "gray")))
+    (setq org-log-done 'note)
     ;; Change task state to DOING when clock in
     (setq org-clock-in-switch-to-state "DOING")
     ;; Save clock data and notes in the LOGBOOK drawer
@@ -100,6 +101,7 @@ Each entry is either:
         (python . t)
         (shell . t)
         (java . t)
+        (go . t)
         (emacs-lisp . t)
         (plantuml . t)
         (C . t)
