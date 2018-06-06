@@ -55,6 +55,7 @@ This function should only modify configuration layer settings."
      syntax-checking
      ipython-notebook
      pdf
+     epub
      binsheng
      (osx :variables osx-command-as 'super)
      (ibuffer :variables ibuffer-group-buffers-by 'modes)
