@@ -54,7 +54,7 @@ This function should only modify configuration layer settings."
      imenu-list
      syntax-checking
      ipython-notebook
-     pdf-tools
+     pdf
      binsheng
      (osx :variables osx-command-as 'super)
      (ibuffer :variables ibuffer-group-buffers-by 'modes)
