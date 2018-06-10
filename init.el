@@ -70,6 +70,7 @@ This function should only modify configuration layer settings."
              python-test-runner 'pytest)
      (go :variables gofmt-command "goimports"
          go-use-gometalinter t
+         godoc-at-point-function 'godoc-gogetdoc
          go-tab-width 4)
      (spacemacs-layouts :variables layouts-autosave-delay 300
                         layouts-enable-autosave nil)
