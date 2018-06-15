@@ -76,8 +76,7 @@ This function should only modify configuration layer settings."
                         layouts-enable-autosave nil)
      (auto-completion :variables auto-completion-enable-sort-by-usage t
                       auto-completion-enable-snippets-in-popup t)
-     (git :variables git-magit-status-fullscreen t
-          magit-refs-show-commit-count 'all
+     (git :variables magit-refs-show-commit-count 'all
           magit-revision-show-gravatars nil)
      (javascript :variables node-add-modules-path t
                  js-indent-level 2 ;json indent
