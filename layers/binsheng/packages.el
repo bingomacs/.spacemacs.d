@@ -33,6 +33,7 @@
   '(org
     deft
     leanote
+    netease-music
     org-pomodoro
     easy-hugo)
   "The list of Lisp packages required by the binsheng layer.
@@ -218,5 +219,12 @@ Each entry is either:
                   (leanote)
                   (leanote-spaceline-status))))))
 
+
+(defun binsheng/init-netease-music()
+  (use-package netease-music
+    :config (setq netease-music-username ""
+                  netease-music-user-password ""
+                  netease-music-user-id ""
+                  netease-music-api "http://localhost:3000")))
 
 ;;; packages.el ends here
