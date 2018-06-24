@@ -173,7 +173,7 @@ Each entry is either:
 
 (defun binsheng/notify (title msg)
   (if (eq system-type 'darwin)
-      (binsheng/notify-osx title mgs)
+      (binsheng/notify-osx title msg)
     (binsheng/notify-linux title msg)))
 
 (defun binsheng/post-init-org-pomodoro ()
