@@ -75,12 +75,12 @@ Each entry is either:
     (setq org-agenda-window-setup 'current-window)
     ;; agenda files for tag search
     (setq org-agenda-dir "~/.agenda/")
-    (let ((notes-dir "~/.org"))
-      (if (file-exists-p notes-dir)
-          (progn
-            (load-library "find-lisp")
-            (setq org-agenda-files (find-lisp-find-files "~/.org" "\.org$"))
-            )))
+    ;; (let ((notes-dir "~/.org"))
+    ;;   (if (file-exists-p notes-dir)
+    ;;       (progn
+    ;;         (load-library "find-lisp")
+    ;;         (setq org-agenda-files (find-lisp-find-files "~/.org" "\.org$"))
+    ;;         )))
     ;; (setq org-agenda-files (list "~/.org/"))
     (setq org-todo-keywords '((sequence "TODO(!)" "DOING(!)" "|" "DONE(!)" "ABORT(@/!)")))
     (setq org-todo-keyword-faces '(("TODO" . "red")
@@ -117,7 +117,7 @@ Each entry is either:
     (setq org-agenda-file-journal (expand-file-name "journal.org" org-agenda-dir))
     (setq org-agenda-file-code-snippet (expand-file-name "snippet.org" org-agenda-dir))
     (setq org-default-notes-file (expand-file-name "gtd.org" org-agenda-dir))
-    ;; (setq org-agenda-files (list org-agenda-dir))
+    (setq org-agenda-files (list org-agenda-dir))
 
     (setq org-capture-templates
             '(("t" "Todo" entry (file+headline org-agenda-file-gtd "Workspace")
