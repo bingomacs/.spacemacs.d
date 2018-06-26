@@ -74,7 +74,7 @@ Each entry is either:
     (setq org-agenda-span 'day)
     (setq org-agenda-window-setup 'current-window)
     ;; agenda files for tag search
-    (setq org-agenda-dir "~/.org/")
+    (setq org-agenda-dir "~/.agenda/")
     (let ((notes-dir "~/.org"))
       (if (file-exists-p notes-dir)
           (progn
