@@ -471,6 +471,14 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil)
    dotspacemacs-pretty-docs nil))
 
+(defun dotspacemacs/user-env ()
+  "Environment variables setup.
+This function defines the environment variables for your Emacs session. By
+default it calls `spacemacs/load-spacemacs-env' which loads the environment
+variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
+See the header of this file for more information."
+  (spacemacs/load-spacemacs-env))
+
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
 This function is called immediately after `dotspacemacs/init', before layer
@@ -485,7 +493,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
         "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
   (setq exec-path-from-shell-check-startup-files nil)
   (setq-default git-enable-magit-svn-plugin t)
-  )
+)
 
 (defun dotspacemacs/user-config ()
   "Configuration for user code:
