@@ -502,7 +502,6 @@ before packages are loaded."
   (setq neo-theme 'icons)
   (setq neo-window-width 20)
   (smartparens-global-mode)
-  (global-hungry-delete-mode)
   (setq magit-repository-directories '("~/git/"))
   (add-hook 'company-mode-hook
             (lambda () (interactive "") (global-set-key (kbd "s-/") 'company-complete)))
