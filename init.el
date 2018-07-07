@@ -69,12 +69,12 @@ This function should only modify configuration layer settings."
              python-enable-yapf-format-on-save t
              python-test-runner 'pytest)
      (go :variables gofmt-command "goimports"
-         go-use-gometalinter t
          godoc-at-point-function 'godoc-gogetdoc
          go-tab-width 4)
      (spacemacs-layouts :variables layouts-autosave-delay 300
                         layouts-enable-autosave nil)
      (auto-completion :variables auto-completion-enable-sort-by-usage t
+                      auto-completion-enable-help-tooltip t
                       auto-completion-enable-snippets-in-popup t)
      (git :variables magit-refs-show-commit-count 'all
           magit-revision-show-gravatars nil)
@@ -112,7 +112,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(company)
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -492,6 +492,8 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq tramp-ssh-controlmaster-options
         "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
   (setq exec-path-from-shell-check-startup-files nil)
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark))
   (setq-default git-enable-magit-svn-plugin t)
   )
 
