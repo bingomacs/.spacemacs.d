@@ -34,6 +34,7 @@
     deft
     leanote
     org-pomodoro
+    beacon
     easy-hugo)
   "The list of Lisp packages required by the binsheng layer.
 
@@ -217,6 +218,14 @@ Each entry is either:
                 (lambda ()
                   (leanote)
                   (leanote-spaceline-status))))))
+
+
+(defun binsheng/init-beacon()
+  (use-package beacon
+    :ensure t
+    :config
+    (beacon-mode 1)))
+
 
 
 ;;; packages.el ends here
