@@ -52,7 +52,7 @@ This function should only modify configuration layer settings."
      restclient
      html
      imenu-list
-     syntax-checking
+     (syntax-checking :variables syntax-checking-use-original-bitmaps t)
      ipython-notebook
      pdf
      epub
