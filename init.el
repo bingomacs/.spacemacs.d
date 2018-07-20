@@ -62,7 +62,7 @@
        editorconfig      ; let someone else argue about tabs vs spaces
       ;ein               ; tame Jupyter notebooks with emacs
       ;gist              ; interacting with github gists
-      ;macos             ; MacOS-specific commands
+       macos             ; MacOS-specific commands
        make              ; run make tasks from Emacs
        magit             ;
       ;password-store    ; password manager for nerds
@@ -71,7 +71,7 @@
        rgb               ; creating color strings
       ;tmux              ; an API for interacting with tmux
        upload            ; map local to remote projects via ssh/ftp
-       wakatime
+       ;wakatime
 
        :lang
        lsp
@@ -104,7 +104,7 @@
         +attach          ; custom attachment system
         +babel           ; running code in org
         +capture         ; org-capture in and outside of Emacs
-        ;+export          ; Exporting org to whatever you want
+        +export          ; Exporting org to whatever you want
         +present)        ; Emacs for presentations
       ;perl              ; write code no one else can comprehend
       ;php               ; perl's insecure younger brother
@@ -112,13 +112,13 @@
        purescript        ; javascript, but functional
        python            ; beautiful is better than ugly
        qt                ; the 'cutest' gui framework ever
-      ;rest              ; Emacs as a REST client
+       rest              ; Emacs as a REST client
       ;ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
       ;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
       ;scala             ; java, but good
        (sh +fish)        ; she sells (ba|z)sh shells on the C xor
       ;solidity          ; do you need a blockchain? No.
-       swift             ; who asked for emoji variables?
+       ;swift             ; who asked for emoji variables?
        web               ; the tubes
 
        ;; Applications are complex and opinionated modules that transform Emacs
