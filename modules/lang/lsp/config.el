@@ -50,7 +50,7 @@
   :commands (lsp-python-enable)
   :config
   (setq python-indent-guess-indent-offset-verbose nil)
-  (set-company-backend! '(python-mode) '(company-lsp company-files company-yasnippet))
+  (set-company-backend! 'python-mode '(company-lsp company-files company-yasnippet))
   (set-lookup-handlers! 'python-mode
     :definition #'lsp-ui-peek-find-definitions
     :references #'lsp-ui-peek-find-references))

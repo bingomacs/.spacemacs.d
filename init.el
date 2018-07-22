@@ -17,7 +17,8 @@
 
        :completion
        (company          ; the ultimate code completion backend
-        +auto)           ; as-you-type code completion
+        +auto
+        +childframe)           ; as-you-type code completion
       ;(helm             ; the *other* search engine for love and life
       ; +fuzzy)          ; enable fuzzy search backend for helm
       ;ido               ; the other *other* search engine...
@@ -27,7 +28,8 @@
        :ui
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
-       doom-modeline     ; a snazzy Atom-inspired mode-line
+       (doom-modeline
+        +new)     ; a snazzy Atom-inspired mode-line
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        evil-goggles      ; display visual hints when editing in evil
       ;fci               ; a `fill-column' indicator
@@ -38,7 +40,7 @@
        (popup            ; tame sudden yet inevitable temporary windows
         +all             ; catch all popups that start with an asterix
         +defaults)       ; default popup rules
-       pretty-code       ; replace bits of code with pretty symbols
+      ;pretty-code       ; replace bits of code with pretty symbols
       ;tabbar            ; FIXME an (incomplete) tab bar for Emacs
        unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
@@ -55,12 +57,12 @@
        electric          ; smarter, keyword-based electric-indent
       ;eshell            ; a consistent, cross-platform shell (WIP)
        imenu             ; an imenu sidebar and searchable code index
-      ;term              ; terminals in Emacs
+       term              ; terminals in Emacs
        vc                ; version-control and Emacs, sitting in a tree
 
        :tools
        editorconfig      ; let someone else argue about tabs vs spaces
-      ;ein               ; tame Jupyter notebooks with emacs
+       ein               ; tame Jupyter notebooks with emacs
       ;gist              ; interacting with github gists
        macos             ; MacOS-specific commands
        make              ; run make tasks from Emacs
@@ -110,13 +112,15 @@
       ;php               ; perl's insecure younger brother
       ;plantuml          ; diagrams for confusing people more
        purescript        ; javascript, but functional
-       (python +conda)            ; beautiful is better than ugly
+       (python
+        +conda
+        +lpy)            ; beautiful is better than ugly
        qt                ; the 'cutest' gui framework ever
        rest              ; Emacs as a REST client
       ;ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
       ;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
       ;scala             ; java, but good
-       (sh +fish)        ; she sells (ba|z)sh shells on the C xor
+       sh                ; she sells (ba|z)sh shells on the C xor
       ;solidity          ; do you need a blockchain? No.
        ;swift             ; who asked for emoji variables?
        web               ; the tubes
@@ -135,7 +139,7 @@
 
        :collab
       ;floobits          ; peer programming for a price
-      ;impatient-mode    ; show off code over HTTP
+       impatient-mode    ; show off code over HTTP
 
        :config
        ;; For literate config users. This will tangle+compile a config.org
