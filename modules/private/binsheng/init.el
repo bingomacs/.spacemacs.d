@@ -13,11 +13,6 @@
 (setq doom-cjk-font (font-spec :family "Noto Sans Mono" :size 15))
 (setq initial-frame-alist (quote ((fullscreen . maximized))))
 
-(setq org-todo-keywords '((sequence "TODO(!)" "DOING(!)" "|" "DONE(!)" "ABORT(@/!)")))
-(setq org-todo-keyword-faces '(("TODO" . "red")
-                               ("DOING" . "yellow")
-                               ("DONE" . "green")
-                               ("ABORT" . "gray")))
 (setq doom-localleader-key ","
       +default-repeat-forward-key ";"
       +default-repeat-backward-key "'"
