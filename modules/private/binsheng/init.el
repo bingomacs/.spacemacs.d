@@ -7,8 +7,19 @@
 
 (setq conda-anaconda-home "/User/bin/anaconda3")
 
-(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-(add-to-list 'default-frame-alist '(ns-appearance . dark))
+;; * Mac-specific
+(if (string-match-p "NS" (emacs-version))
+    (progn
+      (setq
+       ns-use-thin-smoothing t
+       ns-alternate-modifier 'meta
+       ns-command-modifier 'super)
+      (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+      (add-to-list 'default-frame-alist '(ns-appearance . dark)))
+  ((setq var ) mac-command-modifier 'super
+   (message "")ac-option-modifier 'meta
+   mac-pass-command-to-system nil))
+
 
 (setq doom-cjk-font (font-spec :family "Noto Sans Mono" :size 15))
 (setq initial-frame-alist (quote ((fullscreen . maximized))))
