@@ -35,6 +35,8 @@
     leanote
     org-pomodoro
     beacon
+    calfw
+    calfw-org
     easy-hugo)
   "The list of Lisp packages required by the binsheng layer.
 
@@ -225,6 +227,15 @@ Each entry is either:
     :ensure t
     :config
     (beacon-mode 1)))
+
+(defun binsheng/init-calfw()
+  (use-package calfw
+    :ensure t))
+
+(defun binsheng/init-calfw-org()
+  (use-package calfw-org
+    :ensure t))
+
 
 
 
