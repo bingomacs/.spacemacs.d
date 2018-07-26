@@ -114,6 +114,11 @@ Each entry is either:
     (setq org-edit-src-content-indentation 0)
     (setq org-src-tab-acts-natively t)
 
+    ;; #+CAPTION: 設定圖片寬度為 100
+    ;; #+ATTR_HTML: :width 100
+    ;; file:data/2013/pict/test.png
+    (setq org-image-actual-width '(300))
+
     ;; define the refile targets
     (setq org-agenda-file-note (expand-file-name "notes.org" org-agenda-dir))
     (setq org-agenda-file-gtd (expand-file-name "gtd.org" org-agenda-dir))
