@@ -56,6 +56,8 @@ This function should only modify configuration layer settings."
      ipython-notebook
      pdf
      epub
+     vue
+     lsp
      binsheng
      (osx :variables osx-command-as 'super)
      (ibuffer :variables ibuffer-group-buffers-by 'modes)
