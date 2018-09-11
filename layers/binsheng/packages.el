@@ -35,6 +35,8 @@
     leanote
     org-pomodoro
     beacon
+    wanderlust
+    (aria2 :location (recipe :fetcher github :repo "LdBeth/aria2.el"))
     calfw
     calfw-org
     easy-hugo)
@@ -129,7 +131,7 @@ Each entry is either:
     (setq org-agenda-files (list org-agenda-dir))
 
     (setq org-capture-templates
-          '(("i" "inbox" entry (file+headline org-agenda-file-inbox"inbox")
+          '(("i" "inbox" entry (file+headline org-agenda-file-inbox "inbox")
              "* %?\n  %i\n %U"
              :empty-lines 1)
             ("t" "Todo" entry (file+headline org-agenda-file-gtd "Workspace")
@@ -230,6 +232,45 @@ Each entry is either:
                   (leanote)
                   (leanote-spaceline-status))))))
 
+(defun binsheng/init-wanderlust ()
+  "Initialize WanderLust."
+  (use-package wanderlust
+    :defer t
+    :init
+    (progn
+      (setq read-mail-command 'wl
+            mail-user-agent 'wl-user-agent
+            org-mime-library 'semi)
+      (define-mail-user-agent
+        'wl-user-agent
+        'wl-user-agent-compose
+        'wl-draft-send
+        'wl-draft-kill
+        'mail-send-hook)
+      (spacemacs/declare-prefix-for-mode 'wl-draft-mode "mm" "mime" "mime-edit")
+      (with-eval-after-load 'mime-edit
+        (spacemacs/set-leader-keys-for-major-mode 'wl-draft-mode
+          dotspacemacs-major-mode-leader-key 'wl-draft-send-and-exit
+          "k" 'wl-draft-kill
+          "s" 'wl-draft-save
+          "z" 'wl-draft-save-and-exit
+          "m" mime-edit-mode-entity-map
+          "c" 'bbdb-:start-completion)))
+    :config
+    (progn
+      (add-hook 'wl-folder-mode-hook 'evil-emacs-state);; Unknown Reason
+      (dolist (mode '(wl-message-mode
+                      wl-summary-mode
+                      wl-folder-mode
+                      wl-draft-mode
+                      mime-view-mode))
+        (add-to-list 'evil-emacs-state-modes mode)))))
+
+
+(defun binsheng/init-aria2()
+  (use-package aria2
+    :ensure t))
+
 
 (defun binsheng/init-beacon()
   (use-package beacon
@@ -244,7 +285,6 @@ Each entry is either:
 (defun binsheng/init-calfw-org()
   (use-package calfw-org
     :ensure t))
-
 
 
 ;;; packages.el ends here
