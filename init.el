@@ -66,7 +66,7 @@ This function should only modify configuration layer settings."
              colors-enable-nyan-cat-progress-bar t)
      (typescript :variables typescript-fmt-on-save t
                  typescript-fmt-tool 'typescript-formatter)
-     (python :variables python-shell-completion-native nil
+     (python :variables python-sort-imports-on-save t
              python-backend 'anaconda
              python-enable-yapf-format-on-save t
              python-test-runner 'pytest)
