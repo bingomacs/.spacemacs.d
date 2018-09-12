@@ -1,5 +1,7 @@
 
 (defun binsheng/convert2py()
   (interactive)
-  (shell-command
-   (format "pyuic5 %s -o %s.py" (buffer-file-name) (file-name-sans-extension (buffer-file-name)))))
+  (let ((name (file-relative-name (buffer-file-name))))
+    (message name)
+    (shell-command
+     (format "pyuic5 %s -o %s.py" name (file-name-sans-extension name)))))
