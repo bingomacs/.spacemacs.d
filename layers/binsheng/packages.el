@@ -209,7 +209,7 @@ Each entry is either:
                 ;; '((which-func-mode ("" which-func-format " "))))
 (defun binsheng/init-easy-hugo()
   (use-package easy-hugo
-    :defer
+    :defer t
     :init
     (setq easy-hugo-basedir "~/git/blog/")
     (setq easy-hugo-postdir "content/post")
@@ -218,6 +218,7 @@ Each entry is either:
 ;; 用来快速浏览、过滤、编辑文本笔记
 (defun binsheng/post-init-deft()
   (use-package deft
+    :defer t
     :config (setq deft-directory "~/.org/"
                   deft-extensions '("md" "org" "txt")
                   deft-recursive t
@@ -225,6 +226,7 @@ Each entry is either:
 
 (defun binsheng/init-leanote()
   (use-package leanote
+    :defer t
     :config
     (progn
       (add-hook 'markdown-mode-hook
@@ -269,22 +271,22 @@ Each entry is either:
 
 (defun binsheng/init-aria2()
   (use-package aria2
-    :ensure t))
+    :defer t))
 
 
 (defun binsheng/init-beacon()
   (use-package beacon
-    :ensure t
-    :config
+    :defer t
+    :init
     (beacon-mode 1)))
 
 (defun binsheng/init-calfw()
   (use-package calfw
-    :ensure t))
+    :defer t))
 
 (defun binsheng/init-calfw-org()
   (use-package calfw-org
-    :ensure t))
+    :defer t))
 
 
 ;;; packages.el ends here
