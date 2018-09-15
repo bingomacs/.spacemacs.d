@@ -511,9 +511,10 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (when (configuration-layer/layer-usedp 'chinese)
-    (when (and (spacemacs/system-is-mac) window-system)
-      (spacemacs//set-monospaced-font "Source Code Pro" "STKaiti" 15 18)))
+  (spacemacs|do-after-display-system-init
+   (when (configuration-layer/layer-usedp 'chinese)
+     (when (and (spacemacs/system-is-mac) window-system)
+       (spacemacs//set-monospaced-font "Source Code Pro" "STKaiti" 15 18))))
   (setq split-width-threshold 120)
   (global-company-mode)
   (spacemacs/toggle-transparency)
