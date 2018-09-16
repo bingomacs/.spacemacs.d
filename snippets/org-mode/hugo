@@ -8,7 +8,7 @@
 #+CATEGORIES: [$2]
 #+TAGS: [$3]
 #+HUGO_DRAFT: true
-#+IMAGE: $4
+#+IMAGE: images/$4
 #+HUGO_SECTION: ./post
 
 
