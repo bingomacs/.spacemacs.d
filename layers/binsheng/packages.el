@@ -78,6 +78,7 @@ Each entry is either:
     (setq org-agenda-use-tag-inheritance nil)
     (setq org-agenda-span 'day)
     (setq org-agenda-window-setup 'current-window)
+    (setq org-bullets-bullet-list '("☰" "☷" "☯" "☭"))
     ;; agenda files for tag search
     (setq org-agenda-dir "~/.agenda/")
     ;; (let ((notes-dir "~/.org"))
@@ -93,6 +94,10 @@ Each entry is either:
                                    ("DONE" . "green")
                                    ("ABORT" . "gray")))
     (setq org-log-done 'note)
+    (setq org-agenda-include-diary nil)
+    (setq org-refile-targets '("~/.org/refile.org" :maxlevel . 3))
+    ;; 折叠时不再显示「...」
+    (setq org-ellipsis "▼")
     ;; Change task state to DOING when clock in
     (setq org-clock-in-switch-to-state "DOING")
     ;; Save clock data and notes in the LOGBOOK drawer
