@@ -95,7 +95,6 @@ Each entry is either:
                                    ("ABORT" . "gray")))
     (setq org-log-done 'note)
     (setq org-agenda-include-diary nil)
-    (setq org-refile-targets '("~/.org/refile.org" :maxlevel . 3))
     ;; 折叠时不再显示「...」
     (setq org-ellipsis "▼")
     ;; Change task state to DOING when clock in
@@ -126,7 +125,6 @@ Each entry is either:
     ;; file:data/2013/pict/test.png
     (setq org-image-actual-width '(300))
 
-    ;; define the refile targets
     (setq org-agenda-file-inbox (expand-file-name "inbox.org" org-agenda-dir))
     (setq org-agenda-file-note (expand-file-name "notes.org" org-agenda-dir))
     (setq org-agenda-file-gtd (expand-file-name "gtd.org" org-agenda-dir))
@@ -135,6 +133,15 @@ Each entry is either:
     (setq org-default-notes-file (expand-file-name "gtd.org" org-agenda-dir))
     (setq org-agenda-files (list org-agenda-dir))
 
+    (setq org-agenda-sorting-strategy
+          '((agenda priority-down time-up)
+            (todo priority-down category-keep)
+            (tags priority-down category-keep)))
+    (setq org-todo-keyword-faces
+          '(("WAITING" . (:foreground "gray" :weight bold))))
+
+    ;; define the refile targets
+    (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
     (setq org-capture-templates
           '(("i" "inbox" entry (file+headline org-agenda-file-inbox "inbox")
              "* %?\n  %i\n %U"
