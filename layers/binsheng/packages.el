@@ -78,7 +78,6 @@ Each entry is either:
     (setq org-agenda-use-tag-inheritance nil)
     (setq org-agenda-span 'day)
     (setq org-agenda-window-setup 'current-window)
-    (setq org-bullets-bullet-list '("☰" "☷" "☯" "☭"))
     ;; agenda files for tag search
     (setq org-agenda-dir "~/.agenda/")
     ;; (let ((notes-dir "~/.org"))
