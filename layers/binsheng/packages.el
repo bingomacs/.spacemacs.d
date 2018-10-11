@@ -139,6 +139,14 @@ Each entry is either:
     (setq org-todo-keyword-faces
           '(("WAITING" . (:foreground "gray" :weight bold))))
 
+    (with-eval-after-load 'org-agenda
+      (require 'org-projectile)
+      (mapcar '(lambda (file)
+                 (when (file-exists-p file)
+                   (push file org-agenda-files)))
+              (org-projectile-todo-files)))
+
+
     ;; define the refile targets
     (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
     (setq org-capture-templates

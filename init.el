@@ -55,6 +55,7 @@ This function should only modify configuration layer settings."
      (syntax-checking :variables syntax-checking-use-original-bitmaps t)
      ipython-notebook
      pdf
+     docker
      epub
      ;; vue
      lsp
@@ -93,6 +94,8 @@ This function should only modify configuration layer settings."
           org-journal-date-prefix "#+TITLE: "
           org-journal-date-format "%A, %Y %B %d"
           org-journal-time-prefix "* "
+          org-enable-github-support t
+          org-enable-bootstrap-support t
           org-enable-hugo-support t)
      (c-c++ :variables c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-google-style t
@@ -512,6 +515,7 @@ before packages are loaded."
      (when (and (spacemacs/system-is-mac) window-system)
        (spacemacs//set-monospaced-font "Source Code Pro" "STKaiti" 15 18))))
   (setq split-width-threshold 120)
+  (setq spaceline-org-clock-p t)
   (global-company-mode)
   (spacemacs/toggle-transparency)
   (setq neo-theme 'icons)
