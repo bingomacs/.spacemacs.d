@@ -34,6 +34,7 @@
     deft
     leanote
     org-pomodoro
+    magit-todos
     beacon
     (aria2 :location (recipe :fetcher github :repo "LdBeth/aria2.el"))
     calfw
@@ -225,6 +226,15 @@ Each entry is either:
 ;; when editing js file, this feature is very useful
 ;; (setq-default header-line-format
                 ;; '((which-func-mode ("" which-func-format " "))))
+
+(defun binsheng/init-magit-todos()
+  (use-package magit-todos
+    :defer t
+    :hook (magit-mode . magit-todos-mode)
+    :config
+    (setq magit-todos-require-colon nil)))
+
+
 (defun binsheng/init-easy-hugo()
   (use-package easy-hugo
     :defer t
