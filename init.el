@@ -94,6 +94,7 @@ This function should only modify configuration layer settings."
           org-journal-date-prefix "#+TITLE: "
           org-journal-date-format "%A, %Y %B %d"
           org-journal-time-prefix "* "
+          org-projectile-file "TODOs.org"
           org-enable-github-support t
           org-enable-bootstrap-support t
           org-enable-hugo-support t)

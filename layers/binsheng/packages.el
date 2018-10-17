@@ -35,7 +35,6 @@
     leanote
     org-pomodoro
     beacon
-    wanderlust
     (aria2 :location (recipe :fetcher github :repo "LdBeth/aria2.el"))
     calfw
     calfw-org
@@ -252,40 +251,6 @@ Each entry is either:
                 (lambda ()
                   (leanote)
                   (leanote-spaceline-status))))))
-
-(defun binsheng/init-wanderlust ()
-  "Initialize WanderLust."
-  (use-package wanderlust
-    :defer t
-    :init
-    (progn
-      (setq read-mail-command 'wl
-            mail-user-agent 'wl-user-agent
-            org-mime-library 'semi)
-      (define-mail-user-agent
-        'wl-user-agent
-        'wl-user-agent-compose
-        'wl-draft-send
-        'wl-draft-kill
-        'mail-send-hook)
-      (spacemacs/declare-prefix-for-mode 'wl-draft-mode "mm" "mime" "mime-edit")
-      (with-eval-after-load 'mime-edit
-        (spacemacs/set-leader-keys-for-major-mode 'wl-draft-mode
-          dotspacemacs-major-mode-leader-key 'wl-draft-send-and-exit
-          "k" 'wl-draft-kill
-          "s" 'wl-draft-save
-          "z" 'wl-draft-save-and-exit
-          "m" mime-edit-mode-entity-map
-          "c" 'bbdb-:start-completion)))
-    :config
-    (progn
-      (add-hook 'wl-folder-mode-hook 'evil-emacs-state);; Unknown Reason
-      (dolist (mode '(wl-message-mode
-                      wl-summary-mode
-                      wl-folder-mode
-                      wl-draft-mode
-                      mime-view-mode))
-        (add-to-list 'evil-emacs-state-modes mode)))))
 
 
 (defun binsheng/init-aria2()
