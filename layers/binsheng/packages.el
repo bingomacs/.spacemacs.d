@@ -232,7 +232,8 @@ Each entry is either:
     :defer t
     :hook (magit-mode . magit-todos-mode)
     :config
-    (setq magit-todos-require-colon nil)))
+    (setq magit-todos-require-colon nil)
+    (define-key magit-todos-section-map "j" nil)))
 
 
 (defun binsheng/init-easy-hugo()
