@@ -60,6 +60,10 @@ This function should only modify configuration layer settings."
      ;; vue
      lsp
      binsheng
+     (mu4e :variables mu4e-installation-path "/usr/share/emacs/site-lisp"
+           mu4e-enable-mode-line t
+           mu4e-enable-async-operations t
+           mu4e-enable-notifications t)
      (osx :variables osx-command-as 'super)
      (ibuffer :variables ibuffer-group-buffers-by 'modes)
      (chinese :variables chinese-enable-youdao-dict t)
@@ -515,6 +519,42 @@ before packages are loaded."
    (when (configuration-layer/layer-usedp 'chinese)
      (when (and (spacemacs/system-is-mac) window-system)
        (spacemacs//set-monospaced-font "Source Code Pro" "STKaiti" 15 18))))
+
+  (with-eval-after-load 'mu4e-alert
+    ;; Enable Desktop notifications
+    (mu4e-alert-set-default-style 'notifications)) ; For linux
+
+
+
+  ;;; Set up some common mu4e variables
+  (setq mu4e-maildir "~/mails"
+        mu4e-trash-folder "/Trash"
+        mu4e-refile-folder "/Archive"
+        mu4e-get-mail-command "mbsync -a"
+        mu4e-update-interval nil
+        mu4e-compose-signature-auto-include nil
+        mu4e-view-show-images t
+        mu4e-view-show-addresses t)
+
+  ;;; Mail directory shortcuts
+  (setq mu4e-maildir-shortcuts
+        '(("/126/INBOX" . ?g)
+          ("/college/INBOX" . ?c)))
+
+  ;;; Bookmarks
+  (setq mu4e-bookmarks
+        `(("flag:unread AND NOT flag:trashed" "Unread messages" ?u)
+          ("date:today..now" "Today's messages" ?t)
+          ("date:7d..now" "Last 7 days" ?w)
+          ("mime:image/*" "Messages with images" ?p)
+          (,(mapconcat 'identity
+                       (mapcar
+                        (lambda (maildir)
+                          (concat "maildir:" (car maildir)))
+                        mu4e-maildir-shortcuts) " OR ")
+           "All inboxes" ?i)))
+
+
   (setq split-width-threshold 120)
   (setq spaceline-org-clock-p t)
   (global-company-mode)
