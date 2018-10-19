@@ -526,10 +526,10 @@ before packages are loaded."
 
   ;;; Set up some common mu4e variables
   (setq mu4e-maildir "~/mails"
-        mu4e-trash-folder "/Trash"
+        mu4e-trash-folder "/已删除"
         mu4e-refile-folder "/Archive"
-        mu4e-sent-folder "/Sent Items"
-        mu4e-drafts-folder "/Drafts"
+        mu4e-sent-folder "/已发送"
+        mu4e-drafts-folder "/草稿箱"
         mu4e-get-mail-command "mbsync -a"
         mu4e-update-interval nil
         mu4e-compose-signature-auto-include nil
@@ -538,7 +538,7 @@ before packages are loaded."
 
   ;;; Mail directory shortcuts
   (setq mu4e-maildir-shortcuts
-        '(("/126/INBOX" . ?g)
+        '(("//INBOX" . ?g)
           ("/Sent Messages" . ?s)
           ("/Junk" . ?j)
           ("/college/INBOX" . ?c)))
