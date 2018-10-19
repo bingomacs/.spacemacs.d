@@ -530,8 +530,9 @@ before packages are loaded."
         mu4e-refile-folder "/Archive"
         mu4e-sent-folder "/已发送"
         mu4e-drafts-folder "/草稿箱"
-        mu4e-get-mail-command "mbsync -a"
-        mu4e-update-interval nil
+        ;; sync email from imap server
+        mu4e-get-mail-command "offlineimap"
+        mu4e-update-interval 300
         mu4e-compose-signature-auto-include nil
         mu4e-view-show-images t
         mu4e-view-show-addresses t)
@@ -556,10 +557,6 @@ before packages are loaded."
                         mu4e-maildir-shortcuts) " OR ")
            "All inboxes" ?i)))
 
-  ;; sync email from imap server
-  (setq mu4e-get-mail-command "offlineimap" mu4e-update-interval 300)
-
-  (setq mu4e-view-show-images t)
 
 
   (setq split-width-threshold 120)
