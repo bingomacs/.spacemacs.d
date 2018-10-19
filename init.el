@@ -524,14 +524,12 @@ before packages are loaded."
     ;; Enable Desktop notifications
     (mu4e-alert-set-default-style 'notifications)) ; For linux
 
-
-
   ;;; Set up some common mu4e variables
   (setq mu4e-maildir "~/mails"
         mu4e-trash-folder "/Trash"
         mu4e-refile-folder "/Archive"
         mu4e-sent-folder "/Sent Items"
-        mu4e-drafts-folder "Drafts"
+        mu4e-drafts-folder "/Drafts"
         mu4e-get-mail-command "mbsync -a"
         mu4e-update-interval nil
         mu4e-compose-signature-auto-include nil
@@ -557,6 +555,11 @@ before packages are loaded."
                           (concat "maildir:" (car maildir)))
                         mu4e-maildir-shortcuts) " OR ")
            "All inboxes" ?i)))
+
+  ;; sync email from imap server
+  (setq mu4e-get-mail-command "offlineimap" mu4e-update-interval 300)
+
+  (setq mu4e-view-show-images t)
 
 
   (setq split-width-threshold 120)
