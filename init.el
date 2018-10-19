@@ -541,10 +541,10 @@ before packages are loaded."
 
   ;;; Mail directory shortcuts
   (setq mu4e-maildir-shortcuts
-        '(("//INBOX" . ?g)
-          ("/Sent Messages" . ?s)
-          ("/Junk" . ?j)
-          ("/college/INBOX" . ?c)))
+        '(("/INBOX" . ?g)
+          ("/已发送" . ?s)
+          ("/Archive" . ?a)
+          ("/已删除" . ?d)))
 
   ;;; Bookmarks
   (setq mu4e-bookmarks
