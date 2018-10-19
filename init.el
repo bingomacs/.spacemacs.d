@@ -52,7 +52,6 @@ This function should only modify configuration layer settings."
      restclient
      html
      imenu-list
-     (syntax-checking :variables syntax-checking-use-original-bitmaps t)
      ipython-notebook
      pdf
      docker
@@ -60,17 +59,20 @@ This function should only modify configuration layer settings."
      ;; vue
      lsp
      binsheng
-     (mu4e :variables mu4e-installation-path "/usr/share/emacs/site-lisp"
-           mu4e-enable-mode-line t
-           mu4e-enable-async-operations t
-           mu4e-enable-notifications t)
      (osx :variables osx-command-as 'super)
-     (ibuffer :variables ibuffer-group-buffers-by 'modes)
+     (dash :variables helm-dash-docset-newpath "~/.local/share/Zeal/Zeal/docsets")
+     (ibuffer :variables ibuffer-group-buffers-by ''projects)
      (chinese :variables chinese-enable-youdao-dict t)
+     (syntax-checking :variables syntax-checking-use-original-bitmaps t
+                      syntax-checking-enable-by-default nil)
      (colors :variables colors-colorize-identifiers 'all
              colors-enable-nyan-cat-progress-bar t)
      (typescript :variables typescript-fmt-on-save t
                  typescript-fmt-tool 'typescript-formatter)
+     (mu4e :variables mu4e-installation-path "/usr/share/emacs/site-lisp"
+           mu4e-enable-mode-line t
+           mu4e-enable-async-operations t
+           mu4e-enable-notifications t)
      (python :variables python-sort-imports-on-save t
              python-backend 'anaconda
              python-enable-yapf-format-on-save t
