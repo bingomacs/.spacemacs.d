@@ -61,7 +61,7 @@ This function should only modify configuration layer settings."
      binsheng
      (osx :variables osx-command-as 'super)
      (dash :variables helm-dash-docset-newpath "~/.local/share/Zeal/Zeal/docsets")
-     (ibuffer :variables ibuffer-group-buffers-by ''projects)
+     (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (chinese :variables chinese-enable-youdao-dict t)
      (syntax-checking :variables syntax-checking-use-original-bitmaps t
                       syntax-checking-enable-by-default nil)
