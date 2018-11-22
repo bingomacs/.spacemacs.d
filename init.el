@@ -86,7 +86,7 @@ This function should only modify configuration layer settings."
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-snippets-in-popup t)
      (git :variables magit-refs-show-commit-count 'all
-          magit-revision-show-gravatars nil)
+          magit-revision-show-gravatars t)
      (javascript :variables node-add-modules-path t
                  js-indent-level 2 ;json indent
                  js2-basic-offset 2);javascript indent
@@ -502,6 +502,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
   (setq-default git-enable-magit-svn-plugin t)
+  (setq-default git-magit-status-fullscreen t)
   )
 
 (defun dotspacemacs/user-load ()
@@ -566,6 +567,7 @@ before packages are loaded."
   (global-company-mode)
   (spacemacs/toggle-transparency)
   (setq neo-theme 'icons)
+  (setq neo-vc-integration '(face))
   (setq neo-window-width 20)
   (smartparens-global-mode)
   (setq magit-repository-directories '(("~/git/" . 2)))
