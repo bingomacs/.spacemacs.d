@@ -502,7 +502,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
   (setq-default git-enable-magit-svn-plugin t)
-  (setq-default git-magit-status-fullscreen t)
   )
 
 (defun dotspacemacs/user-load ()
