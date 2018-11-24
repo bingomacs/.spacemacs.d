@@ -522,12 +522,13 @@ before packages are loaded."
      (when (and (spacemacs/system-is-mac) window-system)
        (spacemacs//set-monospaced-font "Source Code Pro" "STKaiti" 15 18))))
 
-  (with-eval-after-load 'mu4e-alert
-    ;; Enable Desktop notifications
-    (mu4e-alert-set-default-style 'notifications)) ; For linux
+  (with-eval-after-load 'mu4e
+    (with-eval-after-load 'mu4e-alert
+      ;; Enable Desktop notifications notifier for mac, notifications for linux
+      (mu4e-alert-set-default-style 'notifier))
 
-  ;;; Set up some common mu4e variables
-  (setq mu4e-maildir "~/mails"
+    ;;; Set up some common mu4e variables
+    (setq mu4e-maildir "~/mails"
         mu4e-trash-folder "/已删除"
         mu4e-refile-folder "/Archive"
         mu4e-sent-folder "/已发送"
@@ -539,8 +540,8 @@ before packages are loaded."
         mu4e-view-show-images t
         mu4e-view-show-addresses t)
 
-  ;;; Mail directory shortcuts
-  (setq mu4e-maildir-shortcuts
+    ;;; Mail directory shortcuts
+    (setq mu4e-maildir-shortcuts
         '(("/INBOX" . ?g)
           ("/已发送" . ?s)
           ("/Archive" . ?a)
@@ -557,8 +558,7 @@ before packages are loaded."
                         (lambda (maildir)
                           (concat "maildir:" (car maildir)))
                         mu4e-maildir-shortcuts) " OR ")
-           "All inboxes" ?i)))
-
+           "All inboxes" ?i))))
 
 
   (setq split-width-threshold 120)
