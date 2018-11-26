@@ -78,6 +78,8 @@ This function should only modify configuration layer settings."
              python-enable-yapf-format-on-save t
              python-test-runner 'pytest)
      (go :variables gofmt-command "goimports"
+         go-backend 'lsp
+         go-format-before-save t
          godoc-at-point-function 'godoc-gogetdoc
          go-tab-width 4)
      (spacemacs-layouts :variables layouts-autosave-delay 300
