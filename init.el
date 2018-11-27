@@ -57,8 +57,9 @@ This function should only modify configuration layer settings."
      docker
      epub
      ;; vue
-     lsp
+     ;; lsp
      binsheng
+     binsheng-lsp
      (osx :variables osx-command-as 'super)
      (dash :variables helm-dash-docset-newpath "~/.local/share/Zeal/Zeal/docsets")
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
