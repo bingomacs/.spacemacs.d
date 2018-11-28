@@ -148,6 +148,33 @@ Each entry is either:
                    (push file org-agenda-files)))
               (org-projectile-todo-files)))
 
+    (setq-default
+     ;; inhibit-startup-screen t;隐藏启动显示画面
+     calendar-date-style 'iso
+     calendar-day-abbrev-array ["七" "一" "二" "三" "四" "五" "六"]
+     calendar-day-name-array ["七" "一" "二" "三" "四" "五" "六"]
+     calendar-month-name-array ["一月" "二月" "三月" "四月" "五月" "六月" "七月" "八月" "九月" "十月" "十一月" "十二月"]
+     calendar-week-start-day 1
+     org-agenda-deadline-leaders (quote ("最后期限:  " "%3d 天后到期: " "%2d 天前: "))
+     ;; (setq-default org-agenda-format-date (quote my-org-agenda-format-date-aligned))
+     org-agenda-inhibit-startup t
+     org-agenda-scheduled-leaders (quote ("计划任务:" "计划任务(第%2d次激活): "))
+     org-agenda-window-setup (quote current-window)
+     org-clock-string "计时:"
+     org-closed-string "已关闭:"
+     org-deadline-string "最后期限:"
+     org-scheduled-string "计划任务:"
+     org-time-stamp-formats  '("<%Y-%m-%d 周%u>" . "<%Y-%m-%d 周%u %H:%M>")
+     org-deadline-warning-days 5;;最后期限到达前5天即给出警告
+     org-agenda-show-all-dates t
+     org-agenda-skip-deadline-if-done t
+     org-agenda-skip-scheduled-if-done t
+     org-reverse-note-order t ;;org.el
+     org-link-file-path-type  'relative
+     org-log-done 'time
+     ;; code执行免应答（Eval code without confirm）
+     org-confirm-babel-evaluate nil)
+
 
     ;; define the refile targets
     (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
