@@ -39,6 +39,7 @@
     (aria2 :location (recipe :fetcher github :repo "LdBeth/aria2.el"))
     calfw
     mu4e
+    rainbow-mode
     cal-china-x
     calfw-org
     easy-hugo)
@@ -143,7 +144,7 @@ Each entry is either:
 
     (with-eval-after-load 'org-agenda
       (require 'org-projectile)
-      (mapcar '(lambda (file)
+      (mapcar #'(lambda (file)
                  (when (file-exists-p file)
                    (push file org-agenda-files)))
               (org-projectile-todo-files)))
@@ -209,7 +210,6 @@ Each entry is either:
              "* %?"
              :empty-lines 1)))
     )
-
 
 
 ;; brew install terminal-notifier
@@ -312,6 +312,12 @@ Each entry is either:
   (use-package calfw-org
     :defer t))
 
+
+(defun binsheng/post-init-rainbow-mode()
+  (use-package rainbow-mode
+    :diminish
+    :hook ((emacs-lisp-mode web-mode css-mode) . rainbow-mode))
+  )
 
 (defun binsheng/post-init-mu4e()
   (with-eval-after-load 'mu4e
