@@ -34,6 +34,7 @@
     deft
     leanote
     org-pomodoro
+    ob-go
     magit-todos
     beacon
     (aria2 :location (recipe :fetcher github :repo "LdBeth/aria2.el"))
@@ -230,6 +231,9 @@ Each entry is either:
              "* %?"
              :empty-lines 1)))
     )
+
+(defun binsheng/init-ob-go()
+  (use-package ob-go))
 
 
 ;; brew install terminal-notifier
