@@ -104,7 +104,7 @@ This function should only modify configuration layer settings."
           org-journal-date-format "%A, %Y %B %d"
           org-journal-time-prefix "* "
           org-projectile-file "TODOs.org"
-          org-enable-reveal-js-support t
+          ;; org-enable-reveal-js-support t
           org-enable-github-support t
           org-enable-hugo-support t)
      (c-c++ :variables c-c++-default-mode-for-headers 'c++-mode
