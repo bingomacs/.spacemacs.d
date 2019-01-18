@@ -524,8 +524,7 @@ before packages are loaded."
    (when (configuration-layer/layer-usedp 'chinese)
      (when (and (spacemacs/system-is-mac) window-system)
        (spacemacs//set-monospaced-font "Source Code Pro" "STKaiti" 15 18))))
-
-
+  (setq vc-follow-symlinks t )
   (setq split-width-threshold 120)
   (setq spaceline-org-clock-p t)
   (global-company-mode)
