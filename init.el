@@ -56,6 +56,7 @@ This function should only modify configuration layer settings."
      pdf
      docker
      epub
+     pandoc
      ;; vue
      ;; lsp
      binsheng
