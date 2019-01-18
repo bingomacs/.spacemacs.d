@@ -40,6 +40,7 @@
     (aria2 :location (recipe :fetcher github :repo "LdBeth/aria2.el"))
     calfw
     mu4e
+    pinentry
     rainbow-mode
     cal-china-x
     calfw-org
@@ -316,6 +317,12 @@ Each entry is either:
                 (lambda ()
                   (leanote)
                   (leanote-spaceline-status))))))
+
+
+;; pinentry-start 要使用的时候
+(defun binsheng/init-pinentry()
+  (use-package pinentry
+    :defer t))
 
 
 (defun binsheng/init-aria2()
