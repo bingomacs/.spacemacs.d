@@ -319,7 +319,8 @@ Each entry is either:
                   (leanote-spaceline-status))))))
 
 
-;; pinentry-start 要使用的时候
+;; pinentry-start 要使用的时候 Mac 下需要
+;; (setenv "GPG_AGENT_INFO" nil) 可能有用
 (defun binsheng/init-pinentry()
   (use-package pinentry
     :defer t))
