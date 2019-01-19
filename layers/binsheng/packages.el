@@ -320,6 +320,7 @@ Each entry is either:
 
 
 ;; pinentry-start 要使用的时候 Mac 下需要
+;; http://elpa.gnu.org/packages/pinentry.html
 ;; (setenv "GPG_AGENT_INFO" nil) 可能有用
 (defun binsheng/init-pinentry()
   (use-package pinentry
