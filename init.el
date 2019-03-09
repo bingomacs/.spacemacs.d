@@ -71,10 +71,6 @@ This function should only modify configuration layer settings."
              colors-enable-nyan-cat-progress-bar t)
      (typescript :variables typescript-fmt-on-save t
                  typescript-fmt-tool 'typescript-formatter)
-     (mu4e :variables mu4e-installation-path "/usr/share/emacs/site-lisp"
-           mu4e-enable-mode-line t
-           mu4e-enable-async-operations t
-           mu4e-enable-notifications t)
      (python :variables python-sort-imports-on-save t
              python-backend 'anaconda
              python-enable-yapf-format-on-save t
