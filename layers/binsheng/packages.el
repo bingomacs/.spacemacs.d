@@ -39,6 +39,7 @@
     beacon
     (aria2 :location (recipe :fetcher github :repo "LdBeth/aria2.el"))
     (awesome-tab :location (recipe :fetcher github :repo "manateelazycat/awesome-tab"))
+    (aweshell :location (recipe :fetcher github :repo "manateelazycat/aweshell"))
     calfw
     pinentry
     rainbow-mode
@@ -334,7 +335,6 @@ Each entry is either:
 
 (defun binsheng/init-awesome-tab()
   (use-package awesome-tab
-    :load-path "vendor/awesome-tab"
     :config
     (with-eval-after-load 'evil
       (define-key evil-normal-state-map (kbd ",tt") 'awesome-tab-switch-group)
@@ -346,7 +346,21 @@ Each entry is either:
       (define-key evil-normal-state-map (kbd ",tl") 'awesome-tab-backward))
     (setq awesome-tab-cycle-scope 'tabs) ; Navigate through visible tabs only.
     (awesome-tab-mode t)))
-
+(defun binsheng/eshell-keymap ()
+  (evil-define-key 'insert eshell-mode-map
+    (kbd "C-u") 'eshell-kill-input
+    (kbd "C-a") 'eshell-bol
+    (kbd "C-d") 'kevin/quit-or-delete-char
+    (kbd "C-r") 'kevin/ivy-eshell-history
+    (kbd "TAB") 'pcomplete-std-complete))
+(defun binsheng/init-aweshell()
+  (use-package aweshell
+    :commands (aweshell-toggle)
+    :hook (eshell-first-time-mode . binsheng/eshell-keymap)
+    :config
+    (setq eshell-highlight-prompt t)
+    (setq eshell-prompt-function 'epe-theme-lambda)
+    (setq eshell-history-file-name (concat user-emacs-directory "eshell/history"))))
 
 (defun binsheng/init-beacon()
   (use-package beacon
