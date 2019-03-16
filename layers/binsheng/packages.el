@@ -38,6 +38,7 @@
     magit-todos
     beacon
     (aria2 :location (recipe :fetcher github :repo "LdBeth/aria2.el"))
+    (awesome-tab :location (recipe :fetcher github :repo "manateelazycat/awesome-tab"))
     calfw
     pinentry
     rainbow-mode
@@ -330,6 +331,21 @@ Each entry is either:
 (defun binsheng/init-aria2()
   (use-package aria2
     :defer t))
+
+(defun binsheng/init-awesome-tab()
+  (use-package awesome-tab
+    :load-path "vendor/awesome-tab"
+    :config
+    (with-eval-after-load 'evil
+      (define-key evil-normal-state-map (kbd ",tt") 'awesome-tab-switch-group)
+      (define-key evil-normal-state-map (kbd ",ta") 'awesome-tab-select-beg-tab)
+      (define-key evil-normal-state-map (kbd ",te") 'awesome-tab-select-end-tab)
+      (define-key evil-normal-state-map (kbd ",t<") 'awesome-tab-move-current-tab-to-left)
+      (define-key evil-normal-state-map (kbd ",t>") 'awesome-tab-move-current-tab-to-right)
+      (define-key evil-normal-state-map (kbd ",th") 'awesome-tab-forward)
+      (define-key evil-normal-state-map (kbd ",tl") 'awesome-tab-backward))
+    (setq awesome-tab-cycle-scope 'tabs) ; Navigate through visible tabs only.
+    (awesome-tab-mode t)))
 
 
 (defun binsheng/init-beacon()
