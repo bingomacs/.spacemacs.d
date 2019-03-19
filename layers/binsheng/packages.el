@@ -40,6 +40,8 @@
     (aria2 :location (recipe :fetcher github :repo "LdBeth/aria2.el"))
     (awesome-tab :location (recipe :fetcher github :repo "manateelazycat/awesome-tab"))
     (aweshell :location (recipe :fetcher github :repo "manateelazycat/aweshell"))
+    (company-english-helper :location (recipe :fetcher github :repo "manateelazycat/company-english-helper"))
+    (insert-translated-name :location (recipe :fetcher github :repo "manateelazycat/insert-translated-name"))
     calfw
     pinentry
     rainbow-mode
@@ -361,6 +363,21 @@ Each entry is either:
     (setq eshell-highlight-prompt t)
     (setq eshell-prompt-function 'epe-theme-lambda)
     (setq eshell-history-file-name (concat user-emacs-directory "eshell/history"))))
+
+(defun binsheng/init-insert-translated-name()
+  (use-package insert-translated-name
+    :ensure nil
+    :bind ("C-c t t" . 'insert-translated-name-insert)
+    :config
+    (setq insert-translated-name-translate-engine 'youdao)
+    (defvar insert-translated-name-camel-style-mode-list
+      '(go-mode))))
+
+(defun binsheng/init-company-english-helper()
+  (use-package company-english-helper
+    :ensure nil
+    :after company
+    :bind ("C-c t e" . 'toggle-company-english-helper)) )
 
 (defun binsheng/init-beacon()
   (use-package beacon
