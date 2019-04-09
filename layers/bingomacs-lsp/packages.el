@@ -1,4 +1,4 @@
-;;; packages.el --- binsheng-lsp layer packages file for Spacemacs.
+;;; packages.el --- bingomacs-lsp layer packages file for Spacemacs.
 ;;
 ;; Copyright (c) 2012-2018 Sylvain Benner & Contributors
 ;;
@@ -18,18 +18,18 @@
 ;;
 ;;
 ;; Briefly, each package to be installed or configured by this layer should be
-;; added to `binsheng-lsp-packages'. Then, for each package PACKAGE:
+;; added to `bingomacs-lsp-packages'. Then, for each package PACKAGE:
 ;;
 ;; - If PACKAGE is not referenced by any other Spacemacs layer, define a
-;;   function `binsheng-lsp/init-PACKAGE' to load and initialize the package.
+;;   function `bingomacs-lsp/init-PACKAGE' to load and initialize the package.
 
 ;; - Otherwise, PACKAGE is already referenced by another Spacemacs layer, so
-;;   define the functions `binsheng-lsp/pre-init-PACKAGE' and/or
-;;   `binsheng-lsp/post-init-PACKAGE' to customize the package as it is loaded.
+;;   define the functions `bingomacs-lsp/pre-init-PACKAGE' and/or
+;;   `bingomacs-lsp/post-init-PACKAGE' to customize the package as it is loaded.
 
 ;;; Code:
 
-(defconst binsheng-lsp-packages
+(defconst bingomacs-lsp-packages
   '(lsp-mode
     lsp-ui
     company-lsp
@@ -37,7 +37,7 @@
     lsp-javascript-typescript
     lsp-css
     lsp-html)
-  "The list of Lisp packages required by the binsheng-lsp layer.
+  "The list of Lisp packages required by the bingomacs-lsp layer.
 
 Each entry is either:
 
@@ -68,7 +68,7 @@ Each entry is either:
 ;;; packages.el ends here
 
 
-(defun binsheng-lsp/init-lsp-mode()
+(defun bingomacs-lsp/init-lsp-mode()
  (use-package lsp-mode
      :diminish lsp-mode
      :hook (lsp-after-open . lsp-enable-imenu)
@@ -112,7 +112,7 @@ Each entry is either:
                              (upcase ,lang))))))))))
 
 
-(defun binsheng-lsp/init-lsp-ui()
+(defun bingomacs-lsp/init-lsp-ui()
   (use-package lsp-ui
     :bind (:map lsp-ui-mode-map
                 ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
@@ -121,13 +121,13 @@ Each entry is either:
     :hook (lsp-mode . lsp-ui-mode)))
 
 
-(defun binsheng-lsp/init-company-lsp()
+(defun bingomacs-lsp/init-company-lsp()
   (use-package company-lsp
     :after company
     :defines company-backends))
 
 
-(defun binsheng-lsp/post-init-lsp-go()
+(defun bingomacs-lsp/post-init-lsp-go()
   ;; Go support for lsp-mode using Sourcegraph's Go Language Server
   ;; Install: go get -u github.com/sourcegraph/go-langserver
   (use-package lsp-go
@@ -137,7 +137,7 @@ Each entry is either:
 
 
 
-(defun binsheng-lsp/post-init-lsp-javascript-typescript()
+(defun bingomacs-lsp/post-init-lsp-javascript-typescript()
 
   ;; Javascript, Typescript and Flow support for lsp-mode
   ;; Install: npm i -g javascript-typescript-langserver
@@ -147,7 +147,7 @@ Each entry is either:
     :config (lsp-org-babel-enbale "js" "javascript-typescript")))
 
 
-(defun binsheng-lsp/init-lsp-css()
+(defun bingomacs-lsp/init-lsp-css()
 
   ;; CSS, LESS, and SCSS/SASS support for lsp-mode using vscode-css-languageserver-bin
   ;; Install: npm i -g vscode-css-languageserver-bin
@@ -167,7 +167,7 @@ Each entry is either:
   )
 
 
-(defun binsheng-lsp/init-lsp-html()
+(defun bingomacs-lsp/init-lsp-html()
 
   ;; HTML support for lsp-mode using vscode-html-languageserver-bin
   ;; Install: npm i -g vscode-html-languageserver-bin

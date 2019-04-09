@@ -59,8 +59,8 @@ This function should only modify configuration layer settings."
      pandoc
      ;; vue
      ;; lsp
-     binsheng
-     binsheng-lsp
+     bingomacs
+     bingomacs-lsp
      (osx :variables osx-command-as 'super)
      (dash :variables helm-dash-docset-newpath "~/.local/share/Zeal/Zeal/docsets")
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
