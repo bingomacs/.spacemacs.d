@@ -1,4 +1,4 @@
-(defun binsheng/pyuic()
+(defun bingomacs/pyuic()
   "use pyuic5 convert .ui file to .py"
   (interactive)
   (let ((name (file-relative-name (buffer-file-name))))

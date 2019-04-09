@@ -1,4 +1,4 @@
-;;; packages.el --- binsheng layer packages file for Spacemacs.
+;;; packages.el --- bingomacs layer packages file for Spacemacs.
 ;;
 ;; Copyright (c) 2012-2018 Sylvain Benner & Contributors
 ;;
@@ -18,18 +18,18 @@
 ;;
 ;;
 ;; Briefly, each package to be installed or configured by this layer should be
-;; added to `binsheng-packages'. Then, for each package PACKAGE:
+;; added to `bingomacs-packages'. Then, for each package PACKAGE:
 ;;
 ;; - If PACKAGE is not referenced by any other Spacemacs layer, define a
-;;   function `binsheng/init-PACKAGE' to load and initialize the package.
+;;   function `bingomacs/init-PACKAGE' to load and initialize the package.
 
 ;; - Otherwise, PACKAGE is already referenced by another Spacemacs layer, so
-;;   define the functions `binsheng/pre-init-PACKAGE' and/or
-;;   `binsheng/post-init-PACKAGE' to customize the package as it is loaded.
+;;   define the functions `bingomacs/pre-init-PACKAGE' and/or
+;;   `bingomacs/post-init-PACKAGE' to customize the package as it is loaded.
 
 ;;; Code:
 
-(defconst binsheng-packages
+(defconst bingomacs-packages
   '(org
     deft
     leanote
@@ -48,7 +48,7 @@
     cal-china-x
     calfw-org
     easy-hugo)
-  "The list of Lisp packages required by the binsheng layer.
+  "The list of Lisp packages required by the bingomacs layer.
 
 Each entry is either:
 
@@ -79,7 +79,7 @@ Each entry is either:
 
 
 
-(defun binsheng/post-init-org()
+(defun bingomacs/post-init-org()
   (with-eval-after-load 'org
     (setq org-src-fontify-natively t)
     (setq org-agenda-inhibit-startup t)
@@ -109,7 +109,7 @@ Each entry is either:
     ;; Save clock data and notes in the LOGBOOK drawer
     (setq org-clock-into-drawer t)
     (setq org-plantuml-jar-path
-          (expand-file-name "~/.spacemacs.d/layers/binsheng/plantuml.jar")))
+          (expand-file-name "~/.spacemacs.d/layers/bingomacs/plantuml.jar")))
     (org-babel-do-load-languages
      'org-babel-load-languages
       '((js . t)
@@ -182,16 +182,9 @@ Each entry is either:
      calendar-day-name-array ["七" "一" "二" "三" "四" "五" "六"]
      calendar-month-name-array ["一月" "二月" "三月" "四月" "五月" "六月" "七月" "八月" "九月" "十月" "十一月" "十二月"]
      calendar-week-start-day 1
-     org-agenda-deadline-leaders (quote ("最后期限:  " "%3d 天后到期: " "%2d 天前: "))
      ;; (setq-default org-agenda-format-date (quote my-org-agenda-format-date-aligned))
      org-agenda-inhibit-startup t
-     org-agenda-scheduled-leaders (quote ("计划任务:" "计划任务(第%2d次激活): "))
      org-agenda-window-setup (quote current-window)
-     org-clock-string "计时:"
-     org-closed-string "已关闭:"
-     org-deadline-string "最后期限:"
-     org-scheduled-string "计划任务:"
-     org-time-stamp-formats  '("<%Y-%m-%d 周%u>" . "<%Y-%m-%d 周%u %H:%M>")
      org-deadline-warning-days 5;;最后期限到达前5天即给出警告
      org-agenda-show-all-dates t
      org-agenda-skip-deadline-if-done t
@@ -237,14 +230,14 @@ Each entry is either:
              :empty-lines 1)))
     )
 
-(defun binsheng/init-ob-go()
+(defun bingomacs/init-ob-go()
   (use-package ob-go))
 
 
 ;; brew install terminal-notifier
 ;; brew linkapps
-(defun binsheng/notify-osx (title msg)
-  (message title "call binsheng notify")
+(defun bingomacs/notify-osx (title msg)
+  (message title "call bingomacs notify")
   (call-process "terminal-notifier"
                 nil 0 nil
                 "-group" "Emacs"
@@ -253,8 +246,8 @@ Each entry is either:
                 "-message" msg
                 "-active" "org.gnu.Emacs"))
 
-(defun binsheng/notify-linux (title msg)
-  (message title "call binsheng notify")
+(defun bingomacs/notify-linux (title msg)
+  (message title "call bingomacs notify")
   (call-process "notify-send"
                 nil 0 nil
                 "-i" "face-monkey"
@@ -262,20 +255,20 @@ Each entry is either:
                 msg))
 
 
-(defun binsheng/notify (title msg)
+(defun bingomacs/notify (title msg)
   (if (eq system-type 'darwin)
-      (binsheng/notify-osx title msg)
-    (binsheng/notify-linux title msg)))
+      (bingomacs/notify-osx title msg)
+    (bingomacs/notify-linux title msg)))
 
-(defun binsheng/post-init-org-pomodoro ()
+(defun bingomacs/post-init-org-pomodoro ()
   (add-hook 'org-pomodoro-finished-hook
-            (lambda () (binsheng/notify "Pomodoro Completed!" "Time for a break.")))
+            (lambda () (bingomacs/notify "Pomodoro Completed!" "Time for a break.")))
   (add-hook 'org-pomodoro-break-finished-hook
-            (lambda () (binsheng/notify "Pomodoro Short Break Finished" "Ready for Another?")))
+            (lambda () (bingomacs/notify "Pomodoro Short Break Finished" "Ready for Another?")))
   (add-hook 'org-pomodoro-long-break-finished-hook
-            (lambda () (binsheng/notify "Pomodoro Long Break Finished" "Ready for Another?")))
+            (lambda () (bingomacs/notify "Pomodoro Long Break Finished" "Ready for Another?")))
   (add-hook 'org-pomodoro-killed-hook
-            (lambda () (binsheng/notify "Pomodoro Killed" "One does not simply kill a pomodoro!"))))
+            (lambda () (bingomacs/notify "Pomodoro Killed" "One does not simply kill a pomodoro!"))))
 
   ;; (setq-default mode-line-misc-info
   ;;              (assq-delete-all 'which-function-mode mode-line-misc-info))
@@ -285,7 +278,7 @@ Each entry is either:
 ;; (setq-default header-line-format
                 ;; '((which-func-mode ("" which-func-format " "))))
 
-(defun binsheng/init-magit-todos()
+(defun bingomacs/init-magit-todos()
   (use-package magit-todos
     :defer t
     :hook (magit-mode . magit-todos-mode)
@@ -294,7 +287,7 @@ Each entry is either:
     (define-key magit-todos-section-map "j" nil)))
 
 
-(defun binsheng/init-easy-hugo()
+(defun bingomacs/init-easy-hugo()
   (use-package easy-hugo
     :defer t
     :init
@@ -303,15 +296,15 @@ Each entry is either:
     (setq easy-hugo-root "/")))
 
 ;; 用来快速浏览、过滤、编辑文本笔记
-(defun binsheng/post-init-deft()
+(defun bingomacs/post-init-deft()
   (use-package deft
     :defer t
-    :config (setq deft-directory "~/.org/"
+    :config (setq deft-directory "~/Nextcloud/"
                   deft-extensions '("md" "org" "txt")
                   deft-recursive t
                   deft-use-filename-as-title t)))
 
-(defun binsheng/init-leanote()
+(defun bingomacs/init-leanote()
   (use-package leanote
     :defer t
     :config
@@ -326,16 +319,16 @@ Each entry is either:
 ;; 把allow-emacs-pinentry 加入 .gnupg/gpg-agent.conf
 ;; http://elpa.gnu.org/packages/pinentry.html
 ;; (setenv "GPG_AGENT_INFO" nil) 可能有用
-(defun binsheng/init-pinentry()
+(defun bingomacs/init-pinentry()
   (use-package pinentry
     :defer t))
 
 
-(defun binsheng/init-aria2()
+(defun bingomacs/init-aria2()
   (use-package aria2
     :defer t))
 
-(defun binsheng/init-awesome-tab()
+(defun bingomacs/init-awesome-tab()
   (use-package awesome-tab
     :config
     (with-eval-after-load 'evil
@@ -348,23 +341,23 @@ Each entry is either:
       (define-key evil-normal-state-map (kbd ",tl") 'awesome-tab-backward))
     (setq awesome-tab-cycle-scope 'tabs) ; Navigate through visible tabs only.
     (awesome-tab-mode t)))
-(defun binsheng/eshell-keymap ()
+(defun bingomacs/eshell-keymap ()
   (evil-define-key 'insert eshell-mode-map
     (kbd "C-u") 'eshell-kill-input
     (kbd "C-a") 'eshell-bol
     (kbd "C-d") 'kevin/quit-or-delete-char
     (kbd "C-r") 'kevin/ivy-eshell-history
     (kbd "TAB") 'pcomplete-std-complete))
-(defun binsheng/init-aweshell()
+(defun bingomacs/init-aweshell()
   (use-package aweshell
     :commands (aweshell-toggle)
-    :hook (eshell-first-time-mode . binsheng/eshell-keymap)
+    :hook (eshell-first-time-mode . bingomacs/eshell-keymap)
     :config
     (setq eshell-highlight-prompt t)
     (setq eshell-prompt-function 'epe-theme-lambda)
     (setq eshell-history-file-name (concat user-emacs-directory "eshell/history"))))
 
-(defun binsheng/init-insert-translated-name()
+(defun bingomacs/init-insert-translated-name()
   (use-package insert-translated-name
     :ensure nil
     :bind ("C-c t t" . 'insert-translated-name-insert)
@@ -373,35 +366,35 @@ Each entry is either:
     (defvar insert-translated-name-camel-style-mode-list
       '(go-mode))))
 
-(defun binsheng/init-company-english-helper()
+(defun bingomacs/init-company-english-helper()
   (use-package company-english-helper
     :ensure nil
     :after company
     :bind ("C-c t e" . 'toggle-company-english-helper)) )
 
-(defun binsheng/init-beacon()
+(defun bingomacs/init-beacon()
   (use-package beacon
     :defer t
     :init
     (beacon-mode 1)))
 
-(defun binsheng/init-calfw()
+(defun bingomacs/init-calfw()
   (use-package calfw
     :defer t))
 
-(defun binsheng/init-calfw-org()
+(defun bingomacs/init-calfw-org()
   (use-package calfw-org
     :defer t))
 
 
-(defun binsheng/post-init-rainbow-mode()
+(defun bingomacs/post-init-rainbow-mode()
   (use-package rainbow-mode
     :diminish
     :hook ((emacs-lisp-mode web-mode css-mode) . rainbow-mode))
   )
 
 
-(defun binsheng/init-cal-china-x()
+(defun bingomacs/init-cal-china-x()
   (use-package cal-china-x
     :commands cal-china-x-setup
     :hook (calendar-load . cal-china-x-setup)
