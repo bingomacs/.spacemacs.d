@@ -123,8 +123,12 @@ Each entry is either:
 
 (defun bingomacs-lsp/init-company-lsp()
   (use-package company-lsp
-    :after company
-    :defines company-backends))
+    :after (company lsp-mode)
+    :defines company-backends
+    :config (cl-pushnew 'company-lsp company-backends)
+    (setq company-lsp-async t)
+    (setq company-lsp-enable-snippet t)
+    (setq company-lsp-cache-candidates t)))
 
 
 (defun bingomacs-lsp/post-init-lsp-go()
