@@ -47,6 +47,7 @@
     rainbow-mode
     cal-china-x
     calfw-org
+    go-tag
     easy-hugo)
   "The list of Lisp packages required by the bingomacs layer.
 
@@ -377,6 +378,12 @@ Each entry is either:
     :defer t
     :init
     (beacon-mode 1)))
+
+
+(defun bingomacs/post-init-go-tag()
+  (use-package go-tag
+    :config
+    (setq go-tag-args (list "-transform" "camelcase"))))
 
 (defun bingomacs/init-calfw()
   (use-package calfw
