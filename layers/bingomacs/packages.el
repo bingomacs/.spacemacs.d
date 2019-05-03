@@ -38,13 +38,12 @@
     magit-todos
     beacon
     (aria2 :location (recipe :fetcher github :repo "LdBeth/aria2.el"))
-    (awesome-tab :location (recipe :fetcher github :repo "manateelazycat/awesome-tab"))
+    ;; (awesome-tab :location (recipe :fetcher github :repo "manateelazycat/awesome-tab"))
     (aweshell :location (recipe :fetcher github :repo "manateelazycat/aweshell"))
     (company-english-helper :location (recipe :fetcher github :repo "manateelazycat/company-english-helper"))
     (insert-translated-name :location (recipe :fetcher github :repo "manateelazycat/insert-translated-name"))
     calfw
     pinentry
-    rainbow-mode
     cal-china-x
     calfw-org
     go-tag
@@ -392,14 +391,6 @@ Each entry is either:
 (defun bingomacs/init-calfw-org()
   (use-package calfw-org
     :defer t))
-
-
-(defun bingomacs/post-init-rainbow-mode()
-  (use-package rainbow-mode
-    :diminish
-    :hook ((emacs-lisp-mode web-mode css-mode) . rainbow-mode))
-  )
-
 
 (defun bingomacs/init-cal-china-x()
   (use-package cal-china-x

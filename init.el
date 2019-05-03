@@ -53,14 +53,8 @@ This function should only modify configuration layer settings."
      html
      imenu-list
      ipython-notebook
-     pdf
-     docker
-     epub
-     pandoc
-     ;; vue
      lsp
      bingomacs
-     ;; bingomacs-lsp
      (osx :variables osx-command-as 'super)
      (dash :variables helm-dash-docset-newpath "~/.local/share/Zeal/Zeal/docsets")
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
@@ -111,7 +105,7 @@ This function should only modify configuration layer settings."
             c-c++-enable-google-style t
             c-c++-enable-google-newline t)
      ;; spell-checking
-     ;; version-control
+     version-control
      )
 
    ;; List of additional packages that will be installed without being
