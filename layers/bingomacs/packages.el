@@ -36,6 +36,7 @@
     org-pomodoro
     ob-go
     magit-todos
+    dired-icon
     beacon
     (aria2 :location (recipe :fetcher github :repo "LdBeth/aria2.el"))
     ;; (awesome-tab :location (recipe :fetcher github :repo "manateelazycat/awesome-tab"))
@@ -300,6 +301,12 @@ Each entry is either:
     (setq magit-todos-require-colon nil)
     (define-key magit-todos-section-map "j" nil)))
 
+(defun bingomacs/init-dired-icon ()
+  "Initialize dired-icon"
+  (add-hook 'dired-mode-hook 'dired-icon-mode)
+  (add-hook 'dired-mode-hook
+            (lambda ()
+              (highlight-lines-matching-regexp "\.org$" 'hi-yellow))))
 
 (defun bingomacs/init-easy-hugo()
   (use-package easy-hugo
