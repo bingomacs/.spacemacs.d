@@ -173,6 +173,20 @@ Each entry is either:
     ;; 可以設定任何 ID 或是設成 nil 來使用對稱式加密 (symmetric encryption)
     (setq org-crypt-key nil)
 
+
+    (require 'org-habit)
+    (setq org-habit-show-done-always-green t) 
+    ;; 减少显示天数，使其可以放在任务条的左边
+    (setq org-habit-graph-column 1)
+    (setq org-habit-preceding-days 10)
+    (setq org-habit-following-days 2)
+    ;; 恢复默认日历行为
+    (setq org-habit-show-habits-only-for-today nil)
+    (let ((agenda-sorting-strategy
+           (assoc 'agenda org-agenda-sorting-strategy)))
+      (setcdr agenda-sorting-strategy
+              (remove 'habit-down (cdr agenda-sorting-strategy))))
+
     (require 'org-tempo)
 
     (setq-default
@@ -194,7 +208,7 @@ Each entry is either:
      org-log-done 'time
      ;; code执行免应答（Eval code without confirm）
      org-confirm-babel-evaluate nil)
-
+    (setq org-bullets-bullet-list '("☰" "☷" "☯" "☭"))
 
     ;; define the refile targets
     (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
