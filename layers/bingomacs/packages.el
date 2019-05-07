@@ -119,6 +119,7 @@ Each entry is either:
         (shell . t)
         (java . t)
         (go . t)
+        (sql . t)
         (emacs-lisp . t)
         (plantuml . t)
         (C . t)
