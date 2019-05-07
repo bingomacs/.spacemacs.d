@@ -90,6 +90,9 @@ This function should only modify configuration layer settings."
      (shell :variables shell-default-shell 'multi-term
             shell-default-height 60
             shell-default-position 'bottom)
+     (sql :variables
+          sql-capitalize-keywords t
+          sql-capitalize-keywords-blacklist '("name" "varchar"))
      (org :variables org-want-todo-bindings t
           org-enable-org-journal-support t
           org-journal-dir "~/.org/journal/"
