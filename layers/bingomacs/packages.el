@@ -47,6 +47,7 @@
     pinentry
     cal-china-x
     calfw-org
+    carbon-now-sh
     go-tag
     easy-hugo)
   "The list of Lisp packages required by the bingomacs layer.
@@ -405,6 +406,11 @@ Each entry is either:
   (use-package go-tag
     :config
     (setq go-tag-args (list "-transform" "camelcase"))))
+
+(defun bingomacs/init-carbon-now-sh()
+       (use-package carbon-now-sh
+         :defer))
+
 
 (defun bingomacs/init-calfw()
   (use-package calfw
