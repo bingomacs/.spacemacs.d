@@ -122,6 +122,8 @@ Each entry is either:
         (go . t)
         (sql . t)
         (emacs-lisp . t)
+        (http . t)
+        (restclient . t)
         (plantuml . t)
         (C . t)
         (ditaa . t)))
