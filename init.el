@@ -104,6 +104,7 @@ This function should only modify configuration layer settings."
           org-projectile-file "TODOs.org"
           ;; org-enable-reveal-js-support t
           org-enable-github-support t
+          org-enable-sticky-header t
           org-enable-hugo-support t)
      (c-c++ :variables c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-google-style t
