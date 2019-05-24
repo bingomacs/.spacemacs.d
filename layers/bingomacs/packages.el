@@ -35,6 +35,7 @@
     leanote
     org-pomodoro
     ob-go
+    dashboard
     magit-todos
     dired-icon
     beacon
@@ -252,6 +253,23 @@ Each entry is either:
 (defun bingomacs/init-ob-go()
   (use-package ob-go))
 
+
+(defun bingomacs/init-dashboard()
+  (use-package dashboard
+    :ensure t
+    :config
+    (setq dashboard-banner-logo-title "Welcome to Emacs Dashboard")
+    (setq dashboard-startup-banner '"~/.spacemacs.d/img/jump.png")
+    (setq dashboard-center-content t)
+    (setq dashboard-items '((recents  . 5)
+                            (bookmarks . 5)
+                            (projects . 5)
+                            (agenda . 5)
+                            (registers . 5)))
+    (setq dashboard-set-heading-icons t)
+    (setq dashboard-set-file-icons t)
+    (setq dashboard-set-init-info t)
+    (dashboard-setup-startup-hook)))
 
 ;; brew install terminal-notifier
 ;; brew linkapps
