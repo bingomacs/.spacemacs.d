@@ -96,8 +96,8 @@ Each entry is either:
     ;; Save clock data and notes in the LOGBOOK drawer
     (setq org-clock-into-drawer t)
     (setq org-plantuml-jar-path
-          (expand-file-name "~/.spacemacs.d/layers/bingomacs/plantuml.jar")))
-  (org-babel-do-load-languages
+          (expand-file-name "~/.spacemacs.d/layers/bingomacs/plantuml.jar"))
+    (org-babel-do-load-languages
      'org-babel-load-languages
      '((js . t)
        (latex .t)
@@ -113,126 +113,124 @@ Each entry is either:
        (C . t)
        (ditaa . t)))
 
-  ;; 设置org-babel缩进
-  (setq org-edit-src-content-indentation 0)
-  (setq org-src-tab-acts-natively t)
+    ;; 设置org-babel缩进
+    (setq org-edit-src-content-indentation 0)
+    (setq org-src-tab-acts-natively t)
 
-  ;; #+CAPTION: 设定图片宽度为100
-  ;; #+ATTR_HTML: :width 100
-  ;; file:data/2013/pict/test.png
-  (setq org-image-actual-width '(300))
+    ;; #+CAPTION: 设定图片宽度为100
+    ;; #+ATTR_HTML: :width 100
+    ;; file:data/2013/pict/test.png
+    (setq org-image-actual-width '(300))
 
-  (setq org-agenda-file-inbox (expand-file-name "inbox.org" org-agenda-dir))
-  (setq org-agenda-file-note (expand-file-name "notes.org" org-agenda-dir))
-  (setq org-agenda-file-gtd (expand-file-name "gtd.org" org-agenda-dir))
-  (setq org-agenda-file-journal (expand-file-name "journal.org" org-agenda-dir))
-  (setq org-agenda-file-code-snippet (expand-file-name "snippet.org" org-agenda-dir))
-  (setq org-default-notes-file (expand-file-name "gtd.org" org-agenda-dir))
-  (setq org-agenda-files (list org-agenda-dir))
+    (setq org-agenda-file-inbox (expand-file-name "inbox.org" org-agenda-dir))
+    (setq org-agenda-file-note (expand-file-name "notes.org" org-agenda-dir))
+    (setq org-agenda-file-gtd (expand-file-name "gtd.org" org-agenda-dir))
+    (setq org-agenda-file-journal (expand-file-name "journal.org" org-agenda-dir))
+    (setq org-agenda-file-code-snippet (expand-file-name "snippet.org" org-agenda-dir))
+    (setq org-default-notes-file (expand-file-name "gtd.org" org-agenda-dir))
+    (setq org-agenda-files (list org-agenda-dir))
 
-  (setq org-agenda-sorting-strategy
-        '((agenda priority-down time-up)
-          (todo priority-down category-keep)
-          (tags priority-down category-keep)))
-  (setq org-todo-keyword-faces
-        '(("WAITING" . (:foreground "gray" :weight bold))))
+    (setq org-agenda-sorting-strategy
+          '((agenda priority-down time-up)
+            (todo priority-down category-keep)
+            (tags priority-down category-keep)))
+    (setq org-todo-keyword-faces
+          '(("WAITING" . (:foreground "gray" :weight bold))))
 
-  (with-eval-after-load 'org-agenda
-    (require 'org-projectile)
-    (mapcar #'(lambda (file)
-                (when (file-exists-p file)
-                  (push file org-agenda-files)))
-            (org-projectile-todo-files)))
+    (with-eval-after-load 'org-agenda
+      (require 'org-projectile)
+      (mapcar #'(lambda (file)
+                  (when (file-exists-p file)
+                    (push file org-agenda-files)))
+              (org-projectile-todo-files)))
 
+
+    (crypt)
+
+    (require 'org-habit)
+    (setq org-habit-show-done-always-green t)
+    ;; 减少显示天数，使其可以放在任务条的左边
+    (setq org-habit-graph-column 1)
+    (setq org-habit-preceding-days 10)
+    (setq org-habit-following-days 2)
+    ;; 恢复默认日历行为
+    (setq org-habit-show-habits-only-for-today nil)
+    (let ((agenda-sorting-strategy
+           (assoc 'agenda org-agenda-sorting-strategy)))
+      (setcdr agenda-sorting-strategy
+              (remove 'habit-down (cdr agenda-sorting-strategy))))
+
+    (require 'org-tempo)
+
+    (setq-default
+     ;; inhibit-startup-screen t;隐藏启动显示画面
+     calendar-date-style 'iso
+     calendar-day-abbrev-array ["七" "一" "二" "三" "四" "五" "六"]
+     calendar-day-name-array ["七" "一" "二" "三" "四" "五" "六"]
+     calendar-month-name-array ["一月" "二月" "三月" "四月" "五月" "六月" "七月" "八月" "九月" "十月" "十一月" "十二月"]
+     calendar-week-start-day 1
+     ;; (setq-default org-agenda-format-date (quote my-org-agenda-format-date-aligned))
+     org-deadline-warning-days 5;;最后期限到达前5天即给出警告
+     org-agenda-show-all-dates t
+     org-agenda-skip-deadline-if-done t
+     org-agenda-skip-scheduled-if-done t
+     org-reverse-note-order t ;;org.el
+     org-link-file-path-type  'relative
+     org-log-done 'time
+     ;; code执行免应答（Eval code without confirm）
+     org-confirm-babel-evaluate nil)
+    (setq org-bullets-bullet-list '("☰" "☷" "☯" "☭"))
+
+    ;; define the refile targets
+    (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+    (setq org-capture-templates
+          '(("i" "inbox" entry (file+headline org-agenda-file-inbox "inbox")
+             "* %?\n  %i\n %U"
+             :empty-lines 1)
+            ("t" "Todo" entry (file+headline org-agenda-file-gtd "Workspace")
+             "* TODO [#B] %?\n  %i\n"
+             :empty-lines 1)
+            ("n" "notes" entry (file+headline org-agenda-file-note "Quick notes")
+             "* %?\n  %i\n %U"
+             :empty-lines 1)
+            ("b" "Blog Ideas" entry (file+headline org-agenda-file-note "Blog Ideas")
+             "* TODO [#B] %?\n  %i\n %U"
+             :empty-lines 1)
+            ("s" "Code Snippet" entry
+             (file org-agenda-file-code-snippet)
+             "* %?\t%^g\n#+BEGIN_SRC %^{language}\n\n#+END_SRC")
+            ("w" "work" entry (file+headline org-agenda-file-gtd "work")
+             "* TODO [#A] %?\n  %i\n %U"
+             :empty-lines 1[[zsh:1: command not found: osascript]])
+            ;; org-mac-chrome-get-frontmost-url org-mac-chrome-insert-frontmost-url
+            ("c" "Chrome" entry (file+headline org-agenda-file-note "Quick notes")
+             "* TODO [#C] %?\n %(org-mac-chrome-get-frontmost-url)\n %i\n %U"
+             :empty-lines 1)
+            ("l" "links" entry (file+headline org-agenda-file-note "Quick notes")
+             "* TODO [#C] %?\n  %i\n %a \n %U"
+             :empty-lines 1)
+            ("j" "Journal Entry"
+             entry (file+datetree org-agenda-file-journal)
+             "* %?"
+             :empty-lines 1)))
+  ))
+
+
+(defun crypt()
   ;; 加密文章
   ;; "http://coldnew.github.io/blog/2013/07/13_5b094.html"
   ;; org-mode 設定
   (require 'org-crypt)
-
   ;; 當被加密的部份要存入硬碟時，自動加密回去
   (org-crypt-use-before-save-magic)
-
   ;; 設定要加密的 tag 標籤為 secret
   (setq org-crypt-tag-matcher "crypt")
-
   ;; 避免 secret 這個 tag 被子項目繼承 造成重複加密
   ;; (但是子項目還是會被加密喔)
   (setq org-tags-exclude-from-inheritance (quote ("crypt")))
-
   ;; 用於加密的 GPG 金鑰
   ;; 可以設定任何 ID 或是設成 nil 來使用對稱式加密 (symmetric encryption)
-  (setq org-crypt-key nil)
-
-  (require 'org-habit)
-  (setq org-habit-show-done-always-green t) 
-  ;; 减少显示天数，使其可以放在任务条的左边
-  (setq org-habit-graph-column 1)
-  (setq org-habit-preceding-days 10)
-  (setq org-habit-following-days 2)
-  ;; 恢复默认日历行为
-  (setq org-habit-show-habits-only-for-today nil)
-  (let ((agenda-sorting-strategy
-         (assoc 'agenda org-agenda-sorting-strategy)))
-    (setcdr agenda-sorting-strategy
-            (remove 'habit-down (cdr agenda-sorting-strategy))))
-
-  (require 'org-tempo)
-
-  (setq-default
-   ;; inhibit-startup-screen t;隐藏启动显示画面
-   calendar-date-style 'iso
-   calendar-day-abbrev-array ["七" "一" "二" "三" "四" "五" "六"]
-   calendar-day-name-array ["七" "一" "二" "三" "四" "五" "六"]
-   calendar-month-name-array ["一月" "二月" "三月" "四月" "五月" "六月" "七月" "八月" "九月" "十月" "十一月" "十二月"]
-   calendar-week-start-day 1
-   ;; (setq-default org-agenda-format-date (quote my-org-agenda-format-date-aligned))
-   org-agenda-inhibit-startup t
-   org-agenda-window-setup (quote current-window)
-   org-deadline-warning-days 5;;最后期限到达前5天即给出警告
-   org-agenda-show-all-dates t
-   org-agenda-skip-deadline-if-done t
-   org-agenda-skip-scheduled-if-done t
-   org-reverse-note-order t ;;org.el
-   org-link-file-path-type  'relative
-   org-log-done 'time
-   ;; code执行免应答（Eval code without confirm）
-   org-confirm-babel-evaluate nil)
-  (setq org-bullets-bullet-list '("☰" "☷" "☯" "☭"))
-
-  ;; define the refile targets
-  (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
-  (setq org-capture-templates
-        '(("i" "inbox" entry (file+headline org-agenda-file-inbox "inbox")
-           "* %?\n  %i\n %U"
-           :empty-lines 1)
-          ("t" "Todo" entry (file+headline org-agenda-file-gtd "Workspace")
-           "* TODO [#B] %?\n  %i\n"
-           :empty-lines 1)
-          ("n" "notes" entry (file+headline org-agenda-file-note "Quick notes")
-           "* %?\n  %i\n %U"
-           :empty-lines 1)
-          ("b" "Blog Ideas" entry (file+headline org-agenda-file-note "Blog Ideas")
-           "* TODO [#B] %?\n  %i\n %U"
-           :empty-lines 1)
-          ("s" "Code Snippet" entry
-           (file org-agenda-file-code-snippet)
-           "* %?\t%^g\n#+BEGIN_SRC %^{language}\n\n#+END_SRC")
-          ("w" "work" entry (file+headline org-agenda-file-gtd "work")
-           "* TODO [#A] %?\n  %i\n %U"
-           :empty-lines 1[[zsh:1: command not found: osascript]])
-          ;; org-mac-chrome-get-frontmost-url org-mac-chrome-insert-frontmost-url
-          ("c" "Chrome" entry (file+headline org-agenda-file-note "Quick notes")
-           "* TODO [#C] %?\n %(org-mac-chrome-get-frontmost-url)\n %i\n %U"
-           :empty-lines 1)
-          ("l" "links" entry (file+headline org-agenda-file-note "Quick notes")
-           "* TODO [#C] %?\n  %i\n %a \n %U"
-           :empty-lines 1)
-          ("j" "Journal Entry"
-           entry (file+datetree org-agenda-file-journal)
-           "* %?"
-           :empty-lines 1)))
-  )
-
+  (setq org-crypt-key nil))
 
 (defun bingomacs-org/init-ob-go()
   (use-package ob-go))
