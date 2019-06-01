@@ -88,7 +88,7 @@ Each entry is either:
                                    ("DONE" . "green")
                                    ("ABORT" . "gray")))
     (setq org-log-done 'notevery)
-    (setq org-agenda-include-diary nil)
+    ;; (setq org-agenda-include-diary nil)
     ;; 折叠时不再显示「...」
     (setq org-ellipsis "▼")
     ;; Change task state to DOING when clock in
@@ -232,8 +232,18 @@ Each entry is either:
   ;; 可以設定任何 ID 或是設成 nil 來使用對稱式加密 (symmetric encryption)
   (setq org-crypt-key nil))
 
+
+;; pinentry-start 要使用的时候 Mac 下需要
+;; 把allow-emacs-pinentry 加入 .gnupg/gpg-agent.conf
+;; http://elpa.gnu.org/packages/pinentry.html
+;; (setenv "GPG_AGENT_INFO" nil) 可能有用
+(defun bingomacs-org/init-pinentry()
+  (use-package pinentry
+    :defer t))
+
 (defun bingomacs-org/init-ob-go()
-  (use-package ob-go))
+  (use-package ob-go
+    :defer t))
 
 
 (defun bingomacs-org/post-init-org-pomodoro ()
@@ -274,13 +284,6 @@ Each entry is either:
     (bingomacs/notify-linux title msg)))
 
 
-;; pinentry-start 要使用的时候 Mac 下需要
-;; 把allow-emacs-pinentry 加入 .gnupg/gpg-agent.conf
-;; http://elpa.gnu.org/packages/pinentry.html
-;; (setenv "GPG_AGENT_INFO" nil) 可能有用
-(defun bingomacs-org/init-pinentry()
-  (use-package pinentry
-    :defer t))
 
 (defun bingomacs-org/init-calfw-org()
   (use-package calfw-org
