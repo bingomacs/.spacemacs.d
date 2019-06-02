@@ -82,7 +82,7 @@ This function should only modify configuration layer settings."
      (spacemacs-layouts :variables layouts-autosave-delay 300
                         layouts-enable-autosave nil)
      (auto-completion :variables auto-completion-enable-sort-by-usage t
-                      auto-completion-enable-help-tooltip t
+                      auto-completion-enable-help-tooltip 'manual
                       auto-completion-enable-snippets-in-popup t)
      (git :variables magit-refs-show-commit-count 'all
           magit-revision-show-gravatars t)
@@ -527,7 +527,7 @@ before packages are loaded."
   (setq vc-follow-symlinks t )
   (setq split-width-threshold 120)
   (setq spaceline-org-clock-p t)
-  (global-company-mode)
+  ;; (global-company-mode)
   (spacemacs/toggle-transparency)
   (setq neo-theme 'icons)
   (setq neo-vc-integration '(face))
