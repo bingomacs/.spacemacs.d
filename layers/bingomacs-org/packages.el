@@ -88,6 +88,7 @@ Each entry is either:
                                    ("DONE" . "green")
                                    ("ABORT" . "gray")))
     (setq org-log-done 'notevery)
+    (setq org-log-into-drawer t)
     ;; (setq org-agenda-include-diary nil)
     ;; 折叠时不再显示「...」
     (setq org-ellipsis "▼")
@@ -97,21 +98,6 @@ Each entry is either:
     (setq org-clock-into-drawer t)
     (setq org-plantuml-jar-path
           (expand-file-name "~/.spacemacs.d/layers/bingomacs/plantuml.jar"))
-    (org-babel-do-load-languages
-     'org-babel-load-languages
-     '((js . t)
-       (latex .t)
-       (python . t)
-       (shell . t)
-       (java . t)
-       (go . t)
-       (sql . t)
-       (emacs-lisp . t)
-       (http . t)
-       (restclient . t)
-       (plantuml . t)
-       (C . t)
-       (ditaa . t)))
 
     ;; 设置org-babel缩进
     (setq org-edit-src-content-indentation 0)
@@ -213,8 +199,35 @@ Each entry is either:
              entry (file+datetree org-agenda-file-journal)
              "* %?"
              :empty-lines 1)))
-  ))
 
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((js . t)
+       (latex .t)
+       (python . t)
+       (shell . t)
+       (java . t)
+       (go . t)
+       (sql . t)
+       (emacs-lisp . t)
+       (http . t)
+       (restclient . t)
+       (plantuml . t)
+       (C . t)
+       (ditaa . t)))))
+
+;;[[https://emacs-china.org/t/topic/3971/2][求教org中todo已完成纪录怎么自动归档到外部文件 - Org-mode - Emacs China]]
+(defun archive-done-tasks ()
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (while (re-search-forward
+            (concat "\\* " (regexp-opt org-done-keywords) " ") nil t)
+      (goto-char (line-beginning-position))
+      (org-archive-subtree))))
+
+(defun enable-auto-archive ()
+  (add-hook 'after-save-hook 'archive-done-tasks))
 
 (defun crypt()
   ;; 加密文章
@@ -311,18 +324,55 @@ Each entry is either:
     (setq cal-china-x-general-holidays
           '((holiday-lunar 1 15 "元宵节")
             (holiday-lunar 7 7 "七夕节")
-            (holiday-fixed 3 8 "妇女节")
             (holiday-fixed 3 12 "植树节")
-            (holiday-fixed 5 4 "青年节")
-            (holiday-fixed 6 1 "儿童节")
-            (holiday-fixed 9 10 "教师节")))
+            (holiday-lunar 1 1 "春节" 0)
+            (holiday-lunar 1 2 "春节" 0)
+            (holiday-lunar 1 3 "春节" 0)
+            (holiday-solar-term "清明" "清明节")
+            (holiday-solar-term "小寒" "小寒")
+            (holiday-solar-term "大寒" "大寒")
+            (holiday-solar-term "立春" "立春")
+            (holiday-solar-term "雨水" "雨水")
+            (holiday-solar-term "惊蛰" "惊蛰")
+            (holiday-solar-term "春分" "春分")
+            (holiday-solar-term "谷雨" "谷雨")
+            (holiday-solar-term "立夏" "立夏")
+            (holiday-solar-term "小满" "小满")
+            (holiday-solar-term "芒种" "芒种")
+            (holiday-solar-term "夏至" "夏至")
+            (holiday-solar-term "小暑" "小暑")
+            (holiday-solar-term "大暑" "大暑")
+            (holiday-solar-term "立秋" "立秋")
+            (holiday-solar-term "处暑" "处暑")
+            (holiday-solar-term "白露" "白露")
+            (holiday-solar-term "秋分" "秋分")
+            (holiday-solar-term "寒露" "寒露")
+            (holiday-solar-term "霜降" "霜降")
+            (holiday-solar-term "立冬" "立冬")
+            (holiday-solar-term "小雪" "小雪")
+            (holiday-solar-term "大雪" "大雪")
+            (holiday-solar-term "冬至" "冬至")
+            (holiday-lunar 5 5 "端午节" 0)
+            (holiday-lunar 8 15 "中秋节" 0)
+            (holiday-lunar 7 7 "七夕情人节" 0)
+            (holiday-lunar 12 8 "腊八节" 0)
+            (holiday-lunar 9 9 "重阳节" 0)))
     (setq holiday-other-holidays
-          '((holiday-fixed 2 14 "情人节")
+          '((holiday-fixed 1 1 "元旦")
+            (holiday-fixed 2 14 "情人节")
+            (holiday-fixed 3 8 "妇女节")
+            (holiday-fixed 3 14 "白色情人节")
             (holiday-fixed 4 1 "愚人节")
-            (holiday-fixed 12 25 "圣诞节")
+            (holiday-fixed 5 1 "劳动节")
+            (holiday-fixed 5 4 "青年节")
             (holiday-float 5 0 2 "母亲节")
+            (holiday-fixed 6 1 "儿童节")
             (holiday-float 6 0 3 "父亲节")
-            (holiday-float 11 4 4 "感恩节")))
+            (holiday-fixed 9 10 "教师节")
+            (holiday-fixed 10 1 "国庆节")
+            (holiday-fixed 10 24 "程序员节")
+            (holiday-float 11 4 4 "感恩节")
+            (holiday-fixed 12 25 "圣诞节")))
     (setq calendar-holidays
           (append cal-china-x-important-holidays
                   cal-china-x-general-holidays
