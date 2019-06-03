@@ -263,14 +263,14 @@ Each entry is either:
   (add-hook 'org-pomodoro-started-hook
             (lambda ()(do-applescript "tell application \"JustFocus\"\n    launch\n    start pomodoro\nend tell")))
   (add-hook 'org-pomodoro-finished-hook
-            (lambda () (bingomacs/notify "Pomodoro Completed!" "Time for a break.")))
+            (lambda () (bingomacs-org/notify "Pomodoro Completed!" "Time for a break.")))
   (add-hook 'org-pomodoro-break-finished-hook
-            (lambda () (bingomacs/notify "Pomodoro Short Break Finished" "Ready for Another?")))
+            (lambda () (bingomacs-org/notify "Pomodoro Short Break Finished" "Ready for Another?")))
   (add-hook 'org-pomodoro-long-break-finished-hook
-            (lambda () (bingomacs/notify "Pomodoro Long Break Finished" "Ready for Another?")))
+            (lambda () (bingomacs-org/notify "Pomodoro Long Break Finished" "Ready for Another?")))
   (add-hook 'org-pomodoro-killed-hook
             (lambda () (progn (do-applescript "tell application \"JustFocus\"\n    stop\nend tell")
-                               (bingomacs/notify "Pomodoro Killed" "One does not simply kill a pomodoro!")))))
+                               (bingomacs-org/notify "Pomodoro Killed" "One does not simply kill a pomodoro!")))))
 
 
 ;; brew install terminal-notifier
@@ -296,8 +296,8 @@ Each entry is either:
 
 (defun bingomacs-org/notify (title msg)
   (if (eq system-type 'darwin)
-      (bingomacs/notify-osx title msg)
-    (bingomacs/notify-linux title msg)))
+      (bingomacs-org/notify-osx title msg)
+    (bingomacs-org/notify-linux title msg)))
 
 
 
