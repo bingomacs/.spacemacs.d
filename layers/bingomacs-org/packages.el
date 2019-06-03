@@ -260,6 +260,8 @@ Each entry is either:
 
 
 (defun bingomacs-org/post-init-org-pomodoro ()
+  (add-hook 'org-pomodoro-started-hook
+            (lambda ()(do-applescript "tell application \"JustFocus\"\n    launch\n    start pomodoro\nend tell")))
   (add-hook 'org-pomodoro-finished-hook
             (lambda () (bingomacs/notify "Pomodoro Completed!" "Time for a break.")))
   (add-hook 'org-pomodoro-break-finished-hook
@@ -267,7 +269,8 @@ Each entry is either:
   (add-hook 'org-pomodoro-long-break-finished-hook
             (lambda () (bingomacs/notify "Pomodoro Long Break Finished" "Ready for Another?")))
   (add-hook 'org-pomodoro-killed-hook
-            (lambda () (bingomacs/notify "Pomodoro Killed" "One does not simply kill a pomodoro!"))))
+            (lambda () (progn (do-applescript "tell application \"JustFocus\"\n    stop\nend tell")
+                               (bingomacs/notify "Pomodoro Killed" "One does not simply kill a pomodoro!")))))
 
 
 ;; brew install terminal-notifier
