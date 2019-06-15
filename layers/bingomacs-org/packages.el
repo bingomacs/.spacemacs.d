@@ -395,7 +395,10 @@ Each entry is either:
     :defer t
     :init
     (setq easy-hugo-basedir "~/git/blog/")
+    (setq easy-hugo-url "")
+    (setq easy-hugo-preview-url "http://127.0.0.1:1313/")
     (setq easy-hugo-postdir "content/post")
+    (setq easy-hugo-default-ext ".org")
     (setq easy-hugo-root "/")))
 
 ;;; packages.el ends here
