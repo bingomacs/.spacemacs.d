@@ -39,6 +39,7 @@
     (aweshell :location (recipe :fetcher github :repo "manateelazycat/aweshell"))
     (company-english-helper :location (recipe :fetcher github :repo "manateelazycat/company-english-helper"))
     (insert-translated-name :location (recipe :fetcher github :repo "manateelazycat/insert-translated-name"))
+    mu4e
     carbon-now-sh
     go-tag)
   "The list of Lisp packages required by the bingomacs layer.
@@ -171,5 +172,48 @@ Each entry is either:
 (defun bingomacs/init-carbon-now-sh()
        (use-package carbon-now-sh
          :defer))
+
+(defun bingomacs/post-init-mu4e()
+  (with-eval-after-load 'mu4e
+    (with-eval-after-load 'mu4e-alert
+      ;; Enable Desktop notifications notifier for mac, notifications for linux
+      (mu4e-alert-set-default-style 'notifier))
+
+    ;;; Set up some common mu4e variables
+    (setq mu4e-maildir "~/mails"
+          mu4e-trash-folder "/已删除"
+          mu4e-refile-folder "/Archive"
+          mu4e-get-mail-command "mbsync -a"
+          mu4e-sent-folder "/已发送"
+          mu4e-drafts-folder "/草稿箱"
+          ;; sync email from imap server
+          mu4e-get-mail-command "offlineimap"
+          mu4e-compose-signature-auto-include nil
+          mu4e-update-interval 300
+          mu4e-compose-signature-auto-include nil
+          mu4e-view-show-images t
+          mu4e-view-show-addresses t)
+
+    ;;; Mail directory shortcuts
+    (setq mu4e-maildir-shortcuts
+          '(("/INBOX" . ?g)
+            ("/已发送" . ?s)
+            ("/Archive" . ?a)
+            ("/已删除" . ?d)))
+
+  ;;; Bookmarks
+    (setq mu4e-bookmarks
+          `(("flag:unread AND NOT flag:trashed" "Unread messages" ?u)
+            ("date:today..now" "Today's messages" ?t)
+            ("date:7d..now" "Last 7 days" ?w)
+            ("mime:image/*" "Messages with images" ?p)
+            (,(mapconcat 'identity
+                         (mapcar
+                          (lambda (maildir)
+                            (concat "maildir:" (car maildir)))
+                          mu4e-maildir-shortcuts) " OR ")
+             "All inboxes" ?i)))))
+
+
 
 ;;; packages.el ends here
