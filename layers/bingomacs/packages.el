@@ -40,7 +40,8 @@
     (company-english-helper :location (recipe :fetcher github :repo "manateelazycat/company-english-helper"))
     (insert-translated-name :location (recipe :fetcher github :repo "manateelazycat/insert-translated-name"))
     carbon-now-sh
-    go-tag)
+    go-tag
+    figlet)
   "The list of Lisp packages required by the bingomacs layer.
 
 Each entry is either:
@@ -71,13 +72,13 @@ Each entry is either:
 
 
 
-  ;; (setq-default mode-line-misc-info
-  ;;              (assq-delete-all 'which-function-mode mode-line-misc-info))
+;; (setq-default mode-line-misc-info
+;;              (assq-delete-all 'which-function-mode mode-line-misc-info))
 
-  ;; (which-func-mode)
+;; (which-func-mode)
 ;; when editing js file, this feature is very useful
 ;; (setq-default header-line-format
-                ;; '((which-func-mode ("" which-func-format " "))))
+;; '((which-func-mode ("" which-func-format " "))))
 
 (defun bingomacs/init-magit-todos()
   (use-package magit-todos
@@ -169,7 +170,11 @@ Each entry is either:
     (setq go-tag-args (list "-transform" "camelcase"))))
 
 (defun bingomacs/init-carbon-now-sh()
-       (use-package carbon-now-sh
-         :defer))
+  (use-package carbon-now-sh
+    :defer))
+
+(defun bingomacs/init-figlet()
+  (use-package figlet
+    :defer))
 
 ;;; packages.el ends here
