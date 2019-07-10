@@ -165,7 +165,7 @@ Each entry is either:
      org-log-done 'time
      ;; code执行免应答（Eval code without confirm）
      org-confirm-babel-evaluate nil)
-    (setq org-bullets-bullet-list '("☰" "☷" "☯" "☭"))
+    (setq org-bullets-bullet-list '("◉" "○" "✸" "✿" "☯" "☭" "♥" "✜" "♠" "☢" "❀" "★"))
 
     ;; define the refile targets
     (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
