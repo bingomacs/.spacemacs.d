@@ -212,8 +212,9 @@ Each entry is either:
        (emacs-lisp . t)
        (http . t)
        (restclient . t)
-       (plantuml . t)
        (C . t)
+       (dot . t)
+       (plantuml . t)
        (ditaa . t)))))
 
 ;;[[https://emacs-china.org/t/topic/3971/2][求教org中todo已完成纪录怎么自动归档到外部文件 - Org-mode - Emacs China]]
