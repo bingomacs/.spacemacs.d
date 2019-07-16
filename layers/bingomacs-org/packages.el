@@ -97,7 +97,7 @@ Each entry is either:
     ;; Save clock data and notes in the LOGBOOK drawer
     (setq org-clock-into-drawer t)
     (setq org-plantuml-jar-path
-          (expand-file-name "~/.spacemacs.d/layers/bingomacs/plantuml.jar"))
+          (expand-file-name "~/.spacemacs.d/layers/bingomacs-org/plantuml.jar"))
 
     ;; 设置org-babel缩进
     (setq org-edit-src-content-indentation 0)
