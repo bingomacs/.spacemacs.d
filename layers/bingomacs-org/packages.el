@@ -37,7 +37,6 @@
     calfw
     calfw-org
     cal-china-x
-    deft
     easy-hugo)
   "The list of Lisp packages required by the bingomacs-org layer.
 
@@ -383,13 +382,13 @@ Each entry is either:
                   holiday-other-holidays))))
 
 ;; 用来快速浏览、过滤、编辑文本笔记
-(defun bingomacs-org/post-init-deft()
-  (use-package deft
-    :defer t
-    :config (setq deft-directory "~/Nextcloud/"
-                  deft-extensions '("md" "org" "txt")
-                  deft-recursive t
-                  deft-use-filename-as-title t)))
+;; (defun bingomacs-org/post-init-deft()
+;;   (use-package deft
+;;     :defer t
+;;     :config (setq deft-directory "~/Nextcloud/"
+;;                   deft-extensions '("md" "org" "txt")
+;;                   deft-recursive t
+;;                   deft-use-filename-as-title t)))
 
 (defun bingomacs-org/init-easy-hugo()
   (use-package easy-hugo

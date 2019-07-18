@@ -92,6 +92,8 @@ This function should only modify configuration layer settings."
      (shell :variables shell-default-shell 'multi-term
             shell-default-height 60
             shell-default-position 'bottom)
+     (deft :variables deft-directory "~/Nextcloud"
+           deft-recursive t)
      (sql :variables
           sql-capitalize-keywords t
           sql-capitalize-keywords-blacklist '("name" "varchar"))
