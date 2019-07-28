@@ -82,10 +82,11 @@ Each entry is either:
     ;;         )))
     ;; (setq org-agenda-files (list "~/.org/"))
     (setq org-todo-keywords '((sequence "☛ TODO(!)" "⚑ DOING(!)" "|" "✔ DONE(!)" "✘ ABORT(@/!)")))
-    (setq org-todo-keyword-faces '(("☛ TODO(!)" . "red")
-                                   ("⚑ DOING(!)" . "yellow")
-                                   ("✔ DONE(!)" . "green")
+    (setq org-todo-keyword-faces '(("☛ TODO")
+                                   ("⚑ DOING" . "yellow")
+                                   ("✔ DONE" . "green")
                                    ("✘ ABORT" . "gray")))
+
     (setq org-log-done 'notevery)
     (setq org-log-into-drawer t)
     ;; (setq org-agenda-include-diary nil)
@@ -119,8 +120,6 @@ Each entry is either:
           '((agenda priority-down time-up)
             (todo priority-down category-keep)
             (tags priority-down category-keep)))
-    (setq org-todo-keyword-faces
-          '(("WAITING" . (:foreground "gray" :weight bold))))
 
     (with-eval-after-load 'org-agenda
       (require 'org-projectile)
@@ -168,6 +167,9 @@ Each entry is either:
 
     ;; define the refile targets
     (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+    (setq org-refile-use-outline-path 'file)
+    (setq org-outline-path-complete-in-steps nil)
+
     (setq org-capture-templates
           '(("i" "inbox" entry (file+headline org-agenda-file-inbox "inbox")
              "* %?\n  %i\n %U"
