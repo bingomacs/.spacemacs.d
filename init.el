@@ -46,7 +46,6 @@ This function should only modify configuration layer settings."
      emacs-lisp
      ranger
      emoji
-     deft
      prodigy
      rust
      restclient
