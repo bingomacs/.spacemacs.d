@@ -50,7 +50,6 @@ This function should only modify configuration layer settings."
      rust
      restclient
      html
-     chrome
      imenu-list
      ipython-notebook
      lsp
@@ -547,7 +546,7 @@ before packages are loaded."
   (spacemacs/toggle-transparency)
   (setq neo-theme 'icons)
   (setq neo-vc-integration '(face))
-  (setq neo-window-width 20)
+  (setq neo-window-width 35)
   (smartparens-global-mode)
   (setq magit-repository-directories '(("~/git/" . 2)))
   (add-hook 'company-mode-hook
