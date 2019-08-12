@@ -50,6 +50,7 @@ This function should only modify configuration layer settings."
      rust
      restclient
      html
+     chrome
      imenu-list
      ipython-notebook
      lsp
