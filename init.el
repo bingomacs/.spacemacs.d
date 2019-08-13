@@ -86,12 +86,7 @@ This function should only modify configuration layer settings."
                       auto-completion-enable-snippets-in-popup t)
      (git :variables magit-refs-show-commit-count 'all
           magit-status-margin '(t age magit-log-margin-width t 18)
-          magit-blame--style
-          '(margin
-            (margin-format " %s%f" " %C %a" " %H")
-            (margin-width . 42)
-            (margin-face . magit-blame-margin)
-            (margin-body-face magit-blame-dimmed))
+          magit-buffer-margin '(t "%Y-%m-%d %H:%M " 36 t 18)
           magit-revision-show-gravatars t)
      (javascript :variables node-add-modules-path t
                  js-indent-level 2 ;json indent
