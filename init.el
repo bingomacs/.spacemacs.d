@@ -71,6 +71,7 @@ This function should only modify configuration layer settings."
            dart-format-on-save t)
      (python :variables python-sort-imports-on-save t
              python-backend 'anaconda
+             python-formatter 'yapf
              python-enable-yapf-format-on-save t
              python-test-runner 'pytest)
      (go :variables gofmt-command "goimports"
@@ -84,6 +85,13 @@ This function should only modify configuration layer settings."
                       auto-completion-enable-help-tooltip 'manual
                       auto-completion-enable-snippets-in-popup t)
      (git :variables magit-refs-show-commit-count 'all
+          magit-status-margin '(t age magit-log-margin-width t 18)
+          magit-blame--style
+          '(margin
+            (margin-format " %s%f" " %C %a" " %H")
+            (margin-width . 42)
+            (margin-face . magit-blame-margin)
+            (margin-body-face magit-blame-dimmed))
           magit-revision-show-gravatars t)
      (javascript :variables node-add-modules-path t
                  js-indent-level 2 ;json indent
