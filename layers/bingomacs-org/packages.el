@@ -251,7 +251,8 @@ Each entry is either:
 ;; pinentry-start 要使用的时候 Mac 下需要
 ;; 把allow-emacs-pinentry 加入 .gnupg/gpg-agent.conf
 ;; http://elpa.gnu.org/packages/pinentry.html
-;; (setenv "GPG_AGENT_INFO" nil) 可能有用
+;; This will force Emacs to use its own internal password prompt instead of an external pin entry program.
+(setenv "GPG_AGENT_INFO" nil)
 (defun bingomacs-org/init-pinentry()
   (use-package pinentry
     :defer t))
