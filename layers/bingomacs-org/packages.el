@@ -93,7 +93,7 @@ Each entry is either:
     ;; 折叠时不再显示「...」
     (setq org-ellipsis "▼")
     ;; Change task state to DOING when clock in
-    (setq org-clock-in-switch-to-state "⚑ DOING")
+    (setq org-clock-in-switch-to-state "DOING")
     ;; Save clock data and notes in the LOGBOOK drawer
     (setq org-clock-into-drawer t)
     (setq org-plantuml-jar-path
