@@ -65,6 +65,7 @@ This function should only modify configuration layer settings."
      (colors :variables colors-colorize-identifiers 'all
              colors-enable-nyan-cat-progress-bar t)
      (typescript :variables typescript-fmt-on-save t
+                 typescript-backend 'lsp
                  typescript-fmt-tool 'typescript-formatter)
      (dart :variables dart-sdk-path "~/flutter/bin/cache/dart-sdk"
            dart-enable-analysis-server t
