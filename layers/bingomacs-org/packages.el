@@ -72,15 +72,6 @@ Each entry is either:
     (setq org-agenda-use-tag-inheritance nil)
     (setq org-agenda-span 'day)
     (setq org-agenda-window-setup 'current-window)
-    ;; agenda files for tag search
-    (setq org-agenda-dir "~/.agenda/")
-    ;; (let ((notes-dir "~/.org"))
-    ;;   (if (file-exists-p notes-dir)
-    ;;       (progn
-    ;;         (load-library "find-lisp")
-    ;;         (setq org-agenda-files (find-lisp-find-files "~/.org" "\.org$"))
-    ;;         )))
-    ;; (setq org-agenda-files (list "~/.org/"))
     (setq org-todo-keywords '((sequence "TODO(!)" "DOING(!)" "|" "DONE(!)" "ABORT(@/!)")))
     (setq org-todo-keyword-faces '(("TODO")
                                    ("DOING" . "yellow")
@@ -108,6 +99,7 @@ Each entry is either:
     ;; file:data/2013/pict/test.png
     (setq org-image-actual-width '(300))
 
+    (setq org-agenda-dir "~/.agenda/")
     (setq org-agenda-file-inbox (expand-file-name "inbox.org" org-agenda-dir))
     (setq org-agenda-file-note (expand-file-name "notes.org" org-agenda-dir))
     (setq org-agenda-file-gtd (expand-file-name "gtd.org" org-agenda-dir))
@@ -152,7 +144,7 @@ Each entry is either:
      calendar-day-abbrev-array ["七" "一" "二" "三" "四" "五" "六"]
      calendar-day-name-array ["七" "一" "二" "三" "四" "五" "六"]
      calendar-month-name-array ["一月" "二月" "三月" "四月" "五月" "六月" "七月" "八月" "九月" "十月" "十一月" "十二月"]
-     calendar-week-start-day 1
+     calendar-week-start-day 7
      ;; (setq-default org-agenda-format-date (quote my-org-agenda-format-date-aligned))
      org-deadline-warning-days 5;;最后期限到达前5天即给出警告
      org-agenda-show-all-dates t
