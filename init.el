@@ -104,7 +104,7 @@ This function should only modify configuration layer settings."
           org-journal-file-format "%Y-%m-%d"
           org-journal-date-prefix "#+TITLE: "
           org-journal-date-format "%A, %Y %B %d"
-          org-journal-time-prefix "* "
+          org-journal-enable-agenda-integration t
           org-projectile-file "TODOs.org"
           ;; org-enable-reveal-js-support t
           org-enable-github-support t
