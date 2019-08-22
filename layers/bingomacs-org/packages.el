@@ -78,7 +78,7 @@ Each entry is either:
                                    ("DONE" . "green")
                                    ("ABORT" . "gray")))
     ;; :COLUMNS:  %75ITEM(Task) %8PRIORITY(Priority) %9TODO(Status) %8EFFORT(Effort){:} %16SCHEDULED %16DEADLINE
-    (setq org-columns-default-format "%60ITEM(Task) %10PRIORITY(Priority) %10TODO(Status) %10Effort(Effort){:} %10CLOCKSUM %16SCHEDULED %16DEADLINE")
+    (setq org-columns-default-format "%60ITEM(Task) %8PRIORITY(Priority) %8TODO(Status) %8Effort(Effort){:} %8CLOCKSUM %16SCHEDULED %16DEADLINE")
     ;; global Effort estimate values
     ;; global STYLE property values for completion
     (setq org-global-properties (quote (("Effort_ALL" . "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00 0:00")
