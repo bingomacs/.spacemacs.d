@@ -95,8 +95,6 @@ Each entry is either:
     (setq org-clock-in-switch-to-state "DOING")
     ;; Save clock data and notes in the LOGBOOK drawer
     (setq org-clock-into-drawer t)
-    (setq org-plantuml-jar-path
-          (expand-file-name "~/.spacemacs.d/layers/bingomacs-org/plantuml.jar"))
 
     ;; Tags with fast selection keys
     (setq org-tag-alist (quote ((:startgroup)
