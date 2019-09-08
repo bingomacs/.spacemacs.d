@@ -48,6 +48,7 @@ This function should only modify configuration layer settings."
      emoji
      prodigy
      rust
+     epub
      restclient
      html
      imenu-list
