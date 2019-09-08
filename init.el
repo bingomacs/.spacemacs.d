@@ -546,6 +546,8 @@ before packages are loaded."
   (setq vc-follow-symlinks t )
   (setq split-width-threshold 120)
   (setq spaceline-org-clock-p t)
+  (global-prettify-symbols-mode t)
+  (setq dired-listing-switches "-alh")
   ;; (global-company-mode)
   (spacemacs/toggle-transparency)
   (setq neo-theme 'icons)
