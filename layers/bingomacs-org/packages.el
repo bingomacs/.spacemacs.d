@@ -295,7 +295,8 @@ Each entry is either:
   (setq org-tags-exclude-from-inheritance (quote ("crypt")))
   ;; 用於加密的 GPG 金鑰
   ;; 可以設定任何 ID 或是設成 nil 來使用對稱式加密 (symmetric encryption)
-  (setq org-crypt-key nil))
+  (setq org-crypt-key nil)
+  (pinentry-start))
 
 
 ;; pinentry-start 要使用的时候 Mac 下需要
