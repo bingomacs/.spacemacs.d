@@ -105,6 +105,7 @@ Each entry is either:
                                 (:endgroup)
                                 ("WAITING" . ?w)
                                 ("HOLD" . ?h)
+                                ("READING" . ?r)
                                 ("PERSONAL" . ?P)
                                 ("WORK" . ?W)
                                 ("FARM" . ?F)
