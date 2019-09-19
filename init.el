@@ -58,7 +58,7 @@ This function should only modify configuration layer settings."
      bingomacs-org
      myleetcode
      (osx :variables osx-command-as 'super)
-     (dash :variables helm-dash-docset-newpath "~/.local/share/Zeal/Zeal/docsets")
+     (dash :variables dash-docs-docset-newpath "~/.local/share/Zeal/Zeal/docsets")
      (plantuml :variables org-plantuml-jar-path "~/.spacemacs.d/layers/bingomacs-org/plantuml.jar")
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (chinese :variables chinese-enable-youdao-dict t)
