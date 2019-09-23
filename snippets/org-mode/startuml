@@ -4,7 +4,7 @@
 # --
 
 #+begin_src plantuml :file $1.png :cmdline -charset utf-8
-@starturml
+@startuml
 $2
 @enduml
 #+end_src
