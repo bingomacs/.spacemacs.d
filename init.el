@@ -58,12 +58,13 @@ This function should only modify configuration layer settings."
      bingomacs-org
      myleetcode
      (osx :variables osx-command-as 'super)
-     (dash :variables dash-docs-docset-newpath "~/.local/share/Zeal/Zeal/docsets")
      (plantuml :variables org-plantuml-jar-path "~/.spacemacs.d/layers/bingomacs-org/plantuml.jar")
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (chinese :variables chinese-enable-youdao-dict t)
      (syntax-checking :variables syntax-checking-use-original-bitmaps t
                       syntax-checking-enable-by-default nil)
+     (dash :variables dash-docs-docset-newpath "~/Library/Application Support/Dash/DocSets"
+           dash-autoload-common-docsets nil)
      (colors :variables colors-colorize-identifiers 'all
              colors-enable-nyan-cat-progress-bar t)
      (typescript :variables typescript-fmt-on-save t
