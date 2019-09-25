@@ -49,6 +49,7 @@ This function should only modify configuration layer settings."
      prodigy
      rust
      epub
+     kotlin
      restclient
      html
      imenu-list
