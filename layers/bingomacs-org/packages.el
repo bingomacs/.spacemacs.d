@@ -32,6 +32,7 @@
 (defconst bingomacs-org-packages
   '(org
     ob-go
+    ob-kotlin
     org-pomodoro
     pinentry
     calfw
@@ -314,6 +315,9 @@ Each entry is either:
   (use-package ob-go
     :defer t))
 
+(defun bingomacs-org/init-ob-kotlin()
+  (use-package ob-kotlin
+    :defer t))
 
 (defun bingomacs-org/post-init-org-pomodoro ()
   (add-hook 'org-pomodoro-started-hook
