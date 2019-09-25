@@ -41,6 +41,7 @@
     (insert-translated-name :location (recipe :fetcher github :repo "manateelazycat/insert-translated-name"))
     carbon-now-sh
     edit-server
+    speed-type
     go-tag
     figlet)
   "The list of Lisp packages required by the bingomacs layer.
@@ -168,6 +169,10 @@ Each entry is either:
   (use-package edit-server
     :init (edit-server-start)
     :config (setq edit-server-default-major-mode 'org-mode)))
+
+(defun bingomacs/init-speed-type()
+  (use-package speed-type
+    :defer))
 
 (defun bingomacs/post-init-go-tag()
   (use-package go-tag
