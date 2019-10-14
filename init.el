@@ -556,6 +556,7 @@ before packages are loaded."
   (setq neo-vc-integration '(face))
   (setq neo-window-width 35)
   (smartparens-global-mode)
+  (defalias 'set-file-coding 'revert-buffer-with-coding-system "set file coding")
   (setq magit-repository-directories '(("~/git/" . 2)))
   (add-hook 'company-mode-hook
             (lambda () (interactive "") (global-set-key (kbd "s-/") 'company-complete)))
