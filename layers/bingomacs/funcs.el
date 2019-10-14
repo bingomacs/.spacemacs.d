@@ -43,3 +43,8 @@ same directory as the org-buffer and insert a link to this file."
   (if (file-exists-p filename)
       (insert (concat "[[file:" filename "]]")))
   (org-display-inline-images))
+
+(defun bingomacs/set-file-coding(coding-system &optional force)
+  "set file coding"
+  (interactive "zCoding system for visited file (default nil): \nP")
+  (revert-buffer-with-coding-system coding-system))
