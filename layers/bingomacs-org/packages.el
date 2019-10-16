@@ -139,6 +139,7 @@ Each entry is either:
     (setq org-agenda-file-gtd (expand-file-name "gtd.org" org-agenda-dir))
     (setq org-agenda-file-journal (expand-file-name "journal.org" org-agenda-dir))
     (setq org-agenda-file-code-snippet (expand-file-name "snippet.org" org-agenda-dir))
+    (setq org-agenda-file-punch (expand-file-name "punch.org" org-agenda-dir))
     (setq org-default-notes-file (expand-file-name "gtd.org" org-agenda-dir))
     (setq org-agenda-files (list org-agenda-dir))
 
@@ -223,8 +224,9 @@ Each entry is either:
             ("l" "links" entry (file+headline org-agenda-file-note "Quick notes")
              "* TODO [#C] %?\n  %i\n %a \n %U"
              :empty-lines 1)
-            ("j" "Journal Entry"
-             entry (file+datetree org-agenda-file-journal)
+            ("p" "punch" entry (file+datetree org-agenda-file-punch)
+             "* %^{想法}%? %U")
+            ("j" "Journal Entry" entry (file+datetree org-agenda-file-journal)
              "* %?"
              :empty-lines 1)))
 
