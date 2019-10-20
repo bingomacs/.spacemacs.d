@@ -5,6 +5,10 @@
     (shell-command
      (format "pyuic5 %s -o %s.py" name (file-name-sans-extension name)))))
 
+(defun jd-shell ()
+  (interactive)
+  (let ((default-directory "/sshx:ali:~"))
+    (eshell (generate-new-buffer-name "*jd*"))))
 
 (defun bingomacs/enable-socks()
   "Enable socks proxy"

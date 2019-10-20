@@ -1,4 +1,4 @@
-;;; packages.el --- bingomacs layer packages file for Spacemacs.
+;;; packages.el --- devbin layer packages file for Spacemacs.
 ;;
 ;; Copyright (c) 2012-2018 Sylvain Benner & Contributors
 ;;
@@ -18,18 +18,18 @@
 ;;
 ;;
 ;; Briefly, each package to be installed or configured by this layer should be
-;; added to `bingomacs-packages'. Then, for each package PACKAGE:
+;; added to `devbin-packages'. Then, for each package PACKAGE:
 ;;
 ;; - If PACKAGE is not referenced by any other Spacemacs layer, define a
-;;   function `bingomacs/init-PACKAGE' to load and initialize the package.
+;;   function `devbin/init-PACKAGE' to load and initialize the package.
 
 ;; - Otherwise, PACKAGE is already referenced by another Spacemacs layer, so
-;;   define the functions `bingomacs/pre-init-PACKAGE' and/or
-;;   `bingomacs/post-init-PACKAGE' to customize the package as it is loaded.
+;;   define the functions `devbin/pre-init-PACKAGE' and/or
+;;   `devbin/post-init-PACKAGE' to customize the package as it is loaded.
 
 ;;; Code:
 
-(defconst bingomacs-packages
+(defconst devbin-packages
   '(leanote
     magit-todos
     dired-icon
@@ -52,7 +52,7 @@
     (pretty-fonts    :location local)
     (pretty-magit    :location local)
     (pretty-outlines :location local))
-  "The list of Lisp packages required by the bingomacs layer.
+  "The list of Lisp packages required by the devbin layer.
 
 Each entry is either:
 
@@ -90,7 +90,7 @@ Each entry is either:
 ;; (setq-default header-line-format
 ;; '((which-func-mode ("" which-func-format " "))))
 
-(defun bingomacs/init-magit-todos()
+(defun devbin/init-magit-todos()
   (use-package magit-todos
     :defer t
     :hook (magit-mode . magit-todos-mode)
@@ -98,21 +98,21 @@ Each entry is either:
     (setq magit-todos-require-colon nil)
     (define-key magit-todos-section-map "j" nil)))
 
-(defun bingomacs/init-dired-icon ()
+(defun devbin/init-dired-icon ()
   "Initialize dired-icon"
   (add-hook 'dired-mode-hook 'dired-icon-mode)
   (add-hook 'dired-mode-hook
             (lambda ()
               (highlight-lines-matching-regexp "\.org$" 'hi-yellow))))
 
-(defun bingomacs/init-dired-subtree()
+(defun devbin/init-dired-subtree()
 (use-package dired-subtree
   :defer t
   :bind (:map dired-mode-map
               ("TAB" . dired-subtree-cycle))))
 
 
-(defun bingomacs/init-leanote()
+(defun devbin/init-leanote()
   (use-package leanote
     :defer t
     :config
@@ -123,11 +123,11 @@ Each entry is either:
                   (leanote-spaceline-status))))))
 
 
-(defun bingomacs/init-aria2()
+(defun devbin/init-aria2()
   (use-package aria2
     :defer t))
 
-(defun bingomacs/init-awesome-tab()
+(defun devbin/init-awesome-tab()
   (use-package awesome-tab
     :config
     (with-eval-after-load 'evil
@@ -140,23 +140,23 @@ Each entry is either:
       (define-key evil-normal-state-map (kbd ",tl") 'awesome-tab-backward))
     (setq awesome-tab-cycle-scope 'tabs) ; Navigate through visible tabs only.
     (awesome-tab-mode t)))
-(defun bingomacs/eshell-keymap ()
+(defun devbin/eshell-keymap ()
   (evil-define-key 'insert eshell-mode-map
     (kbd "C-u") 'eshell-kill-input
     (kbd "C-a") 'eshell-bol
     (kbd "C-d") 'kevin/quit-or-delete-char
     (kbd "C-r") 'kevin/ivy-eshell-history
     (kbd "TAB") 'pcomplete-std-complete))
-(defun bingomacs/init-aweshell()
+(defun devbin/init-aweshell()
   (use-package aweshell
     :commands (aweshell-toggle)
-    :hook (eshell-first-time-mode . bingomacs/eshell-keymap)
+    :hook (eshell-first-time-mode . devbin/eshell-keymap)
     :config
     (setq eshell-highlight-prompt t)
     (setq eshell-prompt-function 'epe-theme-lambda)
     (setq eshell-history-file-name (concat user-emacs-directory "eshell/history"))))
 
-(defun bingomacs/init-insert-translated-name()
+(defun devbin/init-insert-translated-name()
   (use-package insert-translated-name
     :ensure nil
     :bind ("C-c t t" . 'insert-translated-name-insert)
@@ -165,45 +165,45 @@ Each entry is either:
     (defvar insert-translated-name-camel-style-mode-list
       '(go-mode))))
 
-(defun bingomacs/init-company-english-helper()
+(defun devbin/init-company-english-helper()
   (use-package company-english-helper
     :ensure nil
     :after company
     :bind ("C-c t e" . 'toggle-company-english-helper)) )
 
-(defun bingomacs/init-beacon()
+(defun devbin/init-beacon()
   (use-package beacon
     :defer t
     :init
     (beacon-mode 1)))
 
-(defun bingomacs/init-edit-server()
+(defun devbin/init-edit-server()
   (use-package edit-server
     :init (edit-server-start)
     :config (setq edit-server-default-major-mode 'org-mode)))
 
-(defun bingomacs/init-speed-type()
+(defun devbin/init-speed-type()
   (use-package speed-type
     :defer))
 
-(defun bingomacs/post-init-go-tag()
+(defun devbin/post-init-go-tag()
   (use-package go-tag
     :config
     (setq go-tag-args (list "-transform" "camelcase"))))
 
-(defun bingomacs/init-carbon-now-sh()
+(defun devbin/init-carbon-now-sh()
   (use-package carbon-now-sh
     :defer))
 
-(defun bingomacs/init-figlet()
+(defun devbin/init-figlet()
   (use-package figlet
     :defer))
 
 
-(defun bingomacs/init-prettify-utils ()
+(defun devbin/init-prettify-utils ()
   (use-package prettify-utils))
 
-(defun bingomacs/init-pretty-eshell ()
+(defun devbin/init-pretty-eshell ()
   (use-package pretty-eshell
     :init
     (progn
@@ -253,7 +253,7 @@ Each entry is either:
       (setq pretty-eshell-funcs
             (list esh-dir esh-git esh-python esh-clock esh-num)))))
 
-(defun bingomacs/init-pretty-fonts ()
+(defun devbin/init-pretty-fonts ()
   (use-package pretty-fonts
     :config
     ;; !! This is required to avoid segfault when using emacs as daemon !!
@@ -282,7 +282,7 @@ Each entry is either:
          ;;              
          #xe3d0 #xe3d1 #xe3d2 #xe3d4))))))
 
-(defun bingomacs/init-pretty-magit ()
+(defun devbin/init-pretty-magit ()
   (use-package pretty-magit
     :config
     (progn
@@ -295,7 +295,7 @@ Each entry is either:
 
       (pretty-magit-setup))))
 
-(defun bingomacs/init-pretty-outlines ()
+(defun devbin/init-pretty-outlines ()
   (use-package pretty-outlines
     :hook ((outline-mode       . pretty-outlines-set-display-table)
            (outline-minor-mode . pretty-outlines-set-display-table)

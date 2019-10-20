@@ -55,11 +55,11 @@ This function should only modify configuration layer settings."
      imenu-list
      ipython-notebook
      lsp
-     bingomacs
-     bingomacs-org
+     devbin
+     devbin-org
      myleetcode
      (osx :variables osx-command-as 'super)
-     (plantuml :variables org-plantuml-jar-path "~/.spacemacs.d/layers/bingomacs-org/plantuml.jar")
+     (plantuml :variables org-plantuml-jar-path "~/.spacemacs.d/layers/devbin-org/plantuml.jar")
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (chinese :variables chinese-enable-youdao-dict t)
      (syntax-checking :variables syntax-checking-use-original-bitmaps t

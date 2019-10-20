@@ -1,4 +1,4 @@
-;;; packages.el --- bingomacs-org layer packages file for Spacemacs.
+;;; packages.el --- devbin-org layer packages file for Spacemacs.
 ;;
 ;; Copyright (c) 2012-2018 Sylvain Benner & Contributors
 ;;
@@ -18,18 +18,18 @@
 ;;
 ;;
 ;; Briefly, each package to be installed or configured by this layer should be
-;; added to `bingomacs-org-packages'. Then, for each package PACKAGE:
+;; added to `devbin-org-packages'. Then, for each package PACKAGE:
 ;;
 ;; - If PACKAGE is not referenced by any other Spacemacs layer, define a
-;;   function `bingomacs-org/init-PACKAGE' to load and initialize the package.
+;;   function `devbin-org/init-PACKAGE' to load and initialize the package.
 
 ;; - Otherwise, PACKAGE is already referenced by another Spacemacs layer, so
-;;   define the functions `bingomacs-org/pre-init-PACKAGE' and/or
-;;   `bingomacs-org/post-init-PACKAGE' to customize the package as it is loaded.
+;;   define the functions `devbin-org/pre-init-PACKAGE' and/or
+;;   `devbin-org/post-init-PACKAGE' to customize the package as it is loaded.
 
 ;;; Code:
 
-(defconst bingomacs-org-packages
+(defconst devbin-org-packages
   '(org
     outshine
     ob-go
@@ -40,7 +40,7 @@
     calfw-org
     cal-china-x
     easy-hugo)
-  "The list of Lisp packages required by the bingomacs-org layer.
+  "The list of Lisp packages required by the devbin-org layer.
 
 Each entry is either:
 
@@ -67,7 +67,7 @@ Each entry is either:
       - A list beginning with the symbol `recipe' is a melpa
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
 
-(defun bingomacs-org/post-init-org()
+(defun devbin-org/post-init-org()
   (with-eval-after-load 'org
     (setq org-src-fontify-natively t)
     (setq org-agenda-inhibit-startup t)
@@ -80,7 +80,7 @@ Each entry is either:
                                    ("DONE" . "green")
                                    ("ABORT" . "gray")))
     ;; :COLUMNS:  %75ITEM(Task) %8PRIORITY(Priority) %9TODO(Status) %8EFFORT(Effort){:} %16SCHEDULED %16DEADLINE
-    (setq org-columns-default-format "%60ITEM(Task) %8PRIORITY(Priority) %8TODO(Status) %8Effort(Effort){:} %8CLOCKSUM %16SCHEDULED %16DEADLINE")
+    (setq org-columns-default-format "%50ITEM(Task) %8PRIORITY(Priority) %6TODO(Status) %6Effort(Effort){:} %8CLOCKSUM %16SCHEDULED %16DEADLINE")
     ;; global Effort estimate values
     ;; global STYLE property values for completion
     (setq org-global-properties (quote (("Effort_ALL" . "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00 0:00")
@@ -150,7 +150,7 @@ Each entry is either:
             (tags priority-down category-keep)))
 
     (with-eval-after-load 'org-agenda
-      (add-hook 'org-agenda-finalize-hook #'bingomacs-org/org-agenda-time-grid-spacing)
+      (add-hook 'org-agenda-finalize-hook #'devbin-org/org-agenda-time-grid-spacing)
       (require 'org-projectile)
       (mapcar #'(lambda (file)
                   (when (file-exists-p file)
@@ -249,7 +249,7 @@ Each entry is either:
        (ditaa . t)))))
 
 
-(defun bingomacs-org/init-outshine ()
+(defun devbin-org/init-outshine ()
   (use-package outshine
     :hook ((prog-mode          . outline-minor-mode)
            (outline-minor-mode . outshine-mode))
@@ -294,7 +294,7 @@ Each entry is either:
           (advice-add 'org-insert-heading    :after 'evil-insert-advice)
           (advice-add 'org-insert-subheading :after 'evil-insert-advice))))))
 
-(defun bingomacs-org/org-agenda-time-grid-spacing ()
+(defun devbin-org/org-agenda-time-grid-spacing ()
   "Set different line spacing w.r.t. time duration."
   (save-excursion
     (let* ((background (alist-get 'background-mode (frame-parameters)))
@@ -321,12 +321,7 @@ Each entry is either:
 ;;[[https://emacs-china.org/t/topic/3971/2][求教org中todo已完成纪录怎么自动归档到外部文件 - Org-mode - Emacs China]]
 (defun archive-done-tasks ()
   (interactive)
-  (save-excursion
-    (goto-char (point-min))
-    (while (re-search-forward
-            (concat "\\* " (regexp-opt org-done-keywords) " ") nil t)
-      (goto-char (line-beginning-position))
-      (org-archive-subtree))))
+  (org-map-entries 'org-archive-subtree "/DONE" 'file))
 
 (defun enable-auto-archive ()
   (add-hook 'after-save-hook 'archive-done-tasks))
@@ -355,36 +350,36 @@ Each entry is either:
 ;; http://elpa.gnu.org/packages/pinentry.html
 ;; This will force Emacs to use its own internal password prompt instead of an external pin entry program.
 (setenv "GPG_AGENT_INFO" nil)
-(defun bingomacs-org/init-pinentry()
+(defun devbin-org/init-pinentry()
   (use-package pinentry
     :defer t))
 
-(defun bingomacs-org/init-ob-go()
+(defun devbin-org/init-ob-go()
   (use-package ob-go
     :defer t))
 
-(defun bingomacs-org/init-ob-kotlin()
+(defun devbin-org/init-ob-kotlin()
   (use-package ob-kotlin
     :defer t))
 
-(defun bingomacs-org/post-init-org-pomodoro ()
+(defun devbin-org/post-init-org-pomodoro ()
   (add-hook 'org-pomodoro-started-hook
             (lambda ()(do-applescript "tell application \"JustFocus\"\n    launch\n    start pomodoro\nend tell")))
   (add-hook 'org-pomodoro-finished-hook
-            (lambda () (bingomacs-org/notify "Pomodoro Completed!" "Time for a break.")))
+            (lambda () (devbin-org/notify "Pomodoro Completed!" "Time for a break.")))
   (add-hook 'org-pomodoro-break-finished-hook
-            (lambda () (bingomacs-org/notify "Pomodoro Short Break Finished" "Ready for Another?")))
+            (lambda () (devbin-org/notify "Pomodoro Short Break Finished" "Ready for Another?")))
   (add-hook 'org-pomodoro-long-break-finished-hook
-            (lambda () (bingomacs-org/notify "Pomodoro Long Break Finished" "Ready for Another?")))
+            (lambda () (devbin-org/notify "Pomodoro Long Break Finished" "Ready for Another?")))
   (add-hook 'org-pomodoro-killed-hook
             (lambda () (progn (do-applescript "tell application \"JustFocus\"\n    stop\nend tell")
-                               (bingomacs-org/notify "Pomodoro Killed" "One does not simply kill a pomodoro!")))))
+                               (devbin-org/notify "Pomodoro Killed" "One does not simply kill a pomodoro!")))))
 
 
 ;; brew install terminal-notifier
 ;; brew linkapps
-(defun bingomacs-org/notify-osx (title msg)
-  (message title "call bingomacs notify")
+(defun devbin-org/notify-osx (title msg)
+  (message title "call devbin notify")
   (call-process "terminal-notifier"
                 nil 0 nil
                 "-group" "Emacs"
@@ -393,8 +388,8 @@ Each entry is either:
                 "-message" msg
                 "-active" "org.gnu.Emacs"))
 
-(defun bingomacs-org/notify-linux (title msg)
-  (message title "call bingomacs notify")
+(defun devbin-org/notify-linux (title msg)
+  (message title "call devbin notify")
   (call-process "notify-send"
                 nil 0 nil
                 "-i" "face-monkey"
@@ -402,23 +397,23 @@ Each entry is either:
                 msg))
 
 
-(defun bingomacs-org/notify (title msg)
+(defun devbin-org/notify (title msg)
   (if (eq system-type 'darwin)
-      (bingomacs-org/notify-osx title msg)
-    (bingomacs-org/notify-linux title msg)))
+      (devbin-org/notify-osx title msg)
+    (devbin-org/notify-linux title msg)))
 
 
 
-(defun bingomacs-org/init-calfw-org()
+(defun devbin-org/init-calfw-org()
   (use-package calfw-org
     :defer t))
 
-(defun bingomacs-org/init-calfw()
+(defun devbin-org/init-calfw()
   (use-package calfw
     :defer t))
 
 
-(defun bingomacs-org/init-cal-china-x()
+(defun devbin-org/init-cal-china-x()
   (use-package cal-china-x
     :commands cal-china-x-setup
     :hook (calendar-load . cal-china-x-setup)
@@ -490,7 +485,7 @@ Each entry is either:
                   holiday-other-holidays))))
 
 ;; 用来快速浏览、过滤、编辑文本笔记
-;; (defun bingomacs-org/post-init-deft()
+;; (defun devbin-org/post-init-deft()
 ;;   (use-package deft
 ;;     :defer t
 ;;     :config (setq deft-directory "~/Nextcloud/"
@@ -498,15 +493,51 @@ Each entry is either:
 ;;                   deft-recursive t
 ;;                   deft-use-filename-as-title t)))
 
-(defun bingomacs-org/init-easy-hugo()
+
+(defun devbin/easy-hugo ()
+  (interactive)
+  (evil-define-key
+    (list 'normal 'insert 'visual 'motion)
+    easy-hugo-mode-map
+    "n" 'easy-hugo-newpost
+    "D" 'easy-hugo-article
+    "p" 'easy-hugo-preview
+    "P" 'easy-hugo-publish
+    "o" 'easy-hugo-open
+    "d" 'easy-hugo-delete
+    "e" 'easy-hugo-open
+    "c" 'easy-hugo-open-config
+    "f" 'easy-hugo-open
+    "N" 'easy-hugo-no-help
+    "v" 'easy-hugo-view
+    "r" 'easy-hugo-refresh
+    "g" 'easy-hugo-refresh
+    "s" 'easy-hugo-sort-time
+    "S" 'easy-hugo-sort-char
+    "G" 'easy-hugo-github-deploy
+    "A" 'easy-hugo-amazon-s3-deploy
+    "C" 'easy-hugo-google-cloud-storage-deploy
+    "q" 'evil-delete-buffer
+    (kbd "TAB") 'easy-hugo-open
+    (kbd "RET") 'easy-hugo-preview)
+  (define-key global-map (kbd "C-c C-e") 'easy/hugo))
+
+
+(defun devbin-org/init-easy-hugo()
   (use-package easy-hugo
     :defer t
     :init
     (setq easy-hugo-basedir "~/git/blog/")
-    (setq easy-hugo-url "")
+    (setq easy-hugo-url "https://devbin.github.io/")
     (setq easy-hugo-preview-url "http://127.0.0.1:1313/")
     (setq easy-hugo-postdir "content/post")
     (setq easy-hugo-default-ext ".org")
-    (setq easy-hugo-root "/")))
+    (setq easy-hugo-bloglist
+          '(((easy-hugo-basedir . "~/git/dabai/")
+            (easy-hugo-url . "http://devbin.tech")
+            (setq easy-hugo-preview-url "http://127.0.0.1:1313/")
+            (setq easy-hugo-postdir "content/post")
+            (setq easy-hugo-default-ext ".org"))))
+    (add-hook 'easy-hugo-mode-hook 'devbin/easy-hugo)))
 
 ;;; packages.el ends here
