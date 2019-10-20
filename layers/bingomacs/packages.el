@@ -33,6 +33,7 @@
   '(leanote
     magit-todos
     dired-icon
+    dired-subtree
     beacon
     (aria2 :location (recipe :fetcher github :repo "LdBeth/aria2.el"))
     ;; (awesome-tab :location (recipe :fetcher github :repo "manateelazycat/awesome-tab"))
@@ -97,7 +98,11 @@ Each entry is either:
             (lambda ()
               (highlight-lines-matching-regexp "\.org$" 'hi-yellow))))
 
-
+(defun bingomacs/init-dired-subtree()
+(use-package dired-subtree
+  :defer t
+  :bind (:map dired-mode-map
+              ("TAB" . dired-subtree-cycle))))
 
 
 (defun bingomacs/init-leanote()
