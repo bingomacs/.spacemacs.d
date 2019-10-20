@@ -32,7 +32,7 @@
 (defconst devbin-packages
   '(leanote
     magit-todos
-    dired-icon
+    all-the-icons-dired
     dired-subtree
     beacon
     (aria2 :location (recipe :fetcher github :repo "LdBeth/aria2.el"))
@@ -98,12 +98,10 @@ Each entry is either:
     (setq magit-todos-require-colon nil)
     (define-key magit-todos-section-map "j" nil)))
 
-(defun devbin/init-dired-icon ()
-  "Initialize dired-icon"
-  (add-hook 'dired-mode-hook 'dired-icon-mode)
-  (add-hook 'dired-mode-hook
-            (lambda ()
-              (highlight-lines-matching-regexp "\.org$" 'hi-yellow))))
+
+(defun devbin/init-all-the-icons-dired ()
+  (use-package all-the-icons-dired
+    :hook (dired-mode . all-the-icons-dired-mode)))
 
 (defun devbin/init-dired-subtree()
 (use-package dired-subtree
