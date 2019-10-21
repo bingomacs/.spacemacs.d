@@ -31,8 +31,6 @@
 
 (defconst devbin-org-packages
   '(org
-    outshine
-    (pretty-outlines :location local)
     ob-go
     ob-kotlin
     org-pomodoro
@@ -249,59 +247,6 @@ Each entry is either:
        (plantuml . t)
        (ditaa . t)))))
 
-
-(defun devbin-org/init-outshine ()
-  (use-package outshine
-    :hook ((prog-mode          . outline-minor-mode)
-           (outline-minor-mode . outshine-mode))
-
-    :bind (("<backtab>"     . outshine-cycle-buffer)
-           ([(meta return)]       . outshine-insert-heading)
-           ([(meta shift return)] . outshine-insert-subheading)
-           :map outline-minor-mode-map)
-
-    :init
-    (progn
-      (evil-define-key '(normal visual motion) outline-minor-mode-map
-        "gh" 'outline-up-heading
-        "gj" 'outline-forward-same-level
-        "gk" 'outline-backward-same-level
-        "gl" 'outline-next-visible-heading
-        "gu" 'outline-previous-visible-heading)
-
-      (spacemacs/set-leader-keys
-        "nn" 'outshine-narrow-to-subtree
-        "nw" 'widen
-        "nj" 'outline-move-subtree-down
-        "nk" 'outline-move-subtree-up
-        "nh" 'outline-promote
-        "nl" 'outline-demote)
-
-      (advice-add 'outshine-narrow-to-subtree :before 'outshine-fix-narrow-pos)
-
-      (advice-add 'outshine-insert-heading    :before 'outshine-fix-insert-pos)
-      (advice-add 'outshine-insert-heading    :after 'evil-insert-advice)
-      (advice-add 'outshine-insert-subheading :after 'evil-insert-advice)
-
-      ;; Fix the new bindings in outline-minor-mode overwriting org-mode-map
-      ;; I also add advice here because it mirrors outshine modifications
-      (spacemacs|use-package-add-hook org
-        :post-config
-        (progn
-          (bind-keys :map org-mode-map
-                     ([(meta return)]       . org-meta-return)
-                     ([(meta shift return)] . org-insert-subheading))
-          (advice-add 'org-insert-heading    :before 'org-fix-heading-pos)
-          (advice-add 'org-insert-heading    :after 'evil-insert-advice)
-          (advice-add 'org-insert-subheading :after 'evil-insert-advice))))))
-
-(defun devbin-org/init-pretty-outlines ()
-  (use-package pretty-outlines
-    :hook ((outline-mode       . pretty-outlines-set-display-table)
-           (outline-minor-mode . pretty-outlines-set-display-table)
-           (emacs-lisp-mode . pretty-outlines-add-bullets)
-           (hy-mode         . pretty-outlines-add-bullets)
-           (python-mode     . pretty-outlines-add-bullets))))
 
 (defun devbin-org/org-agenda-time-grid-spacing ()
   "Set different line spacing w.r.t. time duration."
