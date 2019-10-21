@@ -78,7 +78,7 @@
 ;;;###autoload
 (defun pretty-magit-setup (&optional no-commit-prompts?)
   "Advise the appropriate magit funcs to add pretty-magit faces."
-  (advice-add 'magit-status         :after 'pretty-magit--add-magit-faces)
+  ;; (advice-add 'magit-status         :after 'pretty-magit--add-magit-faces)
   (advice-add 'magit-refresh-buffer :after 'pretty-magit--add-magit-faces)
 
   (unless no-commit-prompts?
