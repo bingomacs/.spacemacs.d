@@ -50,8 +50,7 @@
     (prettify-utils :location (recipe :fetcher github :repo "Ilazki/prettify-utils.el"))
     (pretty-eshell   :location local)
     (pretty-fonts    :location local)
-    (pretty-magit    :location local)
-    (pretty-outlines :location local))
+    (pretty-magit    :location local))
   "The list of Lisp packages required by the devbin layer.
 
 Each entry is either:
@@ -293,12 +292,5 @@ Each entry is either:
 
       (pretty-magit-setup))))
 
-(defun devbin/init-pretty-outlines ()
-  (use-package pretty-outlines
-    :hook ((outline-mode       . pretty-outlines-set-display-table)
-           (outline-minor-mode . pretty-outlines-set-display-table)
-           (emacs-lisp-mode . pretty-outlines-add-bullets)
-           (hy-mode         . pretty-outlines-add-bullets)
-           (python-mode     . pretty-outlines-add-bullets))))
 
 ;;; packages.el ends here

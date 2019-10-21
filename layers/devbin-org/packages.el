@@ -32,6 +32,7 @@
 (defconst devbin-org-packages
   '(org
     outshine
+    (pretty-outlines :location local)
     ob-go
     ob-kotlin
     org-pomodoro
@@ -293,6 +294,14 @@ Each entry is either:
           (advice-add 'org-insert-heading    :before 'org-fix-heading-pos)
           (advice-add 'org-insert-heading    :after 'evil-insert-advice)
           (advice-add 'org-insert-subheading :after 'evil-insert-advice))))))
+
+(defun devbin-org/init-pretty-outlines ()
+  (use-package pretty-outlines
+    :hook ((outline-mode       . pretty-outlines-set-display-table)
+           (outline-minor-mode . pretty-outlines-set-display-table)
+           (emacs-lisp-mode . pretty-outlines-add-bullets)
+           (hy-mode         . pretty-outlines-add-bullets)
+           (python-mode     . pretty-outlines-add-bullets))))
 
 (defun devbin-org/org-agenda-time-grid-spacing ()
   "Set different line spacing w.r.t. time duration."
