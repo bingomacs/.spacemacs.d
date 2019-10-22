@@ -148,6 +148,11 @@ Each entry is either:
             (todo priority-down category-keep)
             (tags priority-down category-keep)))
 
+    (setq org-priority-faces
+          '((65 :inherit org-priority :foreground "red")
+            (66 :inherit org-priority :foreground "brown")
+            (67 :inherit org-priority :foreground "blue")))
+
     (with-eval-after-load 'org-agenda
       (add-hook 'org-agenda-finalize-hook #'devbin-org/org-agenda-time-grid-spacing)
       (require 'org-projectile)
