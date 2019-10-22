@@ -161,6 +161,12 @@ Each entry is either:
                     (push file org-agenda-files)))
               (org-projectile-todo-files)))
 
+    (evil-define-key '(normal visual motion) org-mode-map
+      "gh" 'outline-up-heading
+      "gj" 'outline-forward-same-level
+      "gk" 'outline-backward-same-level
+      "gl" 'outline-next-visible-heading
+      "gu" 'outline-previous-visible-heading)
 
     (crypt)
 
