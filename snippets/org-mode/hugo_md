@@ -7,10 +7,9 @@
 #+DATE: `(format-time-string "%Y-%m-%d")`
 #+hugo_CATEGORIES: $2
 #+hugo_TAGS: $3
-#+hugo_series: $4
 #+hugo_draft: true
 #+hugo_custom_front_matter: :toc true
-#+hugo_custom_front_matter: :image images/$5
+#+hugo_custom_front_matter: :image images/$4
 #+HUGO_SECTION: ./post
 
 
