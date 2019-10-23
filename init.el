@@ -50,15 +50,16 @@ This function should only modify configuration layer settings."
      rust
      epub
      kotlin
-     restclient
      html
      imenu-list
      ipython-notebook
      lsp
      devbin
      devbin-org
+     devbin-tabnine
      myleetcode
      (osx :variables osx-command-as 'super)
+     (restclient :variables restclient-use-org t)
      (plantuml :variables org-plantuml-jar-path "~/.spacemacs.d/layers/devbin-org/plantuml.jar")
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (chinese :variables chinese-enable-youdao-dict t)
