@@ -30,7 +30,10 @@
 ;;; Code:
 
 (defconst devbin-tabnine-packages
-  '(company-tabnine)
+  '(lsp-mode
+    company-box
+    company
+    (company-tabnine :requires company))
   "The list of Lisp packages required by the tabnine layer.
 
 Each entry is either:
@@ -58,14 +61,50 @@ Each entry is either:
       - A list beginning with the symbol `recipe' is a melpa
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
 
+(defun devbin-tabnine/post-init-lsp-mode ()
+  (with-eval-after-load 'lsp-mode
+    (advice-add 'lsp :after #'tabnine//merge-company-tabnine-to-company-lsp))
+  )
+
+(defun devbin-tabnine/post-init-company-box ()
+  (spacemacs|use-package-add-hook company-box
+    :post-config
+    (progn
+      (push #'tabnine//company-box-icons--tabnine
+            company-box-icons-functions)
+      (map-put company-box-backends-colors
+               'company-tabnine  '(:all
+                                   tabnine-company-box-backend-tabnine-face
+                                   :selected
+                                   tabnine-company-box-backend-tabnine-selected-face))
+      )
+    )
+  )
+
+(defun devbin-tabnine/post-init-company ()
+  (unless (configuration-layer/layer-used-p 'lsp)
+    (with-eval-after-load 'company
+      (push #'company-tabnine company-backends)))
+  )
 
 
 (defun devbin-tabnine/init-company-tabnine()
   (use-package company-tabnine
     :ensure t
-    :defer t
-    :init
-    :config))
+    :config
+    (progn
+      (setq company-tabnine-max-num-results 3)
+
+      (add-to-list 'company-transformers 'tabnine//sort-by-tabnine t)
+      ;; The free version of TabNine is good enough,
+      ;; and below code is recommended that TabNine not always
+      ;; prompt me to purchase a paid version in a large project.
+      (defadvice company-echo-show (around disable-tabnine-upgrade-message activate)
+        (let ((company-message-func (ad-get-arg 0)))
+          (when (and company-message-func
+                     (stringp (funcall company-message-func)))
+            (unless (string-match "The free version of TabNine only indexes up to" (funcall company-message-func))
+              ad-do-it)))))))
 
 (defun devbin-tabnine/post-init-company-tabnine()
   (with-eval-after-load 'company
