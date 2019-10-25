@@ -552,6 +552,10 @@ before packages are loaded."
      (when (and (spacemacs/system-is-mac) window-system)
        (spacemacs//set-monospaced-font "Source Code Pro" "STKaiti" 15 18))))
   (setq vc-follow-symlinks t )
+  (setq-default c-basic-offset 4
+                tab-width 4
+                indent-tabs-mode t)
+  (setq c-default-style "linux")
   (setq split-width-threshold 120)
   (setq spaceline-org-clock-p t)
   (global-prettify-symbols-mode t)
