@@ -58,6 +58,7 @@ This function should only modify configuration layer settings."
      devbin-org
      devbin-tabnine
      myleetcode
+     semantic
      (osx :variables osx-command-as 'super)
      (restclient :variables restclient-use-org t)
      (plantuml :variables org-plantuml-jar-path "~/.spacemacs.d/layers/devbin-org/plantuml.jar")
@@ -116,6 +117,9 @@ This function should only modify configuration layer settings."
           org-enable-sticky-header t
           org-enable-hugo-support t)
      (c-c++ :variables c-c++-default-mode-for-headers 'c++-mode
+            c++-enable-organize-includes-on-save t
+            c-c++-enable-clang-format-on-savea t
+            c-c++-enable-clang-support t
             c-c++-enable-google-style t
             c-c++-enable-google-newline t)
      ;; spell-checking
@@ -551,7 +555,7 @@ before packages are loaded."
   (setq spaceline-org-clock-p t)
   (global-prettify-symbols-mode t)
   (setq dired-listing-switches "-alh")
-  ;; (global-company-mode)
+  (global-company-mode)
   (spacemacs/toggle-transparency)
   (setq neo-theme 'icons)
   (setq neo-vc-integration '(face))
