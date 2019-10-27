@@ -54,6 +54,7 @@ This function should only modify configuration layer settings."
      imenu-list
      ipython-notebook
      lsp
+	 pass
      devbin
      devbin-org
      devbin-tabnine
