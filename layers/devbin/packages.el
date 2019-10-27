@@ -194,7 +194,10 @@ Each entry is either:
 
 (defun devbin/init-figlet()
   (use-package figlet
-    :defer))
+    :defer
+	:init
+	;; broadway isometric1 starwars doom banner
+	(setq figlet-default-font "banner")))
 
 
 (defun devbin/init-prettify-utils ()
