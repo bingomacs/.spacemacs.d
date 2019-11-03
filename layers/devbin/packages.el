@@ -170,9 +170,18 @@ Each entry is either:
 
 (defun devbin/init-beacon()
   (use-package beacon
+    :ensure nil
     :defer t
     :init
-    (beacon-mode 1)))
+    (beacon-mode 1)
+    (setq beacon-blink-delay 0.1)
+    (setq beacon-blink-duration 0.1)
+    (setq beacon-blink-when-buffer-changes nil)
+    (setq beacon-blink-when-point-moves-horizontally nil)
+    (setq beacon-blink-when-point-moves-vertically 0)
+    (setq beacon-color 0.6)
+    (setq beacon-dont-blink-commands (quote (forward-line)))
+    (setq beacon-size 20)))
 
 (defun devbin/init-edit-server()
   (use-package edit-server
