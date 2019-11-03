@@ -57,6 +57,7 @@ This function should only modify configuration layer settings."
      devbin
      devbin-org
      devbin-tabnine
+	 devbin-mail
      myleetcode
      semantic
      java
