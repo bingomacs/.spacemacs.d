@@ -121,6 +121,26 @@ Each entry is either:
     ;; Allow setting single tags without the menu
     (setq org-fast-tag-selection-single-key (quote expert))
 
+	(add-hook 'org-mode-hook (lambda ()
+                       "Beautify org symbols."
+                       (push '("[ ]" . ?☐) prettify-symbols-alist)
+                       (push '("[X]" . ?☑) prettify-symbols-alist)
+                       (push '("[-]" . ?⛞) prettify-symbols-alist)
+                       (push '("#+TITLE" . ?🕮) prettify-symbols-alist)
+                       (push '("#+DATE" . ?📆) prettify-symbols-alist)
+                       (push '("#+AUTHOR" . ?👤) prettify-symbols-alist)
+                       (push '("#+EMAIL" . ?🖂) prettify-symbols-alist)
+                       (push '("#+OPTIONS" . ?⚙) prettify-symbols-alist)
+                       (push '("#+TAGS" . ?🏷) prettify-symbols-alist)
+                       (push '("#+DESCRIPTION" . ?🗎) prettify-symbols-alist)
+                       (push '("#+BEGIN_SRC" . ?✎) prettify-symbols-alist)
+                       (push '("#+END_SRC" . ?□) prettify-symbols-alist)
+                       (push '("#+BEGIN_QUOTE" . ?») prettify-symbols-alist)
+                       (push '("#+END_QUOTE" . ?«) prettify-symbols-alist)
+                       (push '("#+HEADERS" . ?☰) prettify-symbols-alist)
+                       (push '("#+RESULTS:" . ?💻) prettify-symbols-alist)
+                       (prettify-symbols-mode 1)))
+
     ;; For tag searches ignore tasks with scheduled and deadline dates
     (setq org-agenda-tags-todo-honor-ignore-options t)
 
