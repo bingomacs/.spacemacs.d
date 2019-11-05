@@ -546,9 +546,7 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (spacemacs|do-after-display-system-init
-   (when (configuration-layer/layer-usedp 'chinese)
-     (when (and (spacemacs/system-is-mac) window-system)
-       (spacemacs//set-monospaced-font "Source Code Pro" "STKaiti" 15 18))))
+       (spacemacs//set-monospaced-font "Source Code Pro" "STKaiti" 15 18))
   (setq vc-follow-symlinks t )
   (setq-default c-basic-offset 4
                 tab-width 4
