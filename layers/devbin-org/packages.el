@@ -134,9 +134,13 @@ Each entry is either:
                        (push '("#+TAGS" . ?🏷) prettify-symbols-alist)
                        (push '("#+DESCRIPTION" . ?🗎) prettify-symbols-alist)
                        (push '("#+BEGIN_SRC" . ?✎) prettify-symbols-alist)
+                       (push '("#+begin_src" . ?✎) prettify-symbols-alist)
                        (push '("#+END_SRC" . ?□) prettify-symbols-alist)
+                       (push '("#+end_src" . ?□) prettify-symbols-alist)
                        (push '("#+BEGIN_QUOTE" . ?») prettify-symbols-alist)
+                       (push '("#+begin_quote" . ?») prettify-symbols-alist)
                        (push '("#+END_QUOTE" . ?«) prettify-symbols-alist)
+                       (push '("#+end_quote" . ?«) prettify-symbols-alist)
                        (push '("#+HEADERS" . ?☰) prettify-symbols-alist)
                        (push '("#+RESULTS:" . ?💻) prettify-symbols-alist)
                        (prettify-symbols-mode 1)))
@@ -229,6 +233,8 @@ Each entry is either:
     (setq org-refile-use-outline-path 'file)
     (setq org-outline-path-complete-in-steps nil)
 
+
+	(add-to-list 'org-modules 'org-protocol)
     (setq org-capture-templates
           '(("i" "inbox" entry (file+headline org-agenda-file-inbox "inbox")
              "* %?\n  %i\n %U"
@@ -255,6 +261,9 @@ Each entry is either:
             ("l" "links" entry (file+headline org-agenda-file-note "Quick notes")
              "* TODO [#C] %?\n  %i\n %a \n %U"
              :empty-lines 1)
+			("L" "Linux" entry (file+headline org-agenda-file-note "Capture in Linux")
+			 "* %? [[%:link][%:description]] \nCaptured On: %U"
+			 :empty-lines 1)
             ("p" "punch" entry (file+datetree org-agenda-file-punch)
              "* %^{想法}%? %U")
             ("j" "Journal Entry" entry (file+datetree org-agenda-file-journal)

@@ -178,7 +178,7 @@ Each entry is either:
     (setq beacon-blink-duration 0.1)
     (setq beacon-blink-when-buffer-changes nil)
     (setq beacon-blink-when-point-moves-horizontally nil)
-    (setq beacon-blink-when-point-moves-vertically 0)
+    (setq beacon-blink-when-point-moves-vertically nil)
     (setq beacon-color 0.6)
     (setq beacon-dont-blink-commands (quote (forward-line)))
     (setq beacon-size 20)))
