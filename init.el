@@ -110,7 +110,6 @@ This function should only modify configuration layer settings."
           org-enable-org-journal-support t
           org-journal-dir "~/.org/journal/"
           org-journal-file-format "%Y-%m-%d"
-          org-journal-date-prefix "#+TITLE: "
           org-journal-date-format "%A, %Y %B %d"
           org-journal-enable-agenda-integration t
           org-projectile-file "TODOs.org"
@@ -268,7 +267,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme 'all-the-icons
+   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
