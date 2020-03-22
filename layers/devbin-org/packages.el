@@ -84,12 +84,12 @@ Each entry is either:
     ;; global STYLE property values for completion
     (setq org-global-properties (quote (("Effort_ALL" . "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00 0:00")
                                         ("STYLE_ALL" . "habit"))))
-    (setq org-agenda-log-mode-items (quote (closed state)))
+    ;; (setq org-agenda-log-mode-items (quote (closed state)))
     (setq org-log-done 'notevery)
     (setq org-drawers (quote ("PROPERTIES" "LOGBOOK")))
     (setq org-log-into-drawer t)
     (setq org-clock-out-when-done t)
-    (setq org-agenda-include-diary nil)
+    (setq org-agenda-include-diary t)
     ;; 折叠时不再显示「...」
     (setq org-ellipsis "▼")
     ;; Change task state to DOING when clock in
@@ -157,7 +157,7 @@ Each entry is either:
     ;; file:data/2013/pict/test.png
     (setq org-image-actual-width '(300))
 
-    (setq org-agenda-dir "~/.agenda/")
+    (setq org-agenda-dir "~/.org/.agenda/")
     (setq org-agenda-file-inbox (expand-file-name "inbox.org" org-agenda-dir))
     (setq org-agenda-file-note (expand-file-name "notes.org" org-agenda-dir))
     (setq org-agenda-file-gtd (expand-file-name "gtd.org" org-agenda-dir))
@@ -184,6 +184,15 @@ Each entry is either:
                   (when (file-exists-p file)
                     (push file org-agenda-files)))
               (org-projectile-todo-files)))
+
+	;; (require 'appt)
+	;; (appt-activate t);启用约会提醒
+	;; (setq appt-display-format 'window);提醒出现的方式
+	;; (setq appt-message-warning-time '5);在到期前5分钟提醒
+	;; (setq appt-display-duration '30);提醒持续时间（秒）
+	;; (setq appt-audible t);声音提醒 -->没有响声!!？？？？？
+	;; (setq appt-display-mode-line t);在状态栏显示时间（分钟）
+
 
     (evil-define-key '(normal visual motion) org-mode-map
       "gh" 'outline-up-heading
@@ -293,7 +302,9 @@ Each entry is either:
   (save-excursion
     (let* ((background (alist-get 'background-mode (frame-parameters)))
            (background-dark-p (string= background "dark"))
-           (colors (list "#1ABC9C" "#2ECC71" "#3498DB" "#9966ff"))
+           (colors (if background-dark-p
+					   (list "#aa557f" "DarkGreen" "DarkSlateGray" "DarkSlateBlue")
+					 (list "#F6B1C3" "#FFFF9D" "#BEEB9F" "#ADD5F7")))
            pos
            duration)
       (nconc colors colors)
@@ -343,7 +354,7 @@ Each entry is either:
 ;; 把allow-emacs-pinentry 加入 .gnupg/gpg-agent.conf
 ;; http://elpa.gnu.org/packages/pinentry.html
 ;; This will force Emacs to use its own internal password prompt instead of an external pin entry program.
-(setenv "GPG_AGENT_INFO" nil)
+;; (setenv "GPG_AGENT_INFO" nil)
 (defun devbin-org/init-pinentry()
   (use-package pinentry
     :defer t))
@@ -367,13 +378,13 @@ Each entry is either:
             (lambda () (devbin-org/notify "Pomodoro Long Break Finished" "Ready for Another?")))
   (add-hook 'org-pomodoro-killed-hook
             (lambda () (progn (do-applescript "tell application \"JustFocus\"\n    stop\nend tell")
-                               (devbin-org/notify "Pomodoro Killed" "One does not simply kill a pomodoro!")))))
+                               (devbin-org/notify "Pomodoro Killed" "sOne does not simply kill a pomodoro!")))))
 
 
 ;; brew install terminal-notifier
 ;; brew linkapps
 (defun devbin-org/notify-osx (title msg)
-  (message title "call devbin notify")
+  (message title msg)
   (call-process "terminal-notifier"
                 nil 0 nil
                 "-group" "Emacs"
